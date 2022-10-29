@@ -33,8 +33,23 @@ result = []
 array.each { |e| result[i] = e.to_f / 10; i = i + 1}
 puts 'Розділити кожен елемент масиву на 10, при цьому елементи не мають бути округленими до цілого: ' + result.to_s
 puts ''
+#Отримати новий масив, який би містив в собі ті літери англійського алфавіту, порядковий номер яких є в нашому масиві
+array1 = []
+array.each { |e| array1.push(e) }
+i = 0
+a = array1.length
+while i < a
+  b = array1[i] + 64
+  if b >= 65 and b <= 90
+    array1[i] = b.chr
+  end
+  i = i + 1
+end
+puts 'Отримати новий масив, який би містив в собі ті літери англійського алфавіту, порядковий номер яких є в нашому масиві: ' + array1.to_s
+puts ''
 #Змінити місцями мінімальний і максимльний елементи
-array1 = array
+array1 = []
+array.each { |e| array1.push(e) }
 min_index = array1.index(array1.min)
 max_index = array1.index(array1.max)
 min = array1.min
@@ -54,7 +69,8 @@ end
 puts 'Знайти елементи, які знаходяться перед мінімальним елементом в масиві: ' + array1.to_s
 puts ''
 #Знайти три найменших елементи
-array1 = array
+array1 = []
+array.each { |e| array1.push(e) }
 max = array1.max
 i = 0
 min = []
