@@ -1,4 +1,7 @@
 class Pet
+  require 'gem_for_game'
+  include Make_HTML
+
   @@chmood = 1 
   @@chhunger = 1
   @@chtire = 1
@@ -129,6 +132,8 @@ class Pet
     puts "Бадьорість: #{@tire}"
     puts "Ситість: #{@hunger}"
     puts ''
+    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time)
+    put_into_html
   end
   
   def care
