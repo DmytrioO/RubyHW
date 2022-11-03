@@ -1,5 +1,6 @@
 class Pet
-  require 'gem_for_game'
+  gem 'gem_for_game', :git => 'https://github.com/DmytrioO/RubyHW/tree/main/HW3'
+  #require 'gem_for_game'
   include Make_HTML
 
   @@chmood = 1 
