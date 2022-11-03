@@ -1,5 +1,5 @@
 module Make_HTML
-  def get_info(breed, name, health, hunger, tire, mood, time)
+  def get_info(breed, name, health, hunger, tire, mood, time, name_of_file)
     @breed = breed
     @name = name
     @health = health
@@ -7,15 +7,49 @@ module Make_HTML
     @tire = tire
     @mood = mood
     @time = time
+    @name_of_file = name_of_file
   end
   
-  def put_into_html
-  File.write("index.html", "<p>Порода улюбленця: #{@breed}</p>")
-  File.write("index.html", "<p>Ім\'я улюбленця: #{@name}<br></p>", mode: "a")
-  File.write("index.html", "<p>Час: #{@time}</p>", mode: "a")
-  File.write("index.html", "<p>Рівень здоров\'я: #{@health}</p>", mode: "a")
-  File.write("index.html", "<p>Рівень настрою: #{@mood}</p>", mode: "a")
-  File.write("index.html", "<p>Рівень бадьорості: #{@tire}</p>", mode: "a")
-  File.write("index.html", "<p>Рівень ситості: #{@hunger}</p>", mode: "a")
+  def put_into_html()
+    File.write(@name_of_file + ".html", "<!DOCTYPE html>\n\n")
+    File.write(@name_of_file + ".html", "<head>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<meta charset=\"UTF-8\">\n", mode: "a")
+    File.write(@name_of_file + ".html", "<title>Tamagochi_Stat</title>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">", mode: "a")
+    File.write(@name_of_file + ".html", "</head>\n\n", mode: "a")
+    File.write(@name_of_file + ".html", "<body>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<div>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Порода улюбленця: #{@breed}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Ім\'я улюбленця: #{@name}<br></p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "</div>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Час: #{@time}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Рівень здоров\'я: #{@health}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Рівень настрою: #{@mood}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Рівень бадьорості: #{@tire}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "<p>Рівень ситості: #{@hunger}</p>\n", mode: "a")
+    File.write(@name_of_file + ".html", "</body>\n", mode: "a")
+  end
+
+  def make_css
+    File.write("style.css", "p {\n")
+    File.write("style.css", "font-size: 24px;\n", mode: "a")
+    File.write("style.css", "text-align: center;\n", mode: "a")
+    File.write("style.css", "}\n\n", mode: "a")
+    File.write("style.css", ".name_info {\n", mode: "a")
+    File.write("style.css", "font-size: 36px;\n", mode: "a")
+    File.write("style.css", "}\n\n", mode: "a")
+    File.write("style.css", "div {\n", mode: "a")
+    File.write("style.css", "margin-bottom: 50px;\n", mode: "a")
+    File.write("style.css", "}\n\n", mode: "a")
+    File.write("style.css", "html {\n", mode: "a")
+    File.write("style.css", "background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg);\n", mode: "a")
+    File.write("style.css", "background-repeat: no-repeat;\n", mode: "a")
+    File.write("style.css", "background-position: center center;\n", mode: "a")
+    File.write("style.css", "background-attachment: fixed;\n", mode: "a")
+    File.write("style.css", "-webkit-background-size: cover;\n", mode: "a")
+    File.write("style.css", "-moz-background-size: cover;\n", mode: "a")
+    File.write("style.css", "-o-background-size: cover;\n", mode: "a")
+    File.write("style.css", "background-size: cover;\n", mode: "a")
+    File.write("style.css", "}\n\n", mode: "a")
   end
 end

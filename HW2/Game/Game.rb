@@ -8,6 +8,14 @@ class Pet
   @@game_true = 0
   @@status_pet = 'живий'
   
+  def get_name_html(name_file)
+    @name_file = name_file
+  end
+  
+  def make_start
+    make_css
+  end
+  
   def info_status
     return @@status_pet
   end
@@ -132,7 +140,7 @@ class Pet
     puts "Бадьорість: #{@tire}"
     puts "Ситість: #{@hunger}"
     puts ''
-    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time)
+    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time, @name_file)
     put_into_html
   end
   
@@ -588,6 +596,7 @@ puts 'Привіт! Вітаю у грі.'
 puts 'В цій грі ти заведеш собі улюбленця, і тобі доведеться доглядати за ним.'
 puts 'Давай домовимося, якщо знадобиться допомога - вписуй команду help'
 pet = Pet.new
+pet.make_start
 status = 'стоп'
 while status != 'старт'
   print 'Давай оберемо породу твого улюбленця: '
@@ -649,6 +658,10 @@ puts 'Формуємо настрій улюбленця: '
 pet.set_mood
 pet.set_tire
 pet.set_hunger
+puts 'Під час проходження гри, показники твого улюбленця додатково вноситимуться в html-файл, для перегляду в браузері.'
+print 'Пропоную тобі обрати назву для документа:'
+name_file = gets.chomp
+pet.get_name_html(name_file)
 puts 'Формування улюбленця завершено!'
 puts ''
 puts 'Тепер, перед тим, як ти почнеш гру - я би хотів ознайомити тебе з її правилами:'
