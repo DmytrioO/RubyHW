@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.authors = ["Dmytro O."]
   s.files = Dir["lib/**/*.rb"]
-  s.name = "gem_for_game"
+  s.name = "Gem_for_Game"
   s.summary = "A gem for game, about own pet!"
-  s.version = "0.5.2"
+  s.version = "0.5.3"
 end
