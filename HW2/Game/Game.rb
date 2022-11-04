@@ -1,6 +1,6 @@
+require 'gem_for_game'
+
 class Pet
-  gem 'gem_for_game', :git => 'https://github.com/DmytrioO/RubyHW/tree/main/HW3'
-  #require 'gem_for_game'
   include Make_HTML
 
   @@chmood = 1 
@@ -36,7 +36,7 @@ class Pet
   end
   
   def details
-    puts "Порода улюбленця: #{@breed}"
+    puts "Тип улюбленця: #{@breed}"
     puts "Ім\'я улюбленця: #{@name}"
   end
   
@@ -141,7 +141,7 @@ class Pet
     puts "Бадьорість: #{@tire}"
     puts "Ситість: #{@hunger}"
     puts ''
-    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time, @name_file)
+    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time)
     put_into_html
   end
   
@@ -600,15 +600,15 @@ pet = Pet.new
 pet.make_start
 status = 'стоп'
 while status != 'старт'
-  print 'Давай оберемо породу твого улюбленця: '
+  print 'Давай оберемо тип твого улюбленця: '
   breed = gets.chomp
   if breed.to_s.downcase != 'help'
     pet.give_breed(breed)
     status = 'старт'
   end
   if breed.to_s.downcase == 'help'
-    puts 'Підказка: Ти можеш ввести будь-яку назву породи для свого улюбленця.'
-    puts 'Для більш цікавої гри раджу вводити якусь справжню породу!'
+    puts 'Підказка: Ти можеш ввести будь-який тип для свого улюбленця.'
+    puts 'Для більш цікавої гри раджу вводити якийсь справжній тип!'
   end
 end
 status = 'стоп'
@@ -659,10 +659,6 @@ puts 'Формуємо настрій улюбленця: '
 pet.set_mood
 pet.set_tire
 pet.set_hunger
-puts 'Під час проходження гри, показники твого улюбленця додатково вноситимуться в html-файл, для перегляду в браузері.'
-print 'Пропоную тобі обрати назву для документа:'
-name_file = gets.chomp
-pet.get_name_html(name_file)
 puts 'Формування улюбленця завершено!'
 puts ''
 puts 'Тепер, перед тим, як ти почнеш гру - я би хотів ознайомити тебе з її правилами:'

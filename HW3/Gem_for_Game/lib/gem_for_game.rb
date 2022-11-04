@@ -1,5 +1,5 @@
 module Make_HTML
-  def get_info(breed, name, health, hunger, tire, mood, time, name_of_file)
+  def get_info(breed, name, health, hunger, tire, mood, time)
     @breed = breed
     @name = name
     @health = health
@@ -7,27 +7,26 @@ module Make_HTML
     @tire = tire
     @mood = mood
     @time = time
-    @name_of_file = name_of_file
   end
   
   def put_into_html()
-    File.write(@name_of_file + ".html", "<!DOCTYPE html>\n\n")
-    File.write(@name_of_file + ".html", "<head>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<meta charset=\"UTF-8\">\n", mode: "a")
-    File.write(@name_of_file + ".html", "<title>Tamagochi_Stat</title>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">", mode: "a")
-    File.write(@name_of_file + ".html", "</head>\n\n", mode: "a")
-    File.write(@name_of_file + ".html", "<body>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<div>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Порода улюбленця: #{@breed}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Ім\'я улюбленця: #{@name}<br></p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "</div>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Час: #{@time}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Рівень здоров\'я: #{@health}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Рівень настрою: #{@mood}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Рівень бадьорості: #{@tire}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "<p>Рівень ситості: #{@hunger}</p>\n", mode: "a")
-    File.write(@name_of_file + ".html", "</body>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<!DOCTYPE html>\n\n")
+    File.write(@breed + "_" + @name + ".html", "<head>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<meta charset=\"UTF-8\">\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<title>Tamagochi_Stat</title>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "</head>\n\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<body>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<div>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Тип улюбленця: #{@breed}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Ім\'я улюбленця: #{@name}<br></p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "</div>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Час: #{@time}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Рівень здоров\'я: #{@health}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Рівень настрою: #{@mood}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Рівень бадьорості: #{@tire}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p>Рівень ситості: #{@hunger}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "</body>\n", mode: "a")
   end
 
   def make_css
