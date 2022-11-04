@@ -141,7 +141,19 @@ class Pet
     puts "Бадьорість: #{@tire}"
     puts "Ситість: #{@hunger}"
     puts ''
-    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time)
+    if @mood >= 53.00
+      status_emoji = "живий та веселий"
+    end
+    if @mood >= 40.00 and @mood < 53.00
+      status_emoji = "живий та нейтральний"
+    end
+    if @mood >= 0.00 and @mood < 40.00
+      status_emoji = "живий та сумний"
+    end
+    if @@status_pet == 'вмер'
+      status_emoji = "вмер"
+    end
+    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time, status_emoji)
     put_into_html
   end
   
