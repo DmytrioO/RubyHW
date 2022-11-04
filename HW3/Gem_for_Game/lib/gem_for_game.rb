@@ -1,5 +1,5 @@
 module Make_HTML
-  def get_info(breed, name, health, hunger, tire, mood, time)
+  def get_info(breed, name, health, hunger, tire, mood, time, status)
     @breed = breed
     @name = name
     @health = health
@@ -7,6 +7,7 @@ module Make_HTML
     @tire = tire
     @mood = mood
     @time = time
+    @status = status
   end
   
   def put_into_html()
@@ -26,7 +27,18 @@ module Make_HTML
     File.write(@breed + "_" + @name + ".html", "<p>Рівень настрою: #{@mood}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень бадьорості: #{@tire}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень ситості: #{@hunger}</p>\n", mode: "a")
-    File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#128512;</div>", mode: "a")
+    if (@status == "живий та веселий")
+      File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#128512;</div>", mode: "a")
+    end
+    if (@status == "живий та нейтральний")
+      File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#128528;</div>", mode: "a")
+    end
+    if (@status == "живий та сумний")
+      File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#x2639;</div>", mode: "a")
+    end
+    if (@status == "вмер")
+      File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#x2620;</div>", mode: "a")
+    end
     File.write(@breed + "_" + @name + ".html", "</body>\n", mode: "a")
   end
 
