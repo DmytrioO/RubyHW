@@ -1,8 +1,8 @@
-##Readme about gem for my game
+Readme about gem for my game
 ____________________________
 Hello there! How you now, i have a file with game about your own pet. You can find it on
 my Git-repository in /HW2/Game as a Game.rb:
-[Game](https://github.com/DmytrioO/RubyHW/tree/main/HW2/Game)
+[Game](https://github.com/DmytrioO/RubyHW/tree/main/HW2/Game)\n
 This game created to make an html-file with statistics about your pet. Here we have module
 Make\_HTML, that you can include in your project, and three functions:
 1. get\_info - this function gets information about pet(breed, name, health, hunger, сheer-
