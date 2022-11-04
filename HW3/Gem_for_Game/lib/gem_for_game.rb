@@ -18,14 +18,15 @@ module Make_HTML
     File.write(@breed + "_" + @name + ".html", "</head>\n\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<body>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<div>\n", mode: "a")
-    File.write(@breed + "_" + @name + ".html", "<p>Тип улюбленця: #{@breed}</p>\n", mode: "a")
-    File.write(@breed + "_" + @name + ".html", "<p>Ім\'я улюбленця: #{@name}<br></p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p class=\"name_info\">Тип улюбленця: #{@breed}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<p class=\"name_info\">Ім\'я улюбленця: #{@name}<br></p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "</div>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Час: #{@time}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень здоров\'я: #{@health}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень настрою: #{@mood}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень бадьорості: #{@tire}</p>\n", mode: "a")
     File.write(@breed + "_" + @name + ".html", "<p>Рівень ситості: #{@hunger}</p>\n", mode: "a")
+    File.write(@breed + "_" + @name + ".html", "<div class=\"emoji\">&#128512;</div>", mode: "a")
     File.write(@breed + "_" + @name + ".html", "</body>\n", mode: "a")
   end
 
@@ -49,6 +50,11 @@ module Make_HTML
     File.write("style.css", "-moz-background-size: cover;\n", mode: "a")
     File.write("style.css", "-o-background-size: cover;\n", mode: "a")
     File.write("style.css", "background-size: cover;\n", mode: "a")
+    File.write("style.css", "}\n\n", mode: "a")
+    File.write("style.css", ".emoji {\n", mode: "a")
+    File.write("style.css", "font-size:7rem;\n", mode: "a")
+    File.write("style.css", "width:100%;\n", mode: "a")
+    File.write("style.css", "text-align:center;\n", mode: "a")
     File.write("style.css", "}\n\n", mode: "a")
   end
 end
