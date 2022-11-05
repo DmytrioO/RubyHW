@@ -4,7 +4,7 @@ array = [20, 1, 4, 9, 8, 7, 13, 18, 3, 6]
 puts "Масив: " + array.to_s
 puts 'Моє рішення:'
 puts 'array = [20, 1, 4, 9, 8, 7, 13, 18, 3, 6]'
-puts 'array_max = [nil]'
+puts 'array_max = []'
 puts 'minimum = 0'
 puts 'maximum = 0'
 puts 'i = 1'
@@ -22,9 +22,8 @@ puts '    minimum = 0'
 puts '  end'
 puts '  i = i + 1'
 puts 'end'
-puts 'array_max.compact!'
 puts 'max = array_max.max'
-array_max = [nil]
+array_max = []
 minimum = 0
 maximum = 0
 i = 1
@@ -42,6 +41,5 @@ while i < a
 	end
 	i = i + 1
 end
-array_max.compact!
 max = array_max.max
 puts 'Результат: ' + max.to_s

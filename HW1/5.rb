@@ -4,13 +4,12 @@ array = [1, -1, 4, -4, 9, -9, 8, -8, 7, -7, 3, -3, 6, -6]
 puts 'Масив: ' + array.to_s
 puts 'Моє рішення:'
 puts 'array = [1, -1, 4, -4, 9, -9, 8, -8, 7, -7, 3, -3, 6, -6]'
-puts 'array_plus = [nil]'
+puts 'array_plus = []'
 puts 'array.each do |e|' 
 puts '  if e > 0'
 puts '    array_plus.push(e)'
 puts '  end'
 puts 'end'
-puts 'array_plus.compact!'
 puts 'minimum = array_plus.min'
 puts 'i = 0'
 puts 'a = array.length'
@@ -20,13 +19,12 @@ puts '    array[i] = minimum'
 puts '  end'
 puts '  i = i + 1'
 puts 'end'
-array_plus = [nil]
+array_plus = []
 array.each do |e| 
 	if e > 0
 		array_plus.push(e)
 	end
 end
-array_plus.compact!
 minimum = array_plus.min
 i = 0
 a = array.length
