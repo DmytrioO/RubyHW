@@ -11,12 +11,11 @@ puts '  end'
 puts 'end'
 puts 'array_2.compact!'
 puts 'maximum = array_2.max'
-array_2 = [nil]
+array_2 = []
 array.each do |e|
 	if (e % 2 == 0)
 		array_2.push(e)
 	end
 end
-array_2.compact!
 maximum = array_2.max
 puts "Результат: #{maximum}"

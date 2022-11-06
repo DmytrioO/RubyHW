@@ -28,7 +28,8 @@ while i < a
 			array[indicator_end + 1] = array[indicator_end]
 			indicator_end = indicator_end - 1
 		end
-		array[i + 1] = 0
+		array[i + 1] = array[0]
+		i = i + 1
 		a = a + 1
 	end
 	i = i + 1

@@ -11,12 +11,11 @@ puts '  end'
 puts 'end'
 puts 'array_not_2.compact!'
 puts 'minimum = array_not_2.min'
-array_not_2 = [nil]
+array_not_2 = []
 array.each do |e|
 	if (e % 2 != 0)
 		array_not_2.push(e)
 	end
 end
-array_not_2.compact!
 minimum = array_not_2.min
 puts "Результат: #{minimum}"
