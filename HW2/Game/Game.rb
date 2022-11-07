@@ -1,6 +1,8 @@
 require 'gem_for_game'
 
 class Pet
+  TIME_BEFORE_START = 600
+
   include Make_HTML
 
   def set_statuses
@@ -24,7 +26,7 @@ class Pet
   end
   
   def set_time
-    @time = Time.new - 600
+    @time = Time.new - TIME_BEFORE_START
   end
    
   def give_breed(breed)
@@ -179,7 +181,7 @@ class Pet
     change_time(time)
   end
   
-  def give__medicine
+  def give_medicine
     if @medicine == 1 and @health < 30
       puts 'Ти вже давав ліки своєму другу. Доведеться почекати!'
     end
@@ -487,13 +489,69 @@ class Pet
       puts 'Якщо чесно, то це настільки тупа кінцівка, що навіть не знаю, що сказати XD'
     end
   end
+
+  def get_time_for_sleep
+    status_time = '0'
+    puts 'Необхідно вказати час сну улюбленця.'
+    puts 'Бажаєш його ввести в хвилинах, чи в годинах?'
+    while status_time.to_s != '1' and status_time.to_s != '2'
+      print 'Підказка - для вибору хвилин введи 1, а годин - 2: '
+      status_time = gets.chomp
+      if status_time.to_s != '1' and status_time.to_s != '2'
+        puts 'Команда некоректна! Спробуй ще раз!'
+      end
+    end
+    print 'Введи час сну: '
+    time_sleep = gets.chomp
+    if status_time == '1'
+      time_sleep = ((time_sleep.to_i) * 60).to_i
+    end
+    if status_time == '2'
+      time_sleep = ((time_sleep.to_i) * 3600).to_i
+    end
+    return time_sleep
+  end
+
+  def get_time_for_watch
+    status_time = '0'
+    puts 'Необхідно вказати час спостереження за улюбленцем.'
+    puts 'Бажаєш його ввести в хвилинах, чи в годинах?'
+    while status_time.to_s != '1' and status_time.to_s != '2'
+      print 'Підказка - для вибору хвилин введи 1, а годин - 2: '
+      status_time = gets.chomp
+      if status_time.to_s != '1' and status_time.to_s != '2'
+        puts 'Команда некоректна! Спробуй ще раз!'
+      end
+    end
+    print 'Введи час спостереження: '
+    time_watch = gets.chomp
+    if status_time == '1'
+      time_watch = ((time_watch.to_i) * 60).to_i
+    end
+    if status_time == '2'
+      time_watch = ((time_watch.to_i) * 3600).to_i
+    end
+    return time_watch
+  end
+
+  def get_help
+    puts 'В грі для різних дій доступні різні команди. Ось список:'
+    puts 'Щоб полікувати - вписуй команди: дати ліки, лікувати. !Доступно раз на 24 ігрових години!'
+    puts 'Щоб погодувати - вписуй команди: дати їжу, годувати, погодувати.'
+    puts 'Щоб покласти спати - вписуй команди: спати, поспати. !Доступно коли шкала бадьорості менше за 100!'
+    puts 'Щоб погратися - вписуй команди: грати, пограти, гратися, погратися. !Доступно коли шкала бадьорості більше за 20!'
+    puts 'Щоб попестити - вписуй команду: пестити.'
+    puts 'Щоб порозмовляти - вписуй команду: розмовляти, балакати, побалакати, поговорити, говорити.'
+    puts 'Щоб пригостити смаколиком - вписуй команди: ласощі, дати смаколика, дати ласощі, смаколик, пригостити.'
+    puts 'Щоб вивести на прогулянку - вписуй команду: прогулянка.'
+    puts 'Якщо ти хочеш трохи перемотати час - вписуй команди: спостерігати, спостереження.'
+    puts 'Також є експериментальна, і по суті, жартівлива команда: самогон'
+    puts 'Ціль гри - не дати вмерти своєму улюбленцю, та отримувати від неї задоволення!'
+  end
   
   private
   def change_time(time)
     @time = @time + time
-    dif_mood = 0
-    dif_hunger = 0
-    dif_tire = 0
     if @chmood == 1
       dif_mood = (0.0 - ((5.0 / 60.0) * (time / 60))).round(2)
       change_mood(dif_mood)
@@ -702,85 +760,67 @@ status = 'Старт'
 while status.to_s.downcase != 'вийти' and status.to_s.downcase != 'вихід' and pet.info_status == 'живий'
   print 'Обери дію для свого улюбленця: ' 
   status = gets.chomp
-  if status.to_s.downcase == 'дати ліки' or status.to_s.downcase == 'лікувати'
-    pet.give__medicine
-  end
-  if status.to_s.downcase == 'пестити'
+  case status.to_s.downcase
+  when 'дати ліки'
+    pet.give_medicine
+  when 'лікувати'
+    pet.give_medicine
+  when 'пестити'
     pet.care
-  end
-  if status.to_s.downcase == 'спати' or status.to_s.downcase == 'поспати' 
-    status_time = '0'
-    puts 'Необхідно вказати час сну улюбленця.'
-  	puts 'Бажаєш його ввести в хвилинах, чи в годинах?'
-    while status_time.to_s != '1' and status_time.to_s != '2'
-  	  print 'Підказка - для вибору хвилин введи 1, а годин - 2: '
-  	  status_time = gets.chomp
-  	  if status_time.to_s != '1' and status_time.to_s != '2'
-  	    puts 'Команда некоректна! Спробуй ще раз!'
-  	  end
-  	end
-  	print 'Введи час сну: '
-  	time_sleep = gets.chomp
-  	if status_time == '1'
-  	  time_sleep = ((time_sleep.to_i) * 60).to_i
-  	end
-  	if status_time == '2'
-  	  time_sleep = ((time_sleep.to_i) * 3600).to_i
-  	end
-    pet.pause_sleep(time_sleep)
-  end
-  if status.to_s.downcase == 'годувати' or status.to_s.downcase == 'погодувати' or status.to_s.downcase == 'дати їжу'
+  when 'спати'
+    pet.pause_sleep(pet.get_time_for_sleep)
+  when 'поспати'
+    pet.pause_sleep(pet.get_time_for_sleep)
+  when 'годувати'
     pet.give_food
-  end
-  if status.to_s.downcase == 'грати' or status.to_s.downcase == 'пограти' or status.to_s.downcase == 'гратися' or status.to_s.downcase == 'погратися'
+  when 'погодувати'
+    pet.give_food
+  when 'дати їжу'
+    pet.give_food
+  when 'грати'
     pet.play_game
-  end
-  if status.to_s.downcase == 'спостерігати' or status.to_s.downcase == 'спостереження'
-    status_time = '0'
-    puts 'Необхідно вказати час спостереження за улюбленцем.'
-  	puts 'Бажаєш його ввести в хвилинах, чи в годинах?'
-    while status_time.to_s != '1' and status_time.to_s != '2'
-  	  print 'Підказка - для вибору хвилин введи 1, а годин - 2: '
-  	  status_time = gets.chomp
-  	  if status_time.to_s != '1' and status_time.to_s != '2'
-  	    puts 'Команда некоректна! Спробуй ще раз!'
-  	  end
-  	end
-  	print 'Введи час спостереження: '
-  	time_watch = gets.chomp
-  	if status_time == '1'
-  	  time_watch = ((time_watch.to_i) * 60).to_i
-  	end
-  	if status_time == '2'
-  	  time_watch = ((time_watch.to_i) * 3600).to_i
-  	end
-  	pet.watch_for_pet(time_watch)
-  end
-  if status.to_s.downcase == 'розмовляти' or status.to_s.downcase == 'балакати' or status.to_s.downcase == 'побалакати' or status.to_s.downcase == 'поговорити' or status.to_s.downcase == 'говорити'
+  when 'пограти'
+    pet.play_game
+  when 'гратися'
+    pet.play_game
+  when 'погратися'
+    pet.play_game
+  when 'спостерігати'
+    pet.watch_for_pet(pet.get_time_for_watch)
+  when 'спостереження'
+    pet.watch_for_pet(pet.get_time_for_watch)
+  when 'розмовляти'
     pet.talk_to_pet
-  end
-  if status.to_s.downcase == 'ласощі' or status.to_s.downcase == 'дати смаколика' or status.to_s.downcase == 'дати ласощі' or status.to_s.downcase == 'смаколик' or status.to_s.downcase == 'пригостити'
+  when 'балакати'
+    pet.talk_to_pet
+  when 'побалакати'
+    pet.talk_to_pet
+  when 'поговорити'
+    pet.talk_to_pet
+  when 'говорити'
+    pet.talk_to_pet
+  when 'ласощі'
     pet.give_a_treet
-  end
-  if status.to_s.downcase == 'прогулянка'
+  when 'дати смаколика'
+    pet.give_a_treet
+  when 'дати ласощі'
+    pet.give_a_treet
+  when 'смаколик'
+    pet.give_a_treet
+  when 'пригостити'
+    pet.give_a_treet
+  when 'прогулянка'
     pet.bring_to_walk
-  end 
-  if status.to_s.downcase == 'самогон'
+  when 'самогон'
     pet.samogon
-  end
-  if status.to_s.downcase == 'help'
-    puts 'В грі для різних дій доступні різні команди. Ось список:'
-    puts 'Щоб полікувати - вписуй команди: дати ліки, лікувати. !Доступно раз на 24 ігрових години!'
-    puts 'Щоб погодувати - вписуй команди: дати їжу, годувати, погодувати.'
-    puts 'Щоб покласти спати - вписуй команди: спати, поспати. !Доступно коли шкала бадьорості менше за 100!'
-    puts 'Щоб погратися - вписуй команди: грати, пограти, гратися, погратися. !Доступно коли шкала бадьорості більше за 20!'
-    puts 'Щоб попестити - вписуй команду: пестити.'
-    puts 'Щоб порозмовляти - вписуй команду: розмовляти, балакати, побалакати, поговорити, говорити.'
-    puts 'Щоб пригостити смаколиком - вписуй команди: ласощі, дати смаколика, дати ласощі, смаколик, пригостити.'
-    puts 'Щоб вивести на прогулянку - вписуй команду: прогулянка.'
-    puts 'Якщо ти хочеш трохи перемотати час - вписуй команди: спостерігати, спостереження.'
-    puts 'Також є експериментальна, і по суті, жартівлива команда: самогон'
-    puts 'Ціль гри - не дати вмерти своєму улюбленцю, та отримувати від неї задоволення!'
+  when 'help'
+    pet.get_help
+  when 'вийти'
+    puts 'ОК!'
+  when 'вихід'
+    puts 'ОК!'
+  else
+    puts 'Команда некоректна! Спробуй ще раз!'
   end
   pet.show_statistics
 end
