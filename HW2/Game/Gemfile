@@ -1,2 +1,0 @@
-source "https://rubygems.org" 
-gem 'gem_for_game', '0.6.1'

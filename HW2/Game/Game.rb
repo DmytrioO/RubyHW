@@ -3,11 +3,13 @@ require 'gem_for_game'
 class Pet
   include Make_HTML
 
-  @@chmood = 1 
-  @@chhunger = 1
-  @@chtire = 1
-  @@game_true = 0
-  @@status_pet = 'живий'
+  def set_statuses
+    @chmood = 1
+    @chhunger = 1
+    @chtire = 1
+    @game_true = 0
+    @status_pet = 'живий'
+  end
   
   def get_name_html(name_file)
     @name_file = name_file
@@ -18,7 +20,7 @@ class Pet
   end
   
   def info_status
-    return @@status_pet
+    return @status_pet
   end
   
   def set_time
@@ -130,7 +132,7 @@ class Pet
   end
   
   def show_statistics
-    if @@status_pet == 'вмер'
+    if @status_pet == 'вмер'
       @mood = 0
       @tire = 0
       @hunger = 0
@@ -141,24 +143,26 @@ class Pet
     puts "Бадьорість: #{@tire}"
     puts "Ситість: #{@hunger}"
     puts ''
-    if @mood >= 53.00
-      status_emoji = "живий та веселий"
+    if @mood != '?'
+      if @mood >= 53.00
+        status_emoji = "живий та веселий"
+      end
+      if @mood >= 40.00 and @mood < 53.00
+        status_emoji = "живий та нейтральний"
+      end
+      if @mood >= 0.00 and @mood < 40.00
+        status_emoji = "живий та сумний"
+      end
+      if @status_pet == 'вмер'
+        status_emoji = "вмер"
+      end
     end
-    if @mood >= 40.00 and @mood < 53.00
-      status_emoji = "живий та нейтральний"
-    end
-    if @mood >= 0.00 and @mood < 40.00
-      status_emoji = "живий та сумний"
-    end
-    if @@status_pet == 'вмер'
-      status_emoji = "вмер"
-    end
-    get_info(@breed, @name, @health, @hunger, @tire, @mood, @time, status_emoji)
-    put_into_html
+      get_info(@breed, @name, @health, @hunger, @tire, @mood, @time, status_emoji)
+      put_into_html
   end
   
   def care
-    @@chmood = 0 
+    @chmood = 0
     set_sentence = rand(0..2)
     if set_sentence == 0
       puts 'Коли гладиш свого улюбленця час проходить непомітно!'
@@ -216,7 +220,7 @@ class Pet
       end
       if status_eat != 9
         puts "#{@name} нормально поїв, і тепер виглядає більш ситим!"
-        @@chhunger = 0
+        @chhunger = 0
         hunger_eat = rand(7..20)
         change_hunger(hunger_eat) 
         change_time(1200)
@@ -225,8 +229,8 @@ class Pet
     if status.to_s == '2'
       status_eat = rand(0..12)
       if status_eat == 8 or status_eat == 9
-        @@chhunger = 0
-        @@chmood = 0
+        @chhunger = 0
+        @chmood = 0
         puts "Їжа виявилася несвіжою :( #{@name} виглядає не дуже добре"
         change_health(-5)
         change_hunger(-3)
@@ -237,7 +241,7 @@ class Pet
         puts "#{@name} нормально поїв, і тепер виглядає більш ситим!"
         health_eat = rand(0..2)
         hunger_eat = rand(3..6)
-        @@chhunger = 0
+        @chhunger = 0
         change_health(health_eat)
         change_hunger(hunger_eat)
         change_time(1200)
@@ -247,8 +251,8 @@ class Pet
       status_eat = rand(0..15)
       if status_eat > 11
         puts 'Виявляється улюбленцю такого давати було не можна :('
-        @@chmood = 0
-        @@chhunger = 0
+        @chmood = 0
+        @chhunger = 0
         change_health(-12)
         change_hunger(-15)
         change_mood(-10)
@@ -272,9 +276,9 @@ class Pet
       puts 'Твій улюбленець надто стомлений для гри'
     end
     if @tire >= 20
-      @@game_true = 1
+      @game_true = 1
       status_game = rand(1..8)
-      @@chmood = 0
+      @chmood = 0
       if status_game == 1 or status_game == 2
         puts "Ви з #{@name} чудово провели час."
         change_time(1800)
@@ -305,7 +309,7 @@ class Pet
   end
   
   def pause_sleep(time)
-    @@chtire = 0
+    @chtire = 0
     max_sleep = (100 - @tire) / (10.0 / 3600)
     if @tire == 100
       puts 'Твій улюбленець поки не хоче спати!'
@@ -327,7 +331,7 @@ class Pet
   end
   
   def talk_to_pet
-    @@chmood = 0
+    @chmood = 0
     print 'Що ти хочеш сказати?: '
     sentence = gets.chomp
     reaction = rand(0..10)
@@ -345,9 +349,9 @@ class Pet
   end
   
   def give_a_treet
-    status_treet = rand (0..10)
-    @@chhunger = 0
-    @@chmood = 0
+    status_treet = rand(0..10)
+    @chhunger = 0
+    @chmood = 0
     if status_treet == 10
       puts 'Все йшло добре, але твій улюбленець подавився :('
       change_hunger(0.5)
@@ -384,21 +388,21 @@ class Pet
         puts "Прогулянка пройшла успішно! #{@name} явно задоволений!"
         mood = rand(8..16)
         change_mood(mood)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
       if success_walk == 7 or success_walk == 8
         puts "На прогулянці #{@name} зʼїв якесь сміття, і тепер йому погано!"
         change_health(-0.5)
         change_mood(-1)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
       if success_walk == 9 or success_walk == 10
         puts "Надворі йшов дощ, тому #{@name} не дуже задоволений цією прогулянкою!"
         mood = rand(1..4)
         change_mood(mood)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
     end
@@ -408,38 +412,38 @@ class Pet
         puts "Прогулянка пройшла успішно! #{@name} явно задоволений!"
         mood = rand(12..21)
         change_mood(mood)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
       if success_walk == 7 or success_walk == 8
         puts "На прогулянці #{@name} зʼїв якесь сміття, і тепер йому погано!"
         change_health(-0.5)
         change_mood(-1)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
       if success_walk == 9 or success_walk == 10
         puts "Надворі йшов дощ, тому #{@name} не дуже задоволений цією прогулянкою!"
         mood = rand(6..9)
         change_mood(mood)
-        @@game_true = 1
+        @game_true = 1
         change_time(5400)
       end
       if success_walk > 10 and success_walk <= 20
         puts "Хто б міг подумати, але #{@name} вирішив підкорити вільний світ, тому просто напросто втік від тебе"
-        @@status_pet = 'втік'
+        @status_pet = 'втік'
         change_time(5400)
         unvisible_pet
       end
       if success_walk > 30 and success_walk <= 40
         puts "Хто б міг подумати, але #{@name} вирішив підгодуватися, з\'ївши якусь бабусю. Тепер його присплять, а тебе чекає кримінальна відповідальність!"
-        @@status_pet = 'спить'
+        @status_pet = 'спить'
         change_time(5400)
         only_sleep
       end
       if success_walk > 40
         puts "Можливо #{name} в минулому житті був гонщиком, а можливо суіцидником - в будь-якому разі він вирішив побігати по дорозі, і зустрівся з автомобілем"
-        @@status_pet = 'автомобіль'
+        @status_pet = 'автомобіль'
         change_time(5400)
         only_sleep
       end
@@ -458,7 +462,7 @@ class Pet
     end
     if samogon_status.to_s.downcase == 'так'
       puts 'Звідки ж тобі було знати, що самогон так подіє на твого улюбленця? Він збільшився і зʼїв тебе :('
-      @@status_pet = 'поїв'
+      @status_pet = 'поїв'
       unvisible_pet
     end
     if samogon_status.to_s.downcase == 'ні'
@@ -467,19 +471,19 @@ class Pet
   end
   
   def ending_story
-    if @@status_pet == 'вмер'
+    if @status_pet == 'вмер'
       puts 'Ви були хорошими друзями, проте неналежний догляд зробив своє діло, тому твій улюбленецю загинув. Сподіваюсь, що в наступний раз ти поставишся до питання серйозніше :('
     end
-    if @@status_pet == 'втік'
+    if @status_pet == 'втік'
       puts 'Пізно з\'ясовувати причини втечі, та й шукати твого улюбленця впринципі теж. Сподіваюсь вам було весело разом, і що йому зараз непогано там де він є. А тобі дякую за увагу і бажаю удачі :)'
     end
-    if @@status_pet == 'спить'
+    if @status_pet == 'спить'
       puts 'Хочу щиро привітати тебе з тим, що це всього лиш гра, і нічого страшного не відбулося ;) Сподіваюся, що під час наступного проходження ти будеш обережніше!'
     end
-    if @@status_pet == 'автомобіль'
+    if @status_pet == 'автомобіль'
       puts 'Що ж... Мабуть так було написано долею. Так буває, так трапляється, ну а потім забувається. Сподіваюсь наступне проходження буде позитивнишим.'
     end
-    if @@status_pet == 'поїв'
+    if @status_pet == 'поїв'
       puts 'Якщо чесно, то це настільки тупа кінцівка, що навіть не знаю, що сказати XD'
     end
   end
@@ -490,28 +494,28 @@ class Pet
     dif_mood = 0
     dif_hunger = 0
     dif_tire = 0
-    if @@chmood == 1
+    if @chmood == 1
       dif_mood = (0.0 - ((5.0 / 60.0) * (time / 60))).round(2)
       change_mood(dif_mood)
     end
-    if @@chhunger == 1
+    if @chhunger == 1
       dif_hunger = (0.0 - ((8.0 / 60.0) * (time / 60))).round(2)
       change_hunger(dif_hunger)
     end
-    if @@chtire == 1
-      if @@game_true == 0 
+    if @chtire == 1
+      if @game_true == 0
         dif_tire = (0.0 - ((8.0 / 60.0) * (time / 60))).round(2)
         change_tire(dif_tire)
       end
-      if @@game_true == 1
+      if @game_true == 1
         dif_tire = (0.0 - ((12.0 / 60.0) * (time / 60))).round(2)
         change_tire(dif_tire)
       end
     end
-    @@chmood = 1
-    @@chhunger = 1
-    @@chtire = 1
-    if ((@time - @ind_medicine).to_i >= 86400)
+    @chmood = 1
+    @chhunger = 1
+    @chtire = 1
+    if (@time - @ind_medicine).to_i >= 86400
       @medicine = 0
     end
     if @mood < 10
@@ -534,10 +538,10 @@ class Pet
     end
     if @tire < 10
       tire_changed = 10 - @tire
-      if @@game_true == 0
+      if @game_true == 0
         tire_time = ((60.0 * tire_changed) / 8.0).round(2)
       end
-      if @@game_true == 1
+      if @game_true == 1
         tire_time = ((60.0 * tire_changed) / 12.0).round(2)
       end
       dif_tire = (0.0 - ((8.0 / 60.0) * tire_time)).round(2)
@@ -586,7 +590,7 @@ class Pet
     end
     if @health <= 0
       @health = 0
-      @@status_pet = 'вмер'
+      @status_pet = 'вмер'
     end
   end
   
