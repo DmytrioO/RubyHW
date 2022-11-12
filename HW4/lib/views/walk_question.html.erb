@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+	  html {
+  	  	background-image: url(https://images.squarespace-cdn.com/content/v1/55ba71f7e4b00dce923b869f/1589919209846-Z98NM4JE5Y2O2IT6FOFD/IMGL1983.jpg);
+	  	background-repeat: no-repeat;
+	  	background-position: center center;
+	  	background-attachment: fixed;
+	  	-webkit-background-size: cover;
+	  	-moz-background-size: cover;
+	  	-o-background-size: cover;
+	  	background-size: cover;
+	  }
+	  
+	  h1 {
+	    font-family: Phosphate;
+	    font-size: 36px;
+	    color: red;
+	    text-align: center;
+	  }
+	  
+	  .button {
+  	  text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 40px 40px #32dae3 inset, 0 0 0 0 #32dae3;
+      font-family: Phosphate;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: white;
+      transition: .15s ease-in-out;
+      font-size: 30px;
+    }
+	.button:hover {
+	  background-color: white;
+      box-shadow: 0 0 10px 0 #32dae3 inset, 0 0 10px 4px #32dae3;
+      color: #32dae3;
+    }
+    
+    form {
+      text-align: center;
+    }
+	</style>
+	<title>Walk_Question</title>
+	<meta charset="UTF-8">
+  </head>
+  
+  <body>
+    <h1>Чи бажаєш ти застерегтися і взяти повідець/клітку?</h1>
+    <form action="/change" method="get">
+      <input class="button" type='submit' value='Так' name='w_yes'>
+      <input class="button" type='submit' value='Ні' name='w_no'>
+    </form>
+  </body>
+</html>

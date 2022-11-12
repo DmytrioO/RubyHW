@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      html {
+  	  	background-image: url(https://vet-call24.com.ua/images/%D0%98%D0%BE%D1%80%D0%BA%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%B8%D0%B8-%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80-%D1%84%D0%BE%D1%82%D0%BE-%D0%B8-%D1%86%D0%B5%D0%BD%D0%B0_2.jpg);
+	  	background-repeat: no-repeat;
+	  	background-position: center center;
+	  	background-attachment: fixed;
+	  	-webkit-background-size: cover;
+	  	-moz-background-size: cover;
+	  	-o-background-size: cover;
+	  	background-size: cover;
+	  }
+	  
+	  .button {
+  	  	text-decoration: none;
+      	display: inline-block;
+      	padding: 15px 30px;
+      	margin: 10px 20px;
+      	border-radius: 10px;
+      	box-shadow: 0 0 40px 40px #32dae3 inset, 0 0 0 0 #32dae3;
+      	font-family: Phosphate;
+      	font-weight: bold;
+      	letter-spacing: 2px;
+      	color: white;
+      	transition: .15s ease-in-out;
+      	font-size: 30px;
+      } 
+	  .button:hover {
+	  	background-color: white;
+      	box-shadow: 0 0 10px 0 #32dae3 inset, 0 0 10px 4px #32dae3;
+      	color: #32dae3;
+      }
+      
+      h1, form {
+        text-align: center;
+      }
+      
+      h1 {
+        font-family: Phosphate;
+        font-size: 36px;
+        color: white;
+      }
+    </style>
+    <meta charset="UTF-8">
+	<title>Play_Game</title>
+  </head>
+  
+  <body>
+    <h1><%= game_message %></h1>
+    <form action="/change_cookies" method="get">
+      <input class="button" type='submit' value='ОК'>
+    </form>
+  </body>
+</html>

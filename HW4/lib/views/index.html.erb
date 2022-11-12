@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<head>
+  <style>
+    p {
+	  font-size: 24px;
+	  text-align: center;
+	  font-family: Phosphate;
+    }
+
+	.name_info {
+  	  font-size: 36px;
+  	  margin-top: 0px;
+	  padding-top: 0px;
+	}
+
+	.title {
+	  margin-top: 0px;
+	  padding-top: 0px;
+	  margin-bottom: 50px;
+	}
+	
+	.text {
+	  margin-bottom: 50px;
+	}
+
+	html {
+  	  background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg);
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  background-attachment: fixed;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	}
+
+	.button {
+  	  text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 40px 40px #32dae3 inset, 0 0 0 0 #32dae3;
+      font-family: Phosphate;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: white;
+      transition: .15s ease-in-out;
+      font-size: 30px;
+    }
+	.button:hover {
+	  background-color: white;
+      box-shadow: 0 0 10px 0 #32dae3 inset, 0 0 10px 4px #32dae3;
+      color: #32dae3;
+    }
+    
+    form {
+      text-align: center;
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <title>Tamagochi_Statistics</title>
+</head>
+
+<body>
+  <div class="title">
+	<p class="name_info">Тип улюбленця: <%= read_cookies_name('type') %></p>
+	<p class="name_info">Ім'я улюбленця: <%= read_cookies_name('name') %></p>
+  </div>
+  <div class="text">
+    <p>Час: <%= read_cookies_name('time') %></p>
+    <p>Рівень здоров'я: <%= read_cookies_name('health') %></p>
+    <p>Рівень настрою: <%= read_cookies_name('mood') %></p>
+    <p>Рівень бадьорості: <%= read_cookies_name('tire') %></p>
+    <p>Рівень ситості: <%= read_cookies_name('hunger') %></p>
+  </div>
+  <form action="/change" method="get">
+    <input class="button" type='submit' value='Їжа' name='food'>
+    <input class="button" type='submit' value='Сон' name='sleep'>
+    <input class="button" type='submit' value='Гра' name='play'>
+    <input class="button" type='submit' value='Пестощі' name='care'>
+    <input class="button" type='submit' value='Прогулянка' name='walk'>
+    <input class="button" type='submit' value='Ласощі' name='treet'>
+    <input class="button" type='submit' value='Спостереження' name='watch'>
+    <input class="button" type='submit' value='Ліки' name='medicine'>
+    <input class="button" type='submit' value='Самогон' name='samogon'>
+  </form>
+</body>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      html {
+  	    background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg);
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	    background-attachment: fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
+	  }
+	  
+	  .button {
+        position: fixed;
+ 		left: 50%;
+ 		margin-top: 10px;
+ 		text-decoration: none;
+        display: inline-block;
+  		padding: 12px 40px;
+  		margin: 10px 20px;
+  		margin-left: -65px;
+ 	 	border-radius: 30px;
+  		background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+  		background-position: 100% 0;
+  		background-size: 200% 200%;
+  		font-family: 'Montserrat', sans-serif;
+  		font-size: 18px;
+  		font-weight: 300;
+  		color: white;
+  		box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+  		transition: .5s;
+      }
+	  .button:hover {
+  		box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+  		background-position: 0 0;
+	  }
+	  
+	  h1 {
+	    text-align: center;
+	    margin-top: 0px;
+	    padding-top: 0px;
+	    margin-bottom: 0px;
+	    padding-bottom: 0px;
+	    font-family: Phosphate;
+	    font-size: 36px;
+	  }
+	  
+	  p {
+	    text-align: center;
+	    font-family: Phosphate;
+	    font-size: 24px;
+	  }
+    </style>
+    <title>Statistics_Gen</title>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <h1>Правила гри:</h1>
+    <p>В тебе є улюбленець. Ціль гри - не дати йому загинути, чи трапити в халепу.</p>
+    <p>В улюбленця є 4 шкали - здоровʼя, настрій, бадьорість, ситість.</p>
+    <p>Рівень здоровʼя є індикатором життя улюбленця. Якщо він буде на нулі - улюбленець загине.</p>
+    <p>Шкалу настрою можна поповнювати граючись з улюбленцем, виводячи його на прогулянки, пестячи його або даючи йому ласощі</p>
+    <p>Рівень настрою зменшується щогодини на 5 пунктів. Якщо він впаде нижче 10 - улюбленець почне втрачати 2 пункти здоровʼя в годину.</p>
+    <p>Шкала бадьорості поповнюється сном. Вона зменшується щогодини на 8 пунктів, а під час гри чи прогулянки - на 12.</p>
+    <p>Якщо шкала бадьорості падає нижче 20 - улюбленець не може гратися, а якщо нижче 10 - починає втрачати 8 пунктів здоровʼя на годину.</p>
+    <p>Шкалу ситості можна поповнювати їжею. Вона щогодини зменшується на 8 пунктів.</p>
+    <p>Якщо шкала ситості падає нижче 25 - улюбленець починає втрачати 2 пункти здоровʼя на годину, а якщо нижче 10 - 8 пунктів.</p>
+    <p>Якщо всі 3 показники улюбленця більші за 70 - шкала здоровʼя починає рости на 3 пункти в годину.</p>
+    <p>Якщо рівень здоровʼя улюбленця нижче за 30 - раз на 24 години ти можеш дати йому ліки, які відновлять 10 пунктів здоровʼя.</p>
+    <p>Час в грі змінюється в залежності від дії - кожна активність забирає певний проміжок часу.</p>
+    <h1>Бажаю удачі!</h1>
+    <form action="/play_game" method="get">
+      <input class="button" type='submit' value='ОК!'>
+    </form>
+  </body>
+</html>

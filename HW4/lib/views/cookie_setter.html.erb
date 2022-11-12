@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      html {
+  	    background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg);
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	    background-attachment: fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
+	  }
+	  
+	  .title {
+	    margin-top: 0px;
+	    padding-top: 0px;
+	    margin-bottom: 0px;
+	    padding-bottom: 0px;
+	    font-size: 36px;
+	  }
+	  
+	  .text {
+	    margin-top: 0px;
+	    padding-top: 0px;
+	    font-size: 24px;
+	  }
+	  
+	  div {
+	    margin-bottom: 90px;
+	  }
+	  
+	  h1, h2 {
+	    text-align: center;
+	    font-family: Phosphate;
+	  }
+	  
+	  .button {
+        position: fixed;
+ 		left: 50%;
+ 		margin-top: 10px;
+ 		text-decoration: none;
+        display: inline-block;
+  		padding: 12px 40px;
+  		margin: 10px 20px;
+  		margin-left: -65px;
+ 	 	border-radius: 30px;
+  		background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+  		background-position: 100% 0;
+  		background-size: 200% 200%;
+  		font-family: 'Montserrat', sans-serif;
+  		font-size: 18px;
+  		font-weight: 300;
+  		color: white;
+  		box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+  		transition: .5s;
+      }
+	  .button:hover {
+  		box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+  		background-position: 0 0;
+	  }
+    </style>
+    <title>Statistics_Gen</title>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <div>
+      <h1 class="title">Генерація рівня здоровʼя:</h1>
+      <h2 style="text"><%= health_message %></h2>
+    </div>
+    <h1 class="title">Генерація рівня настрою:</h1>
+    <h2 style="text"><%= mood_message %><h2>
+    <form action="/info" method="get">
+      <input class="button" type='submit' value='Далі'>
+    </form>
+  </body>
+</html>
