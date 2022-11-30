@@ -2,9 +2,9 @@ require 'erb'
 
 class Pet
   def call(env)
-    @chtire = 1
-    @chhunger = 1
-    @chmood = 1
+    @change_tire = 1
+    @change_hunger = 1
+    @change_mood = 1
     @game_true = 1
     @request = Rack::Request.new(env)
     response.finish
@@ -13,127 +13,115 @@ class Pet
   def response
     case @request.path
     when "/"
-      Rack::Response.new(render("start_form.html.erb"))
+      #Rack::Response.new(render("start_form.html.erb"))
+      render_page('start_form')
     when "/set_cookies"
       set_time
       set_health
       set_mood
       set_tire_and_hunger
       Rack::Response.new do |response|
-        response.set_cookie('name', @request.params['name'])
-        response.set_cookie('type', @request.params['type'])
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health.to_s)
-        response.set_cookie('mood', @mood.to_s)
-        response.set_cookie('tire', @tire.to_s)
-        response.set_cookie('hunger', @hunger.to_s)
+        #response.set_cookie('name', @request.params['name'])
+        #make_cookie('name', @request.params['name'])
+        #response.set_cookie('type', @request.params['type'])
+        #make_cookie('type', @request.params['type'])
+        #make_key_cookies
         response.redirect('/gen_pet')
       end
     when '/change_cookies'
       Rack::Response.new do |response|
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health.to_s)
-        response.set_cookie('mood', @mood.to_s)
-        response.set_cookie('tire', @tire.to_s)
-        response.set_cookie('hunger', @hunger.to_s)
+        make_key_cookies
         response.redirect('/play_game')
       end
     when "/gen_pet"
-      Rack::Response.new(render("cookie_setter.html.erb"))
+      #Rack::Response.new(render("cookie_setter.html.erb"))
+      render_page('cookie_setter')
     when "/play_game"
       if @health > 0
-        Rack::Response.new(render("index.html.erb"))
+        #Rack::Response.new(render("index.html.erb"))
+        render_page('index')
       else
-        Rack::Response.new(render("dead.html.erb"))
+        #Rack::Response.new(render("dead.html.erb"))
+        render_page('dead')
       end
     when "/change"
       make_changes
     when '/info'
-      Rack::Response.new(render("info.html.erb"))
+      #Rack::Response.new(render("info.html.erb"))
+      render_page('info')
     when '/samogon'
-      Rack::Response.new(render("samogon.html.erb"))
+      #Rack::Response.new(render("samogon.html.erb"))
+      render_page('samogon')
     when '/food_set'
-      Rack::Response.new(render("food_set.html.erb"))
+      #Rack::Response.new(render("food_set.html.erb"))
+      render_page('food_set')
     when '/sleep'
-      Rack::Response.new(render("sleep.html.erb"))
+      #Rack::Response.new(render("sleep.html.erb"))
+      render_page('sleep')
     when '/watching'
-      Rack::Response.new(render("watch.html.erb"))
+      #Rack::Response.new(render("watch.html.erb"))
+      render_page('watch')
     when '/wait_for_24'
-      Rack::Response.new(render("wait.html.erb"))
+      #Rack::Response.new(render("wait.html.erb"))
+      render_page('wait')
     when '/too_strong'
-      Rack::Response.new(render("too_strong.html.erb"))
+      #Rack::Response.new(render("too_strong.html.erb"))
+      render_page(too_strong)
     when '/medicine'
-      Rack::Response.new(render("medicine.html.erb"))
+      #Rack::Response.new(render("medicine.html.erb"))
+      render_page('medicine')
     when '/care'
-      Rack::Response.new(render("care.html.erb"))
+      #Rack::Response.new(render("care.html.erb"))
+      render_page('care')
     when '/treet'
-      Rack::Response.new(render("give_a_treet.html.erb"))
+      #Rack::Response.new(render("give_a_treet.html.erb"))
+      render_page('give_a_treet')
     when '/status_eat'
-      Rack::Response.new(render("status_eat.html.erb"))
+      #Rack::Response.new(render("status_eat.html.erb"))
+      render_page('status_eat')
     when '/game'
-      Rack::Response.new(render("play_game.html.erb"))
+      #Rack::Response.new(render("play_game.html.erb"))
+      render_page('play_game')
     when '/walk_set'
-      Rack::Response.new(render("walk_question.html.erb"))
+      #Rack::Response.new(render("walk_question.html.erb"))
+      render_page('walk_question')
     when '/walk'
-      Rack::Response.new(render("walk_result.html.erb"))
+      #Rack::Response.new(render("walk_result.html.erb"))
+      render_page('walk_result')
     when '/run_cookie'
-      @health = 0
-      @tire = 0
-      @mood = 0
-      @hunger = 0
+      make_params_null
       Rack::Response.new do |response|
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health.to_s)
-        response.set_cookie('mood', @mood.to_s)
-        response.set_cookie('tire', @tire.to_s)
-        response.set_cookie('hunger', @hunger.to_s)
+        make_key_cookies
         response.redirect('/run')
       end
     when '/run'
-      Rack::Response.new(render("run.html.erb"))
+      #Rack::Response.new(render("run.html.erb"))
+      render_page('run')
     when '/criminal_cookie'
-      @health = 0
-      @tire = 0
-      @mood = 0
-      @hunger = 0
+      make_params_null
       Rack::Response.new do |response|
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health.to_s)
-        response.set_cookie('mood', @mood.to_s)
-        response.set_cookie('tire', @tire.to_s)
-        response.set_cookie('hunger', @hunger.to_s)
+        make_key_cookies
         response.redirect('/criminal')
       end
     when '/criminal'
-      Rack::Response.new(render("criminal.html.erb"))
+      #Rack::Response.new(render("criminal.html.erb"))
+      render_page('criminal')
     when '/road_cookie'
-      @health = 0
-      @tire = 0
-      @mood = 0
-      @hunger = 0
+      make_params_null
       Rack::Response.new do |response|
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health.to_s)
-        response.set_cookie('mood', @mood.to_s)
-        response.set_cookie('tire', @tire.to_s)
-        response.set_cookie('hunger', @hunger.to_s)
+        make_key_cookies
         response.redirect('/road')
       end
     when '/road'
-      @health = 0
-      @tire = 0
-      @mood = 0
-      @hunger = 0
+      make_params_null
       Rack::Response.new do |response|
-        response.set_cookie('time', @time)
-        response.set_cookie('health', @health)
-        response.set_cookie('mood', @mood)
-        response.set_cookie('tire', @tire)
-        response.set_cookie('hunger', @hunger)
+        make_key_cookies
       end
-      Rack::Response.new(render("road.html.erb"))
+      #Rack::Response.new(render("road.html.erb"))
+      render_page('road')
     else
-      Rack::Response.new(render("404_not_found.html.erb"), 404)
+      #Rack::Response.new(render("404_not_found.html.erb"), 404)
+      render_page('404_not_found')
     end
   end
 
@@ -352,7 +340,7 @@ class Pet
       end
       if status_eat != 9
         @status_food = 'feed_yes'
-        @chhunger = 0
+        @change_hunger = 0
         hunger_eat = rand(7..20)
         change_hunger(hunger_eat)
         change_time(1200)
@@ -361,8 +349,8 @@ class Pet
       status_eat = rand(0..12)
       if status_eat == 8 or status_eat == 9
         @status_food = 'fruit_not'
-        @chhunger = 0
-        @chmood = 0
+        @change_hunger = 0
+        @change_mood = 0
         change_health(-5)
         change_hunger(-3)
         change_mood(-10)
@@ -372,7 +360,7 @@ class Pet
         @status_food = 'fruit_yes'
         health_eat = rand(0..2)
         hunger_eat = rand(3..6)
-        @chhunger = 0
+        @change_hunger = 0
         change_health(health_eat)
         change_hunger(hunger_eat)
         change_time(1200)
@@ -381,8 +369,8 @@ class Pet
       status_eat = rand(0..15)
       if status_eat > 11
         @status_food = 'table_not'
-        @chmood = 0
-        @chhunger = 0
+        @change_mood = 0
+        @change_hunger = 0
         change_health(-12)
         change_hunger(-15)
         change_mood(-10)
@@ -390,8 +378,8 @@ class Pet
       end
       if status_eat <= 11
         @status_food = 'table_yes'
-        @chmood = 0
-        @chhunger = 0
+        @change_mood = 0
+        @change_hunger = 0
         mood_eat = rand(3..8)
         hunger_eat = rand(8..14)
         change_mood(mood_eat)
@@ -403,7 +391,7 @@ class Pet
 
   def pause_sleep
     time = 3600
-    @chtire = 0
+    @change_tire = 0
     max_sleep = (100 - @tire) / (10.0 / 3600)
     if @tire == 100
       puts 'Твій улюбленець поки не хоче спати!'
@@ -421,7 +409,7 @@ class Pet
   end
 
   def care
-    @chmood = 0
+    @change_mood = 0
     mood = rand(3..7)
     change_mood(mood)
     time = 600
@@ -430,8 +418,8 @@ class Pet
 
   def give_a_treet
     @status_treet = rand(0..10)
-    @chhunger = 0
-    @chmood = 0
+    @change_hunger = 0
+    @change_mood = 0
     if @status_treet == 10
       change_hunger(0.5)
       change_mood(-2)
@@ -501,7 +489,7 @@ class Pet
     if @tire >= 20
       @game_true = 1
       @status_game = rand(1..8)
-      @chmood = 0
+      @change_mood = 0
       if @status_game == 1 or @status_game == 2
         change_time(1800)
         change_mood(20)
@@ -646,17 +634,46 @@ class Pet
   end
 
   private
+
+  def make_params_null
+    @health = 0
+    @tire = 0
+    @mood = 0
+    @hunger = 0
+  end
+
+  def make_key_cookies
+    #response.set_cookie('time', @time)
+    make_cookie('time', @time)
+    #response.set_cookie('health', @health.to_s)
+    make_cookie('health', @health.to_s)
+    #response.set_cookie('mood', @mood.to_s)
+    make_cookie('mood', @mood.to_s)
+    #response.set_cookie('tire', @tire.to_s)
+    make_cookie('tire', @tire.to_s)
+    #response.set_cookie('hunger', @hunger.to_s)
+    make_cookie('hunger', @hunger)
+  end
+
+  def make_cookie(name, value)
+    response.set_cookie(name, value)
+  end
+
+  def render_page(name)
+    Rack::Response.new(render("#{name}.html.erb"))
+  end
+
   def change_time(time)
     @time = @time + time
-    if @chmood == 1
+    if @change_mood == 1
       dif_mood = (0.0 - ((5.0 / 60.0) * (time / 60))).round(2)
       change_mood(dif_mood)
     end
-    if @chhunger == 1
+    if @change_hunger == 1
       dif_hunger = (0.0 - ((8.0 / 60.0) * (time / 60))).round(2)
       change_hunger(dif_hunger)
     end
-    if @chtire == 1
+    if @change_tire == 1
       if @game_true == 0
         dif_tire = (0.0 - ((8.0 / 60.0) * (time / 60))).round(2)
         change_tire(dif_tire)
@@ -666,8 +683,8 @@ class Pet
         change_tire(dif_tire)
       end
     end
-    @chmood = 1
-    @chhunger = 1
+    @change_mood = 1
+    @change_hunger = 1
     @chtire = 1
     if (@time - @ind_medicine).to_i >= 86400
       @medicine = 0
