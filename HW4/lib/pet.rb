@@ -12,222 +12,154 @@ class Pet
 
   def response
     case @request.path
-    when "/"
-      #Rack::Response.new(render("start_form.html.erb"))
+    when '/'
       render_page('start_form')
-    when "/set_cookies"
+    when '/set_cookies'
       set_time
       set_health
       set_mood
       set_tire_and_hunger
       Rack::Response.new do |response|
-        #response.set_cookie('name', @request.params['name'])
-        #make_cookie('name', @request.params['name'])
-        #response.set_cookie('type', @request.params['type'])
-        #make_cookie('type', @request.params['type'])
-        #make_key_cookies
+        make_cookie(response, 'name', @request.params['name'])
+        make_cookie(response, 'type', @request.params['type'])
+        make_key_cookies(response)
         response.redirect('/gen_pet')
       end
     when '/change_cookies'
       Rack::Response.new do |response|
-        make_key_cookies
+        make_key_cookies(response)
         response.redirect('/play_game')
       end
-    when "/gen_pet"
-      #Rack::Response.new(render("cookie_setter.html.erb"))
+    when '/gen_pet'
       render_page('cookie_setter')
-    when "/play_game"
-      if @health > 0
-        #Rack::Response.new(render("index.html.erb"))
-        render_page('index')
-      else
-        #Rack::Response.new(render("dead.html.erb"))
-        render_page('dead')
-      end
-    when "/change"
+    when '/play_game'
+      if @health > 0 then render_page('index')
+      else render_page('dead') end
+    when '/change'
       make_changes
     when '/info'
-      #Rack::Response.new(render("info.html.erb"))
       render_page('info')
     when '/samogon'
-      #Rack::Response.new(render("samogon.html.erb"))
       render_page('samogon')
     when '/food_set'
-      #Rack::Response.new(render("food_set.html.erb"))
       render_page('food_set')
     when '/sleep'
-      #Rack::Response.new(render("sleep.html.erb"))
       render_page('sleep')
     when '/watching'
-      #Rack::Response.new(render("watch.html.erb"))
       render_page('watch')
     when '/wait_for_24'
-      #Rack::Response.new(render("wait.html.erb"))
       render_page('wait')
     when '/too_strong'
-      #Rack::Response.new(render("too_strong.html.erb"))
-      render_page(too_strong)
+      render_page('too_strong')
     when '/medicine'
-      #Rack::Response.new(render("medicine.html.erb"))
       render_page('medicine')
     when '/care'
-      #Rack::Response.new(render("care.html.erb"))
       render_page('care')
     when '/treet'
-      #Rack::Response.new(render("give_a_treet.html.erb"))
       render_page('give_a_treet')
     when '/status_eat'
-      #Rack::Response.new(render("status_eat.html.erb"))
       render_page('status_eat')
     when '/game'
-      #Rack::Response.new(render("play_game.html.erb"))
       render_page('play_game')
     when '/walk_set'
-      #Rack::Response.new(render("walk_question.html.erb"))
       render_page('walk_question')
     when '/walk'
-      #Rack::Response.new(render("walk_result.html.erb"))
       render_page('walk_result')
     when '/run_cookie'
       make_params_null
       Rack::Response.new do |response|
-        make_key_cookies
+        make_key_cookies(response)
         response.redirect('/run')
       end
     when '/run'
-      #Rack::Response.new(render("run.html.erb"))
       render_page('run')
     when '/criminal_cookie'
       make_params_null
       Rack::Response.new do |response|
-        make_key_cookies
+        make_key_cookies(response)
         response.redirect('/criminal')
       end
     when '/criminal'
-      #Rack::Response.new(render("criminal.html.erb"))
       render_page('criminal')
     when '/road_cookie'
       make_params_null
       Rack::Response.new do |response|
-        make_key_cookies
+        make_key_cookies(response)
         response.redirect('/road')
       end
     when '/road'
       make_params_null
       Rack::Response.new do |response|
-        make_key_cookies
+        make_key_cookies(response)
       end
-      #Rack::Response.new(render("road.html.erb"))
       render_page('road')
     else
-      #Rack::Response.new(render("404_not_found.html.erb"), 404)
       render_page('404_not_found')
     end
   end
 
   def make_changes
-    if @request.params['samogon']
-      Rack::Response.new do |response|
-        response.redirect('/samogon')
-      end
+    if @request.params['samogon'] then make_redirect('samogon')
     else
-      if (@request.params['s_no'])
-        Rack::Response.new do |response|
-          response.redirect('/play_game')
-        end
+      if (@request.params['s_no']) then make_redirect('play_game')
       else
-        if (@request.params['s_yes'])
-          Rack::Response.new(render("eat_you.html.erb"))
+        if (@request.params['s_yes']) then render_page('eat_you')
         else
-          if (@request.params['food'])
-            Rack::Response.new do |response|
-              response.redirect('/food_set')
-            end
+          if (@request.params['food']) then make_redirect('food_set')
           else
             if (@request.params['feed'])
               give_food('feed')
-              Rack::Response.new do |response|
-                response.redirect('/status_eat')
-              end
+              make_redirect('status_eat')
             else
               if (@request.params['fruit'])
                 give_food('fruit')
-                Rack::Response.new do |response|
-                  response.redirect('/status_eat')
-                end
+                make_redirect('status_eat')
               else
                 if (@request.params['f_table'])
                   give_food('table')
-                  Rack::Response.new do |response|
-                    response.redirect('/status_eat')
-                  end
+                  make_redirect('status_eat')
                 else
                   if (@request.params['sleep'])
                     pause_sleep
-                    Rack::Response.new do |response|
-                      response.redirect('/sleep')
-                    end
+                    make_redirect('sleep')
                   else
                     if (@request.params['care'])
                       care
-                      Rack::Response.new do |response|
-                        response.redirect('/care')
-                      end
+                      make_redirect('care')
                     else
                       if (@request.params['treet'])
                         give_a_treet
-                        Rack::Response.new do |response|
-                          response.redirect('/treet')
-                        end
+                        make_redirect('treet')
                       else
                         if (@request.params['watch'])
                           watch_for_pet
-                          Rack::Response.new do |response|
-                            response.redirect('/watching')
-                          end
+                          make_redirect('watching')
                         else
                           if (@request.params['medicine'])
-                            if @medicine == 1 and @health < 30
-                              Rack::Response.new do |response|
-                                response.redirect('/wait_for_24')
-                              end
+                            if @medicine == 1 and @health < 30 then make_redirect('wait_for_24')
                             else
-                              if @health >= 30
-                                Rack::Response.new do |response|
-                                  response.redirect('/too_strong')
-                                end
+                              if @health >= 30 then make_redirect('too_strong')
                               else
                                 if @medicine != 1 and @health < 30
                                   give_medicine
-                                  Rack::Response.new do |response|
-                                    response.redirect('/medicine')
-                                  end
+                                  make_redirect('medicine')
                                 end
                               end
                             end
                           else
                             if (@request.params['play'])
                               play_game
-                              Rack::Response.new do |response|
-                                response.redirect('/game')
-                              end
+                              make_redirect('game')
                             else
-                              if (@request.params['walk'])
-                                Rack::Response.new do |response|
-                                  response.redirect('/walk_set')
-                                end
+                              if (@request.params['walk']) then make_redirect('walk_set')
                               else
                                 if (@request.params['w_yes'])
                                   normal_walk
-                                  Rack::Response.new do |response|
-                                    response.redirect('/walk')
-                                  end
+                                  make_redirect('walk')
                                 else
                                   if (@request.params['w_no'])
                                     danger_walk
-                                    Rack::Response.new do |response|
-                                      response.redirect('/walk')
-                                    end
+                                    make_redirect('walk')
                                   end
                                 end
                               end
@@ -268,39 +200,39 @@ class Pet
   def health_message
     case @health
     when 20
-      return "На жаль, твій улюбленець з'явився на світ достатньо слабеньким :( <br>
+      "На жаль, твій улюбленець з'явився на світ достатньо слабеньким :( <br>
       Проте не переймайся - при належному догляді він ще зможе стати досить класним! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 30
-      return "Інколи в житті трапляється так, що наші улюбленці не можуть похизуватися міцним здоров'ям... <br>
+      "Інколи в житті трапляється так, що наші улюбленці не можуть похизуватися міцним здоров'ям... <br>
       Але зауважу, що при належному догляді в нього є всі шанси стати здоровішим! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 40
-      return "Його доля бути міцним як скеля, але стан здоров'я поки не дозволяє... <br>
+      "Його доля бути міцним як скеля, але стан здоров'я поки не дозволяє... <br>
       Не забувай сумлінно доглядати за #{read_cookies_name('name')}, і буде вам щастя! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 50
-      return "Для оптиміста стакан наполовину повний, для песиміста - наполовину пустий... А що сказати про #{read_cookies_name('name')}? <br>
+      "Для оптиміста стакан наполовину повний, для песиміста - наполовину пустий... А що сказати про #{read_cookies_name('name')}? <br>
       Стан здоров'я твого улюбленця дещо кращий, ніж могло би бути, але не варто нехтувати якісним доглядом <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 60
-      return "Мушу визнати, що тобі трапився досить непоганий улюбленець. <br>
+      "Мушу визнати, що тобі трапився досить непоганий улюбленець. <br>
       Не забувай доглядати за #{read_cookies_name('name')}, і досить скоро отримаєш надзвичайно міцного улюбленця! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 70
       #sell_pet
-      return "Не забувай доглядати за #{read_cookies_name('name')}, і досить скоро отримаєш надзвичайно міцного улюбленця! <br>
+      "Не забувай доглядати за #{read_cookies_name('name')}, і досить скоро отримаєш надзвичайно міцного улюбленця! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 80
-      return "Твій улюбленець досить міцний та здоровий. Приємно бачити його таким :) <br>
+      "Твій улюбленець досить міцний та здоровий. Приємно бачити його таким :) <br>
       Якщо хочеш, щоб справи у #{read_cookies_name('name')} були ще краще - сумлінно за ним доглядай! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 90
-      return "Та твій улюбленець прямо таки максимально наближений до ідеалу! <br>
+      "Та твій улюбленець прямо таки максимально наближений до ідеалу! <br>
       Належний догляд допоможе стати йому по справжньому класним! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     when 100
-      return "Хоч в житті ідеалів і не існує - мушу сказати, що твій улюбленець просто ідеальний. <br>
+      "Хоч в житті ідеалів і не існує - мушу сказати, що твій улюбленець просто ідеальний. <br>
       #{read_cookies_name('name')} знадобиться належний догляд, щоб не погіршувати стан його здоров'я! <br>
       Рівень здоров'я #{read_cookies_name('name')}: #{@health}"
     end
@@ -313,13 +245,13 @@ class Pet
   def mood_message
     case @mood
     when 10
-      return "Настрій твого улюбленця препаскудний. Схоже тобі доведеться дуже сильно постратися, щоб його виправити. <br>
+      "Настрій твого улюбленця препаскудний. Схоже тобі доведеться дуже сильно постратися, щоб його виправити. <br>
       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     when 20
-      return "Настрій #{read_cookies_name('name')} просто жахливий. Сподіваюся ти знайдеш, чим його розвеселити. <br>
+      "Настрій #{read_cookies_name('name')} просто жахливий. Сподіваюся ти знайдеш, чим його розвеселити. <br>
       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     when 30
-      return "#{read_cookies_name('name')} чимось дуже стурбований, настрій достатньо поганенький. <br>
+      "#{read_cookies_name('name')} чимось дуже стурбований, настрій достатньо поганенький. <br>
       Приділяй якомога більше часу своєму улюбленцю, якщо прагнеш побачити його в кращому настрої! <br>
       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     end
@@ -337,8 +269,7 @@ class Pet
       if status_eat == 9
         @status_food = 'feed_not'
         change_time(1200)
-      end
-      if status_eat != 9
+      else
         @status_food = 'feed_yes'
         @change_hunger = 0
         hunger_eat = rand(7..20)
@@ -355,8 +286,7 @@ class Pet
         change_hunger(-3)
         change_mood(-10)
         change_time(1200)
-      end
-      if status_eat != 8 and status_eat != 9
+      else
         @status_food = 'fruit_yes'
         health_eat = rand(0..2)
         hunger_eat = rand(3..6)
@@ -375,8 +305,7 @@ class Pet
         change_hunger(-15)
         change_mood(-10)
         change_time(1200)
-      end
-      if status_eat <= 11
+      else
         @status_food = 'table_yes'
         @change_mood = 0
         @change_hunger = 0
@@ -393,15 +322,12 @@ class Pet
     time = 3600
     @change_tire = 0
     max_sleep = (100 - @tire) / (10.0 / 3600)
-    if @tire == 100
-      puts 'Твій улюбленець поки не хоче спати!'
-    end
+    if @tire == 100 then puts 'Твій улюбленець поки не хоче спати!' end
     if time.to_i <= max_sleep
       change_time(time.to_i)
       dif_tire = ((10.0 / 60) * (time.to_i / 60.0)).round(2)
       change_tire(dif_tire)
-    end
-    if time.to_i > max_sleep
+    else
       change_time(max_sleep)
       dif_tire = 100 - @tire
       change_tire(dif_tire)
@@ -424,8 +350,7 @@ class Pet
       change_hunger(0.5)
       change_mood(-2)
       change_time(60)
-    end
-    if @status_treet != 10
+    else
       change_hunger(0.5)
       new_mood = rand(2..4)
       change_mood(new_mood)
@@ -448,41 +373,28 @@ class Pet
     set_sentence = rand(0..2)
     case set_sentence
     when 0
-      return "Коли гладиш свого улюбленця час проходить непомітно!"
+      'Коли гладиш свого улюбленця час проходить непомітно!'
     when 1
-      return "Твій улюбленець дивиться тобі прямо у вічі. За його поглядом стає зрозуміло, що він дуже задоволений цим процесом."
+      'Твій улюбленець дивиться тобі прямо у вічі. За його поглядом стає зрозуміло, що він дуже задоволений цим процесом.'
     when 2
-      return "#{read_cookies_name('name')} просто неймовірно кайфує, від того, що ти його пестиш!"
+      "#{read_cookies_name('name')} просто неймовірно кайфує, від того, що ти його пестиш!"
     end
   end
 
   def treet_message
-    if @status_treet == 10
-      return 'Все йшло добре, але твій улюбленець подавився :('
-    else
-      return "Роздався чавкіт на весь будинок. Схоже твоєму улюбленцю зайшов гостиничик :)"
-    end
+    if @status_treet == 10 then 'Все йшло добре, але твій улюбленець подавився :('
+    else 'Роздався чавкіт на весь будинок. Схоже твоєму улюбленцю зайшов гостиничик :)' end
   end
 
   def food_message
-    if @status_food == 'feed_not'
-      return "Яка прикрість, #{read_cookies_name('name')} не хоче їсти цей корм :("
-    end
-    if @status_food == 'feed_yes'
-      return "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!"
-    end
+    if @status_food == 'feed_not' then "Яка прикрість, #{read_cookies_name('name')} не хоче їсти цей корм :(" end
+    if @status_food == 'feed_yes' then "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!" end
     if @status_food == 'fruit_not'
-      return "Їжа виявилася несвіжою :( #{read_cookies_name('name')} виглядає не дуже добре"
+      "Їжа виявилася несвіжою :( #{read_cookies_name('name')} виглядає не дуже добре"
     end
-    if @status_food == 'fruit_yes'
-      return "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!"
-    end
-    if @status_food == 'table_not'
-      return 'Виявляється улюбленцю такого давати було не можна :('
-    end
-    if @status_food == 'table_yes'
-      return "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!"
-    end
+    if @status_food == 'fruit_yes' then "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!" end
+    if @status_food == 'table_not' then 'Виявляється улюбленцю такого давати було не можна :(' end
+    if @status_food == 'table_yes' then "#{read_cookies_name('name')} нормально поїв, і тепер виглядає більш ситим!" end
   end
 
   def play_game
@@ -515,23 +427,21 @@ class Pet
   end
 
   def game_message
-    if @tire < 20
-      return 'Твій улюбленець надто стомлений для гри'
+    if @tire < 20 then 'Твій улюбленець надто стомлений для гри'
     else
-      if @status_game == 1 or @status_game == 2
-        return "Ви з #{read_cookies_name('name')} чудово провели час."
-      end
+      if @status_game == 1 or @status_game == 2 then "Ви з #{read_cookies_name('name')} чудово провели час." end
       if @status_game == 3 or @status_game == 4
-        puts "Гра пройшла без негараздів. Очі #{read_cookies_name('name')} наповнені щастям!"
+        "Гра пройшла без негараздів. Очі #{read_cookies_name('name')} наповнені щастям!"
       end
       if @status_game == 5 or @status_game == 6
-        return "Після веселої гри - і #{read_cookies_name('type')}, і господар виглядають задоволеними ;)"
+        "Після веселої гри - і #{read_cookies_name('type')}, і господар виглядають задоволеними ;)"
       end
       if @status_game == 7
-        return "На жаль, #{read_cookies_name('name')} вдарився під час гри, через що майже не отримав задоволення :("
+        "На жаль, #{read_cookies_name('name')} вдарився під час гри, через що майже не отримав задоволення :("
       end
       if @status_game == 8
-        return "По ходу гри, #{read_cookies_name('name')} вдалося знайти на підлозі якесь смачне сміття. Тепер він почуває себе дещо погано :("
+        "По ходу гри, #{read_cookies_name('name')} вдалося знайти на підлозі якесь смачне сміття. Тепер він почуває себе
+         дещо погано :("
       end
     end
   end
@@ -578,62 +488,62 @@ class Pet
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk > 10 and @success_walk <= 20
-      change_time(5400)
-    end
-    if @success_walk > 20 and @success_walk <= 30
-      change_time(5400)
-    end
-    if @success_walk > 30
-      change_time(5400)
-    end
+    if @success_walk > 10 and @success_walk <= 20 then change_time(5400) end
+    if @success_walk > 20 and @success_walk <= 30 then change_time(5400) end
+    if @success_walk > 30 then change_time(5400) end
   end
 
   def walk_message
     if @success_walk >= 0 and @success_walk <= 6
-      return "Прогулянка пройшла успішно! #{read_cookies_name('name')} явно задоволений!"
+      "Прогулянка пройшла успішно! #{read_cookies_name('name')} явно задоволений!"
     end
     if @success_walk == 7 or @success_walk == 8
-      return "На прогулянці #{read_cookies_name('name')} зʼїв якесь сміття, і тепер йому погано!"
+      "На прогулянці #{read_cookies_name('name')} зʼїв якесь сміття, і тепер йому погано!"
     end
     if @success_walk == 9 or @success_walk == 10
-      return "Надворі йшов дощ, тому #{read_cookies_name('name')} не дуже задоволений цією прогулянкою!"
+      "Надворі йшов дощ, тому #{read_cookies_name('name')} не дуже задоволений цією прогулянкою!"
     end
     if @success_walk > 10 and @success_walk <= 20
-      return "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підкорити вільний світ, тому просто напросто втік від тебе"
+      "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підкорити вільний світ, тому просто напросто втік від тебе"
     end
     if @success_walk > 20 and @success_walk <= 30
-      return "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підгодуватися, з'ївши якусь бабусю. Тепер його присплять, а тебе чекає кримінальна відповідальність!"
+      "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підгодуватися, з'ївши якусь бабусю. Тепер його присплять, а тебе чекає кримінальна відповідальність!"
     end
     if @success_walk > 30
-      return "Можливо #{read_cookies_name('name')} в минулому житті був гонщиком, а можливо суіцидником - в будь-якому разі він вирішив побігати по дорозі, і зустрівся з автомобілем"
+      "Можливо #{read_cookies_name('name')} в минулому житті був гонщиком, а можливо суіцидником - в будь-якому разі він вирішив побігати по дорозі, і зустрівся з автомобілем"
     end
   end
 
   def make_walk_button
     if @success_walk >= 0 and @success_walk <= 10
-      return "<form action=\"/change_cookies\" method=\"get\"> \n
-        <input class=\"button\" type='submit' value='ОК'> \n
-        </form> \n"
+      "<form action=\"/change_cookies\" method=\"get\"> \n
+      <input class=\"button\" type='submit' value='ОК'> \n
+      </form> \n"
     end
     if @success_walk > 10 and @success_walk <= 20
-      return "<form action=\"/run_cookie\" method=\"get\"> \n
-        <input class=\"button\" type='submit' value='ЙОЙ'> \n
-        </form> \n"
+      "<form action=\"/run_cookie\" method=\"get\"> \n
+      <input class=\"button\" type='submit' value='ЙОЙ'> \n
+      </form> \n"
     end
     if @success_walk > 20 and @success_walk <= 30
-      return "<form action=\"/criminal_cookie\" method=\"get\"> \n
-        <input class=\"button\" type='submit' value='Капець :('> \n
-        </form> \n"
+      "<form action=\"/criminal_cookie\" method=\"get\"> \n
+      <input class=\"button\" type='submit' value='Капець :('> \n
+      </form> \n"
     end
     if @success_walk > 30
-      return "<form action=\"/road_cookie\" method=\"get\"> \n
-        <input class=\"button\" type='submit' value='Капець :('> \n
-        </form> \n"
+      "<form action=\"/road_cookie\" method=\"get\"> \n
+      <input class=\"button\" type='submit' value='Капець :('> \n
+      </form> \n"
     end
   end
 
   private
+
+  def make_redirect(route)
+    Rack::Response.new do |response|
+      response.redirect("/#{route}")
+    end
+  end
 
   def make_params_null
     @health = 0
@@ -642,20 +552,20 @@ class Pet
     @hunger = 0
   end
 
-  def make_key_cookies
+  def make_key_cookies(response)
     #response.set_cookie('time', @time)
-    make_cookie('time', @time)
+    make_cookie(response, 'time', @time)
     #response.set_cookie('health', @health.to_s)
-    make_cookie('health', @health.to_s)
+    make_cookie(response,'health', @health.to_s)
     #response.set_cookie('mood', @mood.to_s)
-    make_cookie('mood', @mood.to_s)
+    make_cookie(response,'mood', @mood.to_s)
     #response.set_cookie('tire', @tire.to_s)
-    make_cookie('tire', @tire.to_s)
+    make_cookie(response,'tire', @tire.to_s)
     #response.set_cookie('hunger', @hunger.to_s)
-    make_cookie('hunger', @hunger)
+    make_cookie(response,'hunger', @hunger)
   end
 
-  def make_cookie(name, value)
+  def make_cookie(response, name, value)
     response.set_cookie(name, value)
   end
 
@@ -686,9 +596,7 @@ class Pet
     @change_mood = 1
     @change_hunger = 1
     @chtire = 1
-    if (@time - @ind_medicine).to_i >= 86400
-      @medicine = 0
-    end
+    if (@time - @ind_medicine).to_i >= 86400 then @medicine = 0 end
     if @mood < 10
       mood_changed = 10.0 - @mood
       mood_time = (720.0 * mood_changed).round(2)
