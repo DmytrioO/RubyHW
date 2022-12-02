@@ -246,14 +246,14 @@ class Pet
     case @mood
     when 10
       "Настрій твого улюбленця препаскудний. Схоже тобі доведеться дуже сильно постратися, щоб його виправити. <br>
-      Рівень настрою #{read_cookies_name('name')}: #{@mood}"
+       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     when 20
       "Настрій #{read_cookies_name('name')} просто жахливий. Сподіваюся ти знайдеш, чим його розвеселити. <br>
-      Рівень настрою #{read_cookies_name('name')}: #{@mood}"
+       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     when 30
       "#{read_cookies_name('name')} чимось дуже стурбований, настрій достатньо поганенький. <br>
-      Приділяй якомога більше часу своєму улюбленцю, якщо прагнеш побачити його в кращому настрої! <br>
-      Рівень настрою #{read_cookies_name('name')}: #{@mood}"
+       Приділяй якомога більше часу своєму улюбленцю, якщо прагнеш побачити його в кращому настрої! <br>
+       Рівень настрою #{read_cookies_name('name')}: #{@mood}"
     end
   end
 
@@ -375,7 +375,8 @@ class Pet
     when 0
       'Коли гладиш свого улюбленця час проходить непомітно!'
     when 1
-      'Твій улюбленець дивиться тобі прямо у вічі. За його поглядом стає зрозуміло, що він дуже задоволений цим процесом.'
+      'Твій улюбленець дивиться тобі прямо у вічі. За його поглядом стає зрозуміло, що він дуже задоволений цим
+       процесом.'
     when 2
       "#{read_cookies_name('name')} просто неймовірно кайфує, від того, що ти його пестиш!"
     end
@@ -402,15 +403,15 @@ class Pet
       @game_true = 1
       @status_game = rand(1..8)
       @change_mood = 0
-      if @status_game == 1 or @status_game == 2
+      if @status_game.between?(1, 2)
         change_time(1800)
         change_mood(20)
       end
-      if @status_game == 3 or @status_game == 4
+      if @status_game.between?(3, 4)
         change_time(1800)
         change_mood(18)
       end
-      if @status_game == 5 or @status_game == 6
+      if @status_game.between?(5, 6)
         change_time(1800)
         change_mood(16)
       end
@@ -429,38 +430,38 @@ class Pet
   def game_message
     if @tire < 20 then 'Твій улюбленець надто стомлений для гри'
     else
-      if @status_game == 1 or @status_game == 2 then "Ви з #{read_cookies_name('name')} чудово провели час." end
-      if @status_game == 3 or @status_game == 4
-        "Гра пройшла без негараздів. Очі #{read_cookies_name('name')} наповнені щастям!"
+      if @status_game.between?(1, 2) then return "Ви з #{read_cookies_name('name')} чудово провели час." end
+      if @status_game.between?(3, 4)
+        return "Гра пройшла без негараздів. Очі #{read_cookies_name('name')} наповнені щастям!"
       end
-      if @status_game == 5 or @status_game == 6
-        "Після веселої гри - і #{read_cookies_name('type')}, і господар виглядають задоволеними ;)"
+      if @status_game.between?(5, 6)
+        return "Після веселої гри - і #{read_cookies_name('type')}, і господар виглядають задоволеними ;)"
       end
       if @status_game == 7
-        "На жаль, #{read_cookies_name('name')} вдарився під час гри, через що майже не отримав задоволення :("
+        return "На жаль, #{read_cookies_name('name')} вдарився під час гри, через що майже не отримав задоволення :("
       end
       if @status_game == 8
-        "По ходу гри, #{read_cookies_name('name')} вдалося знайти на підлозі якесь смачне сміття. Тепер він почуває себе
-         дещо погано :("
+        return "По ходу гри, #{read_cookies_name('name')} вдалося знайти на підлозі якесь смачне сміття. Тепер він
+                почуває себе дещо погано :("
       end
     end
   end
 
   def normal_walk
     @success_walk = rand(0..10)
-    if @success_walk >= 0 and @success_walk <= 6
+    if @success_walk.between?(0, 6)
       mood = rand(8..16)
       change_mood(mood)
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk == 7 or @success_walk == 8
+    if @success_walk.between?(7, 8)
       change_health(-0.5)
       change_mood(-1)
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk == 9 or @success_walk == 10
+    if @success_walk.between?(9, 10)
       mood = rand(1..4)
       change_mood(mood)
       @game_true = 1
@@ -470,68 +471,71 @@ class Pet
 
   def danger_walk
     @success_walk = rand(0..40)
-    if @success_walk >= 0 and @success_walk <= 6
+    if @success_walk.between?(0, 6)
       mood = rand(12..21)
       change_mood(mood)
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk == 7 or @success_walk == 8
+    if @success_walk.between?(7, 8)
       change_health(-0.5)
       change_mood(-1)
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk == 9 or @success_walk == 10
+    if @success_walk.between?(9, 10)
       mood = rand(6..9)
       change_mood(mood)
       @game_true = 1
       change_time(5400)
     end
-    if @success_walk > 10 and @success_walk <= 20 then change_time(5400) end
-    if @success_walk > 20 and @success_walk <= 30 then change_time(5400) end
+    if @success_walk.between?(11, 20) then change_time(5400) end
+    if @success_walk.between?(21, 30) then change_time(5400) end
     if @success_walk > 30 then change_time(5400) end
   end
 
   def walk_message
-    if @success_walk >= 0 and @success_walk <= 6
-      "Прогулянка пройшла успішно! #{read_cookies_name('name')} явно задоволений!"
+    if @success_walk.between?(0, 6)
+      return "Прогулянка пройшла успішно! #{read_cookies_name('name')} явно задоволений!"
     end
-    if @success_walk == 7 or @success_walk == 8
-      "На прогулянці #{read_cookies_name('name')} зʼїв якесь сміття, і тепер йому погано!"
+    if @success_walk.between?(7, 8)
+      return "На прогулянці #{read_cookies_name('name')} зʼїв якесь сміття, і тепер йому погано!"
     end
-    if @success_walk == 9 or @success_walk == 10
-      "Надворі йшов дощ, тому #{read_cookies_name('name')} не дуже задоволений цією прогулянкою!"
+    if @success_walk.between?(9, 10)
+      return "Надворі йшов дощ, тому #{read_cookies_name('name')} не дуже задоволений цією прогулянкою!"
     end
-    if @success_walk > 10 and @success_walk <= 20
-      "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підкорити вільний світ, тому просто напросто втік від тебе"
+    if @success_walk.between?(11, 20)
+      return "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підкорити вільний світ, тому просто напросто
+              втік від тебе"
     end
-    if @success_walk > 20 and @success_walk <= 30
-      "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підгодуватися, з'ївши якусь бабусю. Тепер його присплять, а тебе чекає кримінальна відповідальність!"
+    if @success_walk.between?(21, 30)
+      return "Хто б міг подумати, але #{read_cookies_name('name')} вирішив підгодуватися, з'ївши якусь бабусю. Тепер
+              його присплять, а тебе чекає кримінальна відповідальність!"
     end
     if @success_walk > 30
-      "Можливо #{read_cookies_name('name')} в минулому житті був гонщиком, а можливо суіцидником - в будь-якому разі він вирішив побігати по дорозі, і зустрівся з автомобілем"
+      return "Можливо #{read_cookies_name('name')} в минулому житті був гонщиком, а можливо суіцидником - в будь-якому
+              разі він вирішив побігати по дорозі, і зустрівся з автомобілем"
     end
   end
 
   def make_walk_button
-    if @success_walk >= 0 and @success_walk <= 10
-      "<form action=\"/change_cookies\" method=\"get\"> \n
+    if @success_walk.between?(0, 10)
+      return "<form action=\"/change_cookies\" method=\"get\"> \n
       <input class=\"button\" type='submit' value='ОК'> \n
       </form> \n"
     end
-    if @success_walk > 10 and @success_walk <= 20
-      "<form action=\"/run_cookie\" method=\"get\"> \n
+    if @success_walk.between?(11, 20)
+      return "<form action=\"/run_cookie\" method=\"get\"> \n
       <input class=\"button\" type='submit' value='ЙОЙ'> \n
       </form> \n"
     end
-    if @success_walk > 20 and @success_walk <= 30
-      "<form action=\"/criminal_cookie\" method=\"get\"> \n
+    if @success_walk.between?(21, 30)
+      return "<form action=\"/criminal_cookie\" method=\"get\"> \n
       <input class=\"button\" type='submit' value='Капець :('> \n
       </form> \n"
     end
     if @success_walk > 30
-      "<form action=\"/road_cookie\" method=\"get\"> \n
+      return "<form action=\"/road_cookie\" method=\"get\"> \n
       <input class=\"button\" type='submit' value='Капець :('> \n
       </form> \n"
     end
@@ -553,15 +557,10 @@ class Pet
   end
 
   def make_key_cookies(response)
-    #response.set_cookie('time', @time)
     make_cookie(response, 'time', @time)
-    #response.set_cookie('health', @health.to_s)
     make_cookie(response,'health', @health.to_s)
-    #response.set_cookie('mood', @mood.to_s)
     make_cookie(response,'mood', @mood.to_s)
-    #response.set_cookie('tire', @tire.to_s)
     make_cookie(response,'tire', @tire.to_s)
-    #response.set_cookie('hunger', @hunger.to_s)
     make_cookie(response,'hunger', @hunger)
   end
 
@@ -587,8 +586,7 @@ class Pet
       if @game_true == 0
         dif_tire = (0.0 - ((8.0 / 60.0) * (time / 60))).round(2)
         change_tire(dif_tire)
-      end
-      if @game_true == 1
+      else
         dif_tire = (0.0 - ((12.0 / 60.0) * (time / 60))).round(2)
         change_tire(dif_tire)
       end
@@ -603,7 +601,7 @@ class Pet
       dif_mood = (0.0 - ((2.0 / 60.0) * (mood_time / 60))).round(2)
       change_health(dif_mood)
     end
-    if @hunger < 25 and @hunger >= 10
+    if @hunger.between?(10, 24.99)
       hunger_changed = 25 - @hunger
       hunger_time = ((60.0 * hunger_changed) / 8.0).round(2)
       dif_hunger = (0.0 - ((2.0 / 60.0) * hunger_time)).round(2)
@@ -617,16 +615,12 @@ class Pet
     end
     if @tire < 10
       tire_changed = 10 - @tire
-      if @game_true == 0
-        tire_time = ((60.0 * tire_changed) / 8.0).round(2)
-      end
-      if @game_true == 1
-        tire_time = ((60.0 * tire_changed) / 12.0).round(2)
-      end
+      if @game_true == 0 then tire_time = ((60.0 * tire_changed) / 8.0).round(2) end
+      if @game_true == 1 then tire_time = ((60.0 * tire_changed) / 12.0).round(2) end
       dif_tire = (0.0 - ((8.0 / 60.0) * tire_time)).round(2)
       change_health(dif_tire)
     end
-    if @mood > 70 and @tire > 70 and @hunger > 70
+    if @mood > 70 && @tire > 70 && @hunger > 70
       dif_health = ((3.0 / 60.0) * (time / 60)).round(2)
       change_health(dif_health)
     end
@@ -634,41 +628,25 @@ class Pet
 
   def change_mood(mood)
     @mood = (@mood + mood).round(2)
-    if @mood > 100
-      @mood = 100
-    end
-    if @mood < 0
-      @mood = 0
-    end
+    if @mood > 100 then @mood = 100 end
+    if @mood < 0 then @mood = 0 end
   end
 
   def change_hunger(hunger)
     @hunger = (@hunger + hunger).round(2)
-    if @hunger > 100
-      @hunger = 100
-    end
-    if @hunger < 0
-      @hunger = 0
-    end
+    if @hunger > 100 then @hunger = 100 end
+    if @hunger < 0 then @hunger = 0 end
   end
 
   def change_tire(tire)
     @tire = (@tire + tire).round(2)
-    if @tire > 100
-      @tire = 100
-    end
-    if @tire < 0
-      @tire = 0
-    end
+    if @tire > 100 then @tire = 100 end
+    if @tire < 0 then @tire = 0 end
   end
 
   def change_health(health)
     @health = (@health + health).round(2)
-    if @health > 100
-      @health = 100
-    end
-    if @health <= 0
-      @health = 0
-    end
+    if @health > 100 then @health = 100 end
+    if @health <= 0 then @health = 0 end
   end
 end
