@@ -6,7 +6,8 @@ Rails.application.routes.draw do
         resources :comments
       end
       resources :authors
-      #resources :tags
+      resources :tags
+      resources :likes
     end
   end
   # Defines the root path route ("/")

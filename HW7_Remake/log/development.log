@@ -1723,3 +1723,197 @@ Migrating to CreateLikes (20221212133117)
   [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
   [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" ORDER BY "tags"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (1.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  [1m[36mPost Load (1.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7244171153499070245)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7244171153499070245)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (1.9ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" ORDER BY "tags"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPostTag Create (0.8ms)[0m  [1m[32mINSERT INTO "post_tags" ("post_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["post_id", 2], ["tag_id", 3], ["created_at", "2022-12-12 16:50:05.023186"], ["updated_at", "2022-12-12 16:50:05.023186"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPostTag Create (0.4ms)[0m  [1m[32mINSERT INTO "post_tags" ("post_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["post_id", 2], ["tag_id", 1], ["created_at", "2022-12-12 16:50:27.661390"], ["updated_at", "2022-12-12 16:50:27.661390"]]
+  [1m[36mPostTag Create (0.5ms)[0m  [1m[32mINSERT INTO "post_tags" ("post_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["post_id", 2], ["tag_id", 2], ["created_at", "2022-12-12 16:50:27.663287"], ["updated_at", "2022-12-12 16:50:27.663287"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mLike Load (0.5ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 1], ["likeable_type", "Post"]]
+Started GET "/api/v1/tags" for 127.0.0.1 at 2022-12-12 18:54:39 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/tags"):
+  
+Started GET "/api/v1/tags" for 127.0.0.1 at 2022-12-12 18:54:56 +0200
+Processing by Api::V1::TagsController#index as */*
+  Parameters: {"name"=>"Edited tag", "tag"=>{"name"=>"Edited tag"}}
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/api/v1/tags_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 6.6ms | ActiveRecord: 6.5ms | Allocations: 28745)
+
+
+Started GET "/api/v1/tags/1" for 127.0.0.1 at 2022-12-12 18:55:14 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"name"=>"Edited tag", "id"=>"1", "tag"=>{"name"=>"Edited tag"}}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:8:in `show'
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" INNER JOIN "post_tags" ON "posts"."id" = "post_tags"."post_id" WHERE "post_tags"."tag_id" = $1[0m  [["tag_id", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:11:in `show'
+Completed 200 OK in 36ms (Views: 10.7ms | ActiveRecord: 6.1ms | Allocations: 30789)
+
+
+Started GET "/api/v1/tags/2" for 127.0.0.1 at 2022-12-12 18:55:22 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"name"=>"Edited tag", "id"=>"2", "tag"=>{"name"=>"Edited tag"}}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:8:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" INNER JOIN "post_tags" ON "posts"."id" = "post_tags"."post_id" WHERE "post_tags"."tag_id" = $1[0m  [["tag_id", 2]]
+  ↳ app/controllers/api/v1/tags_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.6ms | Allocations: 1598)
+
+
+Started PUT "/api/v1/tags/2" for 127.0.0.1 at 2022-12-12 18:55:56 +0200
+Processing by Api::V1::TagsController#update as */*
+  Parameters: {"name"=>"It's tag was updated", "id"=>"2", "tag"=>{"name"=>"It's tag was updated"}}
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:25:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tags_controller.rb:27:in `update'
+  [1m[36mTag Update (0.5ms)[0m  [1m[33mUPDATE "tags" SET "name" = $1, "updated_at" = $2 WHERE "tags"."id" = $3[0m  [["name", "It's tag was updated"], ["updated_at", "2022-12-12 16:55:56.982890"], ["id", 2]]
+  ↳ app/controllers/api/v1/tags_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tags_controller.rb:27:in `update'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 2849)
+
+
+Started GET "/api/v1/tags/2" for 127.0.0.1 at 2022-12-12 18:56:04 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"name"=>"It's tag was updated", "id"=>"2", "tag"=>{"name"=>"It's tag was updated"}}
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:8:in `show'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" INNER JOIN "post_tags" ON "posts"."id" = "post_tags"."post_id" WHERE "post_tags"."tag_id" = $1[0m  [["tag_id", 2]]
+  ↳ app/controllers/api/v1/tags_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.8ms | Allocations: 1582)
+
+
+Started GET "/api/v1/posts/2" for 127.0.0.1 at 2022-12-12 18:56:12 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"name"=>"It's tag was updated", "id"=>"2", "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `show'
+  [1m[36mLike Count (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 2], ["likeable_type", "Post"]]
+  ↳ app/controllers/api/v1/posts_controller.rb:10:in `show'
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 ORDER BY "comments"."id" DESC LIMIT $2[0m  [["post_id", 2], ["LIMIT", 10]]
+  ↳ app/models/comment.rb:12:in `block in <class:Comment>'
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `show'
+Completed 200 OK in 27ms (Views: 2.1ms | ActiveRecord: 10.5ms | Allocations: 12005)
+
+
+Started GET "/api/v1/likes" for 127.0.0.1 at 2022-12-12 19:01:02 +0200
+Processing by Api::V1::LikesController#index as */*
+  Parameters: {"name"=>"It's tag was updated", "like"=>{}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 2.8ms | Allocations: 2140)
+
+
+  
+NameError (undefined local variable or method `tags' for #<Api::V1::LikesController:0x00000000016558>):
+  
+app/controllers/api/v1/likes_controller.rb:4:in `index'
+Started GET "/api/v1/likes" for 127.0.0.1 at 2022-12-12 19:01:30 +0200
+Processing by Api::V1::LikesController#index as */*
+  Parameters: {"name"=>"It's tag was updated", "like"=>{}}
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT "likes".* FROM "likes"[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:4:in `index'
+Completed 200 OK in 11ms (Views: 6.7ms | ActiveRecord: 6.8ms | Allocations: 14342)
+
+
+Started POST "/api/v1/likes" for 127.0.0.1 at 2022-12-12 19:02:19 +0200
+Processing by Api::V1::LikesController#create as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "like"=>{"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mAuthor Load (0.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.6ms)[0m  [1m[32mINSERT INTO "likes" ("author_id", "likeable_type", "likeable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 1], ["likeable_type", "Comment"], ["likeable_id", 1], ["created_at", "2022-12-12 17:02:19.680751"], ["updated_at", "2022-12-12 17:02:19.680751"]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+Completed 201 Created in 45ms (Views: 0.3ms | ActiveRecord: 9.1ms | Allocations: 41492)
+
+
+Started GET "/api/v1/likes" for 127.0.0.1 at 2022-12-12 19:02:25 +0200
+Processing by Api::V1::LikesController#index as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "like"=>{"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1}}
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes"[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.3ms | Allocations: 862)
+
+
+  [1m[36mComment Load (1.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLike Load (1.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 1], ["likeable_type", "Comment"]]
+Started DELETE "/api/v1/likes/2" for 127.0.0.1 at 2022-12-12 19:03:11 +0200
+Processing by Api::V1::LikesController#destroy as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "id"=>"2", "like"=>{"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1}}
+  [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/likes_controller.rb:18:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:20:in `destroy'
+  [1m[36mLike Destroy (0.6ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/likes_controller.rb:20:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:20:in `destroy'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 2036)
+
+
+Started POST "/api/v1/likes" for 127.0.0.1 at 2022-12-12 19:03:27 +0200
+Processing by Api::V1::LikesController#create as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "like"=>{"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mLike Create (0.2ms)[0m  [1m[32mINSERT INTO "likes" ("author_id", "likeable_type", "likeable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 1], ["likeable_type", "Comment"], ["likeable_id", 1], ["created_at", "2022-12-12 17:03:27.538636"], ["updated_at", "2022-12-12 17:03:27.538636"]]
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/likes_controller.rb:10:in `create'
+Completed 201 Created in 8ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3481)
+
+
+Started GET "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-12 19:03:37 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "post_id"=>"1", "comment"=>{"author_id"=>1}}
+[31mUnpermitted parameter: :author_id. Context: { controller: Api::V1::CommentsController, action: index, request: #<ActionDispatch::Request:0x00000001044fdee0>, params: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "controller"=>"api/v1/comments", "action"=>"index", "post_id"=>"1", "comment"=>{"author_id"=>1}} }[0m
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 249)
+
+
+Started GET "/api/v1/posts/1/comments/1" for 127.0.0.1 at 2022-12-12 19:03:41 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"author_id"=>1, "likeable_type"=>"Comment", "likeable_id"=>1, "post_id"=>"1", "id"=>"1", "comment"=>{"author_id"=>1}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `show'
+  [1m[36mLike Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 1], ["likeable_type", "Comment"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:20:in `show'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 1624)
+
+
