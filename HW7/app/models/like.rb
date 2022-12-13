@@ -1,5 +1,4 @@
 class Like < ApplicationRecord
-  belongs_to :post
-  belongs_to :comment
+  belongs_to :likeable, polymorphic: true
   belongs_to :author
 end

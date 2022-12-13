@@ -1,13 +1,11 @@
 class Api::V1::AuthorsController < ApplicationController
   def index
     authors = Author.all
-
     render json: { status: 'SUCCESS', message: 'Fetched all the authors successfully', data: authors }, status: :ok
   end
 
   def show
     author = Author.find(params[:id])
-
     render json: { data: author }, state: :ok
   end
 

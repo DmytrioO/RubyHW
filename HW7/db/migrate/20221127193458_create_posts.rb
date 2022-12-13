@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :body
       t.belongs_to :author, null: false, foreign_key: true
+      t.integer :status, default: 0
 
       t.timestamps
     end

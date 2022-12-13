@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_110707) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_133117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,23 +34,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_110707) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "comment_id"
-    t.bigint "author_id", null: false
+    t.bigint "author_id"
+    t.string "likeable_type"
+    t.bigint "likeable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_likes_on_author_id"
-    t.index ["comment_id"], name: "index_likes_on_comment_id"
-    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.bigint "author_id", null: false
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "tags"
     t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
@@ -62,8 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_110707) do
 
   add_foreign_key "comments", "authors"
   add_foreign_key "comments", "posts"
-  add_foreign_key "likes", "authors"
-  add_foreign_key "likes", "comments"
-  add_foreign_key "likes", "posts"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "authors"
 end

@@ -1,24 +1,14 @@
 class Api::V1::CommentsController < ApplicationController
   def index
     comments = Comment.all
-    watch_status
-
-    if @status_watch.to_s == '{"status"=>1}' || @status_watch.to_s == '{"status"=>"published"}'
-      render json: { status: 'SUCCESS', message: 'Fetched published comments successfully', data: comments.show_published }, status: :ok
-    end
-    if @status_watch.to_s == '{"status"=>0}' || @status_watch.to_s == '{"status"=>"unpublished"}'
-      render json: { status: 'SUCCESS', message: 'Fetched unpublished comments successfully', data: comments.show_unpublished }, status: :ok
-    end
-    if @status_watch.to_s == '{"status"=>"all"}'
-      render json: { status: 'SUCCESS', message: 'Fetched all the comments successfully', data: comments }, status: :ok
-    end
+    if params[:status] then comments = comments.where(status: params[:status]) end
+    render json: { status: 'SUCCESS', message: 'Fetched comments successfully', data: comments }, status: :ok
   end
 
   def show
     comment = Comment.find(params[:id])
-    likes = Comment.find(params[:id]).likes.count
-    response = { comment: comment, likes: likes }
-
+    likes_count = comment.likes.count
+    response = { comment: comment, likes: likes_count }
     render json: { data: response }, state: :ok
   end
 
@@ -56,9 +46,5 @@ class Api::V1::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :status, :author_id, :post_id)
-  end
-
-  def watch_status
-    @status_watch = params.require(:comment).permit(:status)
   end
 end
