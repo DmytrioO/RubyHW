@@ -31,7 +31,8 @@ class Api::V1::PostsController < ApplicationController
     if posts != nil
       if params[:sort] then posts = posts.order(title: params[:sort]) end
       @pagy, @records = pagy(posts.all, items: 15)
-      render json: { status: 'SUCCESS', message: 'Fetched all the posts successfully', data: @records }, status: :ok
+      response = { posts: @records, info: @pagy }
+      render json: { status: 'SUCCESS', message: 'Fetched all the posts successfully', data: response }, status: :ok
     else
       render json: { status: 'NOT FOUND', message: 'No posts were found with these parameters' }, status: :not_found
     end

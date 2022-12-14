@@ -7418,3 +7418,95 @@ Processing by Api::V1::PostsController#show as */*
 Completed 200 OK in 44ms (Views: 14.3ms | ActiveRecord: 11.2ms | Allocations: 26976)
 
 
+Started GET "/api/v1/findpost" for 127.0.0.1 at 2022-12-14 19:44:48 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/findpost"):
+  
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-14 19:45:04 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:34:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (13.82ms)
+Completed 200 OK in 44ms (Views: 11.0ms | ActiveRecord: 8.4ms | Allocations: 42021)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-14 19:45:12 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:34:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.51ms)
+Completed 200 OK in 19ms (Views: 1.5ms | ActiveRecord: 0.9ms | Allocations: 3585)
+
+
+Started GET "/api/v1/posts?status=unpublished" for 127.0.0.1 at 2022-12-14 19:45:21 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"unpublished"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 0]]
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 0], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:34:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.15ms)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 1.1ms | Allocations: 3040)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-14 21:42:37 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (11.27ms)
+Completed 200 OK in 30ms (Views: 6.5ms | ActiveRecord: 9.0ms | Allocations: 40643)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-14 21:43:05 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.74ms)
+Completed 200 OK in 12ms (Views: 2.5ms | ActiveRecord: 5.1ms | Allocations: 11567)
+
+
+Started GET "/api/v1/posts?page=2" for 127.0.0.1 at 2022-12-14 21:43:15 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"2"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 15]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.89ms)
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 1.0ms | Allocations: 3102)
+
+
+Started GET "/api/v1/posts?page=3" for 127.0.0.1 at 2022-12-14 21:43:29 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"3"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms | Allocations: 627)
+
+
+  
+Pagy::OverflowError (expected :page in 1..2; got 3):
+  
+app/controllers/api/v1/posts_controller.rb:33:in `index'
+Started GET "/api/v1/posts?page=2" for 127.0.0.1 at 2022-12-14 21:43:32 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"2"}
+  [1m[36mPost Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:33:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 15]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.12ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.5ms | Allocations: 3097)
+
+
