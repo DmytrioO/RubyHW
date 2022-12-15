@@ -1,13 +1,14 @@
 class Api::V1::TagsController < ApplicationController
+  before_action :set_tag, only: [:show, :update, :destroy]
+
   def index
     tags = Tag.all
     render json: { status: 'SUCCESS', message: 'Fetched all the tags successfully', data: tags }, status: :ok
   end
 
   def show
-    tag = Tag.find(params[:id])
-    posts = tag.posts
-    response = { tag: tag, posts: posts }
+    posts = @tag.posts
+    response = { tag: @tag, posts: posts }
     render json: { data: response }, state: :ok
   end
 
@@ -22,19 +23,15 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def update
-    tag = Tag.find(params[:id])
-
-    if tag.update(tag_params)
-      render json: { message: 'Tag was updated successfully', data: tag }, status: :ok
+    if @tag.update(tag_params)
+      render json: { message: 'Tag was updated successfully', data: @tag }, status: :ok
     else
       render json: { message: 'Tag cannot be updated' }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    tag = Tag.find(params[:id])
-
-    if tag.destroy
+    if @tag.destroy
       render json: { message: 'Tag was deleted successfully' }, status: :ok
     else
       render json: { message: 'Tag does not exist' }, status: :bad_request
@@ -45,5 +42,9 @@ class Api::V1::TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def set_tag
+    @tag = Tag.find(params[:id])
   end
 end

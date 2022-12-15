@@ -7510,3 +7510,304 @@ Processing by Api::V1::PostsController#index as */*
 Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.5ms | Allocations: 3097)
 
 
+Started GET "/api/v1/comments" for 127.0.0.1 at 2022-12-14 22:05:52 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/comments"):
+  
+Started GET "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-14 22:06:02 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (2.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:6:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (20.24ms)
+Completed 200 OK in 39ms (Views: 11.0ms | ActiveRecord: 10.8ms | Allocations: 38242)
+
+
+Started GET "/api/v1/posts/1/comments/1" for 127.0.0.1 at 2022-12-14 22:06:05 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"1", "id"=>"1"}
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:52:in `set_comment'
+  [1m[36mLike Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 1], ["likeable_type", "Comment"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:10:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 200 OK in 39ms (Views: 0.4ms | ActiveRecord: 3.1ms | Allocations: 10998)
+
+
+Started GET "/api/v1/posts/1/comments/2" for 127.0.0.1 at 2022-12-14 22:06:08 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"1", "id"=>"2"}
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:52:in `set_comment'
+  [1m[36mLike Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 2], ["likeable_type", "Comment"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:10:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 200 OK in 7ms (Views: 0.8ms | ActiveRecord: 1.0ms | Allocations: 1386)
+
+
+Started GET "/api/v1/posts/1/comments/3" for 127.0.0.1 at 2022-12-14 22:06:09 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"1", "id"=>"3"}
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:52:in `set_comment'
+  [1m[36mLike Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 3], ["likeable_type", "Comment"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:10:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.34ms)
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.8ms | Allocations: 1385)
+
+
+Started PUT "/api/v1/posts/1/comments/3?body=%22Hello%20world,%20I%20was%20edited%20here%22" for 127.0.0.1 at 2022-12-14 22:07:43 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"\"Hello world, I was edited here\"", "post_id"=>"1", "id"=>"3"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:50:in `set_comment'
+Completed 400 Bad Request in 19ms (ActiveRecord: 6.2ms | Allocations: 7202)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment):
+  
+app/controllers/api/v1/comments_controller.rb:46:in `comment_params'
+app/controllers/api/v1/comments_controller.rb:26:in `update'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-14 22:09:28 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"Testing before_action", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"Testing before_action", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:18:in `create'
+  [1m[36mAuthor Load (1.9ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:18:in `create'
+  [1m[36mPost Load (1.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:18:in `create'
+  [1m[36mComment Create (8.7ms)[0m  [1m[32mINSERT INTO "comments" ("body", "status", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["body", "Testing before_action"], ["status", 0], ["author_id", 1], ["post_id", 1], ["created_at", "2022-12-14 20:09:28.614386"], ["updated_at", "2022-12-14 20:09:28.614386"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 201 Created in 66ms (Views: 0.5ms | ActiveRecord: 21.4ms | Allocations: 43563)
+
+
+Started PUT "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-14 22:09:35 +0200
+  
+ActionController::RoutingError (No route matches [PUT] "/api/v1/posts/1/comments"):
+  
+Started PUT "/api/v1/posts/1/comments/3" for 127.0.0.1 at 2022-12-14 22:10:21 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"Testing before_action", "author_id"=>1, "post_id"=>"1", "id"=>"3", "comment"=>{"body"=>"Testing before_action", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:48:in `set_comment'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mComment Update (1.3ms)[0m  [1m[33mUPDATE "comments" SET "body" = $1, "post_id" = $2, "updated_at" = $3 WHERE "comments"."id" = $4[0m  [["body", "Testing before_action"], ["post_id", 1], ["updated_at", "2022-12-14 20:10:21.915685"], ["id", 3]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 31ms (Views: 0.4ms | ActiveRecord: 16.8ms | Allocations: 19385)
+
+
+Started PUT "/api/v1/posts/1/comments/3" for 127.0.0.1 at 2022-12-14 22:10:30 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1", "id"=>"3", "comment"=>{"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:48:in `set_comment'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mComment Update (0.4ms)[0m  [1m[33mUPDATE "comments" SET "body" = $1, "updated_at" = $2 WHERE "comments"."id" = $3[0m  [["body", "Testing before111_action"], ["updated_at", "2022-12-14 20:10:30.618214"], ["id", 3]]
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:26:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 2.0ms | Allocations: 4123)
+
+
+Started DELETE "/api/v1/posts/1/comments/3" for 127.0.0.1 at 2022-12-14 22:10:36 +0200
+Processing by Api::V1::CommentsController#destroy as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1", "id"=>"3", "comment"=>{"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:48:in `set_comment'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:34:in `destroy'
+  [1m[36mComment Destroy (0.3ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/v1/comments_controller.rb:34:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:34:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 1.1ms | Allocations: 1996)
+
+
+Started GET "/api/v1/posts/1/comments/3" for 127.0.0.1 at 2022-12-14 22:10:39 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1", "id"=>"3", "comment"=>{"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:48:in `set_comment'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 533)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=3):
+  
+app/controllers/api/v1/comments_controller.rb:48:in `set_comment'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2022-12-14 22:16:05 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "post"=>{"body"=>"Testing before111_action", "author_id"=>1}}
+[active_model_serializers] Rendered Api::V1::PostSerializer with ActiveModelSerializers::Adapter::Attributes (1.67ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 9.5ms | Allocations: 7156)
+
+
+  
+NoMethodError (undefined method `model_name' for NilClass:Class
+Did you mean?  module_parent):
+  
+app/controllers/api/v1/posts_controller.rb:42:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2022-12-14 22:16:40 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "post"=>{"body"=>"Testing before111_action", "author_id"=>1}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:42:in `show'
+[active_model_serializers]   [1m[36mAuthor Load (0.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `show'
+[active_model_serializers]   [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `show'
+[active_model_serializers]   [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `show'
+[active_model_serializers]   [1m[36mCACHE Author Load (0.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `show'
+[active_model_serializers]   [1m[36mCACHE Author Load (0.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `show'
+[active_model_serializers] Rendered Api::V1::PostSerializer with ActiveModelSerializers::Adapter::Attributes (25.41ms)
+Completed 200 OK in 33ms (Views: 16.9ms | ActiveRecord: 16.5ms | Allocations: 21086)
+
+
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2022-12-14 22:17:12 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "post"=>{"body"=>"Testing before111_action", "author_id"=>1}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:80:in `set_post'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 5.1ms | Allocations: 4451)
+
+
+  
+NameError (undefined local variable or method `post' for #<Api::V1::PostsController:0x0000000002f580>
+Did you mean?  @post):
+  
+app/controllers/api/v1/posts_controller.rb:44:in `show'
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2022-12-14 22:17:24 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "post"=>{"body"=>"Testing before111_action", "author_id"=>1}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:80:in `set_post'
+[active_model_serializers]   [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:44:in `show'
+[active_model_serializers]   [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:44:in `show'
+[active_model_serializers]   [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:44:in `show'
+[active_model_serializers]   [1m[36mCACHE Author Load (0.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:44:in `show'
+[active_model_serializers]   [1m[36mCACHE Author Load (0.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:44:in `show'
+[active_model_serializers] Rendered Api::V1::PostSerializer with ActiveModelSerializers::Adapter::Attributes (17.73ms)
+Completed 200 OK in 24ms (Views: 11.6ms | ActiveRecord: 9.6ms | Allocations: 20760)
+
+
+Started GET "/api/v1/tags/1" for 127.0.0.1 at 2022-12-14 22:18:40 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "tag"=>{}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 1.7ms | Allocations: 568)
+
+
+  
+NoMethodError (undefined method `posts' for nil:NilClass):
+  
+app/controllers/api/v1/tags_controller.rb:8:in `show'
+Started GET "/api/v1/tags/1" for 127.0.0.1 at 2022-12-14 22:18:57 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "tag"=>{}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 2.3ms | Allocations: 2009)
+
+
+  
+NoMethodError (undefined method `set_post' for #<Api::V1::TagsController:0x00000000044278>
+Did you mean?  set_tag):
+  
+activesupport (7.0.4) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4) lib/active_support/callbacks.rb:180:in `block (2 levels) in halting_and_conditional'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4) lib/active_support/callbacks.rb:181:in `block in halting_and_conditional'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4) lib/active_support/callbacks.rb:106:in `run_callbacks'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4) lib/abstract_controller/base.rb:151:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/tags/1" for 127.0.0.1 at 2022-12-14 22:19:05 +0200
+Processing by Api::V1::TagsController#show as */*
+  Parameters: {"body"=>"Testing before111_action", "author_id"=>1, "post_id"=>1, "id"=>"1", "tag"=>{}}
+  [1m[36mTag Load (2.9ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tags_controller.rb:48:in `set_tag'
+[active_model_serializers]   [1m[36mPost Load (3.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" INNER JOIN "post_tags" ON "posts"."id" = "post_tags"."post_id" WHERE "post_tags"."tag_id" = $1[0m  [["tag_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/tags_controller.rb:12:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (15.06ms)
+Completed 200 OK in 35ms (Views: 8.2ms | ActiveRecord: 15.1ms | Allocations: 17303)
+
+

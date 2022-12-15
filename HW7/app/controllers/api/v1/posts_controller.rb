@@ -1,6 +1,8 @@
 class Api::V1::PostsController < ApplicationController
   include Pagy::Backend
 
+  before_action :set_post, only: [:show, :update, :destroy]
+
   def index
     posts = Post.all
     if params[:status] then posts = posts.where(status: params[:status]) end
@@ -39,8 +41,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    post = Post.find(params[:id])
-    render json: post, each_serializer: Api::V1::PostSerializer, state: :ok
+    render json: @post, each_serializer: Api::V1::PostSerializer, state: :ok
   end
 
   def create
@@ -54,19 +55,15 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-
-    if post.update(post_params)
-      render json: { message: 'Post was updated successfully', data: post }, status: :ok
+    if @post.update(post_params)
+      render json: { message: 'Post was updated successfully', data: @post }, status: :ok
     else
       render json: { message: 'Post cannot be updated' }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    post = Post.find(params[:id])
-
-    if post.destroy
+    if @post.destroy
       render json: { message: 'Post was deleted successfully' }, status: :ok
     else
       render json: { message: 'Post does not exist' }, status: :bad_request
@@ -77,5 +74,9 @@ class Api::V1::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :author_id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

@@ -1,4 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
+  before_action :set_comment, only: [:show, :update, :destroy]
+
   def index
     comments = Comment.all
     if params[:status] then comments = comments.where(status: params[:status]) end
@@ -6,9 +8,8 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def show
-    comment = Comment.find(params[:id])
-    likes_count = comment.likes.count
-    response = { comment: comment, likes: likes_count }
+    likes_count = @comment.likes.count
+    response = { comment: @comment, likes: likes_count }
     render json: { data: response }, state: :ok
   end
 
@@ -23,19 +24,15 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-    comment = Comment.find(params[:id])
-
-    if comment.update(comment_params)
-      render json: { message: 'Comment was updated successfully', data: comment }, status: :ok
+    if @comment.update(comment_params)
+      render json: { message: 'Comment was updated successfully', data: @comment }, status: :ok
     else
       render json: { message: 'Comment cannot be updated' }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-
-    if comment.destroy
+    if @comment.destroy
       render json: { message: 'Comment was deleted successfully' }, status: :ok
     else
       render json: { message: 'Comment does not exist' }, status: :bad_request
@@ -46,5 +43,9 @@ class Api::V1::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :status, :author_id, :post_id)
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 end
