@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :posts do
         resources :comments
-        resources :findpost
       end
       resources :authors
       resources :tags

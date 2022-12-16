@@ -7811,3 +7811,1273 @@ Processing by Api::V1::TagsController#show as */*
 Completed 200 OK in 35ms (Views: 8.2ms | ActiveRecord: 15.1ms | Allocations: 17303)
 
 
+  [1m[36mPost Load (2.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAuthor Load (1.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mAuthor Load (0.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  [1m[36mAuthor Load (0.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."name" = $1[0m  [["name", "Dmytro"]]
+  [1m[36mAuthor Load (0.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."name" = $1 /* loading for inspect */ LIMIT $2[0m  [["name", "Dmytro"], ["LIMIT", 11]]
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."name" = $1 /* loading for inspect */ LIMIT $2[0m  [["name", "Dmytro"], ["LIMIT", 11]]
+  [1m[36mAuthor Pluck (0.4ms)[0m  [1m[34mSELECT "authors"."id" FROM "authors" WHERE "authors"."name" = $1[0m  [["name", "Dmytro"]]
+  [1m[36mAuthor Pluck (0.5ms)[0m  [1m[34mSELECT "authors"."id" FROM "authors" WHERE "authors"."name" = $1[0m  [["name", "Dmytro"]]
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-16 19:09:41 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (13.75ms)
+Completed 200 OK in 34ms (Views: 8.3ms | ActiveRecord: 13.3ms | Allocations: 41789)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 19:09:49 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.7ms)
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 2423)
+
+
+Started GET "/api/v1/posts?status=unpublished" for 127.0.0.1 at 2022-12-16 19:10:04 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"unpublished"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.43ms)
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.7ms | Allocations: 1851)
+
+
+Started GET "/api/v1/posts?status=unpublished" for 127.0.0.1 at 2022-12-16 19:11:23 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"unpublished"}
+  [1m[36mPost Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 0]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 0], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.77ms)
+Completed 200 OK in 19ms (Views: 3.9ms | ActiveRecord: 7.3ms | Allocations: 11896)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 19:11:27 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.39ms)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.8ms | Allocations: 1917)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 20:05:44 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+Completed 500 Internal Server Error in 5ms (Allocations: 6217)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/posts_controller.rb:8:in `index'
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 20:06:34 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.85ms)
+Completed 200 OK in 34ms (Views: 1.9ms | ActiveRecord: 11.8ms | Allocations: 11485)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 20:07:11 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.91ms)
+Completed 200 OK in 15ms (Views: 2.6ms | ActiveRecord: 7.4ms | Allocations: 10648)
+
+
+Started GET "/api/v1/posts?status=unpublished" for 127.0.0.1 at 2022-12-16 20:07:19 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"unpublished"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 0]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 0], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.98ms)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 0.6ms | Allocations: 3408)
+
+
+Started GET "/api/v1/posts?status=unpublished&page=2" for 127.0.0.1 at 2022-12-16 20:07:30 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"unpublished", "page"=>"2"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 0]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 0], ["LIMIT", 15], ["OFFSET", 15]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.75ms)
+Completed 200 OK in 9ms (Views: 5.0ms | ActiveRecord: 0.8ms | Allocations: 3095)
+
+
+Started GET "/api/v1/posts?author_id=1" for 127.0.0.1 at 2022-12-16 20:09:40 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1"}
+  [1m[36mPost Count (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (9.15ms)
+Completed 200 OK in 34ms (Views: 5.7ms | ActiveRecord: 20.0ms | Allocations: 12232)
+
+
+Started GET "/api/v1/posts?author_id=2" for 127.0.0.1 at 2022-12-16 20:09:46 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"2"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 2], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.13ms)
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 0.8ms | Allocations: 1939)
+
+
+Started GET "/api/v1/posts?author_id=3" for 127.0.0.1 at 2022-12-16 20:09:48 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"3"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 3], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.18ms)
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.7ms | Allocations: 1825)
+
+
+Started GET "/api/v1/posts?sort=asc" for 127.0.0.1 at 2022-12-16 20:12:08 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"sort"=>"asc"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."title" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.73ms)
+Completed 200 OK in 18ms (Views: 4.1ms | ActiveRecord: 6.0ms | Allocations: 12338)
+
+
+Started GET "/api/v1/posts?sort=desc" for 127.0.0.1 at 2022-12-16 20:12:12 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"sort"=>"desc"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."title" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.25ms)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.6ms | Allocations: 3385)
+
+
+Started GET "/api/v1/posts?sort=desc&page=2" for 127.0.0.1 at 2022-12-16 20:12:22 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"sort"=>"desc", "page"=>"2"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:36:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."title" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 15]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:38:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.05ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.7ms | Allocations: 3269)
+
+
+Started GET "/api/v1/posts?author_id=1&status=published&sort=desc" for 127.0.0.1 at 2022-12-16 20:13:14 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1", "status"=>"published", "sort"=>"desc"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1 AND "posts"."author_id" = $2[0m  [["status", 1], ["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 AND "posts"."author_id" = $2 ORDER BY "posts"."title" DESC LIMIT $3 OFFSET $4[0m  [["status", 1], ["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (7.28ms)
+Completed 200 OK in 20ms (Views: 3.2ms | ActiveRecord: 6.2ms | Allocations: 11152)
+
+
+Started GET "/api/v1/posts?author_id=1&status=published&sort=asc" for 127.0.0.1 at 2022-12-16 20:13:24 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1", "status"=>"published", "sort"=>"asc"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1 AND "posts"."author_id" = $2[0m  [["status", 1], ["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 AND "posts"."author_id" = $2 ORDER BY "posts"."title" ASC LIMIT $3 OFFSET $4[0m  [["status", 1], ["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.3ms)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 1.0ms | Allocations: 2208)
+
+
+Started GET "/api/v1/posts?tags=test" for 127.0.0.1 at 2022-12-16 20:13:35 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"test"}
+  [1m[36mPost Pluck (0.3ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (6.6ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.5ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2 OFFSET $3[0m  [["id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.2ms)
+Completed 200 OK in 98ms (Views: 1.2ms | ActiveRecord: 22.7ms | Allocations: 67870)
+
+
+  [1m[36mTag Load (1.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  [1m[36mPostTag Load (12.6ms)[0m  [1m[34mSELECT "post_tags".* FROM "post_tags"[0m
+Started GET "/api/v1/posts?tags=hello" for 127.0.0.1 at 2022-12-16 20:14:47 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"hello"}
+  [1m[36mPost Pluck (0.7ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.4ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.6ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Count (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."id" IN ($1, $2)[0m  [["id", 1], ["id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" IN ($1, $2) LIMIT $3 OFFSET $4[0m  [["id", 1], ["id", 2], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.54ms)
+Completed 200 OK in 63ms (Views: 1.8ms | ActiveRecord: 12.2ms | Allocations: 41820)
+
+
+Started GET "/api/v1/posts?tags=hello,test" for 127.0.0.1 at 2022-12-16 20:14:52 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"hello,test"}
+  [1m[36mPost Pluck (0.4ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 404 Not Found in 55ms (Views: 0.2ms | ActiveRecord: 9.4ms | Allocations: 40097)
+
+
+Started GET "/api/v1/posts?tags=hello,%20test" for 127.0.0.1 at 2022-12-16 20:15:07 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"hello, test"}
+  [1m[36mPost Pluck (0.2ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.4ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2 OFFSET $3[0m  [["id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.25ms)
+Completed 200 OK in 48ms (Views: 1.1ms | ActiveRecord: 9.0ms | Allocations: 42801)
+
+
+Started GET "/api/v1/posts?tags=hello,%20test" for 127.0.0.1 at 2022-12-16 20:15:21 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"hello, test"}
+  [1m[36mPost Pluck (0.2ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.3ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 404 Not Found in 59ms (Views: 0.8ms | ActiveRecord: 18.2ms | Allocations: 56570)
+
+
+Started GET "/api/v1/posts?tags=hello,test" for 127.0.0.1 at 2022-12-16 20:15:25 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"tags"=>"hello,test"}
+  [1m[36mPost Pluck (0.3ms)[0m  [1m[34mSELECT "posts"."id" FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:13:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mCACHE Tag Load (0.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 3]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:21:in `block (3 levels) in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.4ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 4]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 5]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 6]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 7]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 8]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 9]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 10]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 11]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 12]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 13]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 14]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.7ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 15]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 16]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 17]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 18]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 19]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 20]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 21]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 22]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 23]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 24]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 25]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 26]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.1ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 27]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 28]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:16:in `block in index'
+  [1m[36mTag Pluck (0.2ms)[0m  [1m[34mSELECT "tags"."id" FROM "tags" INNER JOIN "post_tags" ON "tags"."id" = "post_tags"."tag_id" WHERE "post_tags"."post_id" = $1[0m  [["post_id", 29]]
+  ↳ app/controllers/api/v1/posts_controller.rb:17:in `block in index'
+  [1m[36mPost Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:35:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2 OFFSET $3[0m  [["id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:37:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.0ms)
+Completed 200 OK in 54ms (Views: 1.1ms | ActiveRecord: 10.3ms | Allocations: 42858)
+
+
+Started GET "/api/v1/posts?search=first" for 127.0.0.1 at 2022-12-16 20:19:42 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"first"}
+  [1m[36mPost Count (4.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title ILIKE '%first%' OR body ILIKE '%first%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title ILIKE '%first%' OR body ILIKE '%first%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (7.91ms)
+Completed 200 OK in 26ms (Views: 5.3ms | ActiveRecord: 10.6ms | Allocations: 39823)
+
+
+Started GET "/api/v1/posts?search=test" for 127.0.0.1 at 2022-12-16 20:19:50 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"test"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title ILIKE '%test%' OR body ILIKE '%test%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (2.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title ILIKE '%test%' OR body ILIKE '%test%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.5ms)
+Completed 200 OK in 9ms (Views: 3.1ms | ActiveRecord: 2.4ms | Allocations: 3245)
+
+
+Started GET "/api/v1/posts?search=a%20test" for 127.0.0.1 at 2022-12-16 20:20:00 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"a test"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title ILIKE '%a test%' OR body ILIKE '%a test%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title ILIKE '%a test%' OR body ILIKE '%a test%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.21ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.8ms | Allocations: 1780)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-16 20:20:06 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.48ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.7ms | Allocations: 3249)
+
+
+Started GET "/api/v1/posts?search=first" for 127.0.0.1 at 2022-12-16 20:21:47 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"first"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 296)
+
+
+  
+SyntaxError (/Users/dmytroonyschcenko/Documents/Learning/GeekHub/RubyHW/HW7/app/models/post.rb:15: syntax error, unexpected '}', expecting ')'
+...ody ILIKE ?", "%#{keywords}%" }
+...                              ^
+):
+  
+app/models/post.rb:15: syntax error, unexpected '}', expecting ')'
+app/models/post.rb:15: syntax error, unexpected '}', expecting ')'
+app/controllers/api/v1/posts_controller.rb:7:in `index'
+Started GET "/api/v1/posts?search=first" for 127.0.0.1 at 2022-12-16 20:22:01 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"first"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 6875)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/models/post.rb:15:in `block in <class:Post>'
+app/controllers/api/v1/posts_controller.rb:8:in `index'
+Started GET "/api/v1/posts?search=first" for 127.0.0.1 at 2022-12-16 20:22:21 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"first"}
+  [1m[36mPost Count (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%first%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%first%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.45ms)
+Completed 200 OK in 18ms (Views: 2.4ms | ActiveRecord: 8.3ms | Allocations: 11117)
+
+
+Started GET "/api/v1/posts?search=test" for 127.0.0.1 at 2022-12-16 20:22:26 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"test"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%test%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%test%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.56ms)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 1.3ms | Allocations: 3375)
+
+
+Started GET "/api/v1/posts?search=test%20post" for 127.0.0.1 at 2022-12-16 20:22:31 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"test post"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%test post%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%test post%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.56ms)
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.5ms | Allocations: 1914)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-16 20:22:40 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:40:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.38ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.7ms | Allocations: 3274)
+
+
+Started GET "/api/v1/posts?search=test%20post" for 127.0.0.1 at 2022-12-16 20:24:07 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"test post"}
+  [1m[36mPost Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%test post%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%test post%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.96ms)
+Completed 200 OK in 17ms (Views: 3.0ms | ActiveRecord: 6.0ms | Allocations: 11001)
+
+
+Started GET "/api/v1/posts?search=I%27m" for 127.0.0.1 at 2022-12-16 20:24:11 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"I'm"}
+  [1m[36mPost Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%I''m%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%I''m%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.99ms)
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 1.5ms | Allocations: 2230)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-16 20:24:21 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.68ms)
+Completed 200 OK in 9ms (Views: 5.9ms | ActiveRecord: 0.7ms | Allocations: 3265)
+
+
+Started GET "/api/v1/posts?sort=asc" for 127.0.0.1 at 2022-12-16 20:24:26 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"sort"=>"asc"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."title" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.79ms)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.6ms | Allocations: 3385)
+
+
+Started GET "/api/v1/posts?status=published" for 127.0.0.1 at 2022-12-16 20:24:33 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"published"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" = $1[0m  [["status", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 LIMIT $2 OFFSET $3[0m  [["status", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.51ms)
+Completed 200 OK in 9ms (Views: 3.9ms | ActiveRecord: 0.8ms | Allocations: 2624)
+
+
+Started GET "/api/v1/posts?author_id=1" for 127.0.0.1 at 2022-12-16 20:24:43 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1"}
+  [1m[36mPost Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.91ms)
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 1.3ms | Allocations: 3415)
+
+
+Started GET "/api/v1/posts?author_id=1,2" for 127.0.0.1 at 2022-12-16 20:24:45 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1,2"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.86ms)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 0.9ms | Allocations: 3396)
+
+
+Started GET "/api/v1/posts?author_id=1,2&page=2" for 127.0.0.1 at 2022-12-16 20:24:59 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1,2", "page"=>"2"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 15]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.83ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.5ms | Allocations: 3190)
+
+
+  [1m[36mAuthor Load (1.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 2]]
+Started GET "/api/v1/posts?author_id=1,2&page=1" for 127.0.0.1 at 2022-12-16 20:25:33 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1,2", "page"=>"1"}
+  [1m[36mPost Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.47ms)
+Completed 200 OK in 24ms (Views: 7.1ms | ActiveRecord: 1.0ms | Allocations: 3398)
+
+
+Started GET "/api/v1/posts?author_id=1" for 127.0.0.1 at 2022-12-16 20:25:41 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"author_id"=>"1"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:41:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 LIMIT $2 OFFSET $3[0m  [["author_id", 1], ["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:43:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.88ms)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.8ms | Allocations: 3396)
+
+

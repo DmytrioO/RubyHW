@@ -5,11 +5,16 @@ class Api::V1::PostsController < ApplicationController
 
   def index
     posts = Post.all
-    if params[:status] then posts = posts.where(status: params[:status]) end
-    if params[:author_id] then posts = posts.where(author_id: params[:author_id]) end
+    #http://127.0.0.1:3000/api/v1/posts?search=keywords
+    if params[:search] then posts = posts.find_post(params[:search]) end
+    #http://127.0.0.1:3000/api/v1/posts?status=unpublished/published
+    if params[:status] then posts = posts.filter_by_status(params[:status]) end
+    #http://127.0.0.1:3000/api/v1/posts?author_id=1
+    if params[:author_id] then posts = posts.filter_by_author(params[:author_id]) end
+    #http://127.0.0.1:3000/api/v1/posts?tags=tag1,tag2,tag3
     if params[:tags]
       filtered_ids = []
-      tags_array = params[:tags].split(', ')
+      tags_array = params[:tags].split(',')
       post_ids = posts.all.ids
       coincidence = 1
       post_ids.each do |post_id|
@@ -31,7 +36,8 @@ class Api::V1::PostsController < ApplicationController
       else posts = nil end
     end
     if posts != nil
-      if params[:sort] then posts = posts.order(title: params[:sort]) end
+      #http://127.0.0.1:3000/api/v1/posts?sort=asc/desc
+      if params[:sort] then posts = posts.sort_by_title(params[:sort]) end
       @pagy, @records = pagy(posts.all, items: 15)
       response = { posts: @records, info: @pagy }
       render json: { status: 'SUCCESS', message: 'Fetched all the posts successfully', data: response }, status: :ok
