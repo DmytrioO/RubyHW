@@ -10,7 +10,8 @@ class Post < ApplicationRecord
   enum :status, %i[unpublished published]
 
   scope :filter_by_status, ->(status) { where(status: status) }
-  scope :filter_by_author, ->(author_id) { where(author_id: author_id) }
+  scope :filter_by_author, ->(name) { joins(:author).where('authors.name ILIKE ?', "%#{name}%") }
+  scope :filter_by_tags, ->(tags) { joins(:tags).where('tags.name IN (?)', tags) }
   scope :sort_by_title, ->(sort) { order(title: sort) }
-  scope :find_post, ->(keywords) { where("title || body ILIKE ?", "%#{keywords}%") }
+  scope :search, ->(keywords) { where("title || body ILIKE ?", "%#{keywords}%") }
 end

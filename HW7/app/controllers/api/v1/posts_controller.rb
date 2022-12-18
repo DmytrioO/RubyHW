@@ -6,48 +6,22 @@ class Api::V1::PostsController < ApplicationController
   def index
     posts = Post.all
     #http://127.0.0.1:3000/api/v1/posts?search=keywords
-    if params[:search] then posts = posts.find_post(params[:search]) end
+    posts = posts.search(params[:search]) if params[:search]
     #http://127.0.0.1:3000/api/v1/posts?status=unpublished/published
-    if params[:status] then posts = posts.filter_by_status(params[:status]) end
+    posts = posts.filter_by_status(params[:status]) if params[:status]
     #http://127.0.0.1:3000/api/v1/posts?author_id=1
-    if params[:author_id] then posts = posts.filter_by_author(params[:author_id]) end
+    posts = posts.filter_by_author(params[:author]) if params[:author]
     #http://127.0.0.1:3000/api/v1/posts?tags=tag1,tag2,tag3
-    if params[:tags]
-      filtered_ids = []
-      tags_array = params[:tags].split(',')
-      post_ids = posts.all.ids
-      coincidence = 1
-      post_ids.each do |post_id|
-        post = posts.find(post_id)
-        tags_ids = post.tags.ids
-        tags_array.each do |tag|
-          coincidence = 0
-          tags_ids.each do |tag_id|
-            post_tag = Tag.find(tag_id)
-            if post_tag.name.downcase == tag.downcase
-              coincidence = 1
-            end
-          end
-          if coincidence == 0 then break end
-        end
-        if coincidence == 1 then filtered_ids.push(post.id) end
-      end
-      unless filtered_ids.empty? then posts = posts.where(id: filtered_ids)
-      else posts = nil end
-    end
-    if posts != nil
-      #http://127.0.0.1:3000/api/v1/posts?sort=asc/desc
-      if params[:sort] then posts = posts.sort_by_title(params[:sort]) end
-      @pagy, @records = pagy(posts.all, items: 15)
-      response = { posts: @records, info: @pagy }
-      render json: { status: 'SUCCESS', message: 'Fetched all the posts successfully', data: response }, status: :ok
-    else
-      render json: { status: 'NOT FOUND', message: 'No posts were found with these parameters' }, status: :not_found
-    end
+    posts = posts.filter_by_tags(params[:tags].split(', ')) if params[:tags]
+    #http://127.0.0.1:3000/api/v1/posts?sort=asc/desc
+    posts = posts.sort_by_title(params[:sort]) if params[:sort]
+    @pagy, @posts = pagy(posts, items: 15)
+    response = { posts: @posts, info: @pagy }
+    render json: { status: 'SUCCESS', message: 'Fetched all the posts successfully', data: response }, status: :ok
   end
 
   def show
-    render json: @post, each_serializer: Api::V1::PostSerializer, state: :ok
+    render json: @post, serializer: Api::V1::PostSerializer, state: :ok
   end
 
   def create
