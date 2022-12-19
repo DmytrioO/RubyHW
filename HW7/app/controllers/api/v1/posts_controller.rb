@@ -12,7 +12,7 @@ class Api::V1::PostsController < ApplicationController
     #http://127.0.0.1:3000/api/v1/posts?author_id=1
     posts = posts.filter_by_author(params[:author]) if params[:author]
     #http://127.0.0.1:3000/api/v1/posts?tags=tag1,tag2,tag3
-    posts = posts.filter_by_tags(params[:tags].split(', ')) if params[:tags]
+    posts = posts.filter_by_tags(params[:tags].split(', ')).distinct if params[:tags]
     #http://127.0.0.1:3000/api/v1/posts?sort=asc/desc
     posts = posts.sort_by_title(params[:sort]) if params[:sort]
     @pagy, @posts = pagy(posts, items: 15)
