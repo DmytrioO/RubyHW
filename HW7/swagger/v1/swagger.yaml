@@ -14,11 +14,15 @@ paths:
         type: string
     get:
       summary: list comments
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
     post:
       summary: create comment
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
@@ -38,32 +42,44 @@ paths:
         type: string
     get:
       summary: show comment
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
     patch:
       summary: update comment
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
     put:
       summary: update comment
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
     delete:
       summary: delete comment
+      tags:
+      - Comments
       responses:
         '200':
           description: successful
   "/api/v1/posts":
     get:
       summary: list posts
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
     post:
       summary: create post
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
@@ -77,26 +93,34 @@ paths:
         type: string
     get:
       summary: show post
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
     patch:
       summary: update post
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
     put:
       summary: update post
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
     delete:
       summary: delete post
+      tags:
+      - Posts
       responses:
         '200':
           description: successful
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: 127.0.0.1:3000/

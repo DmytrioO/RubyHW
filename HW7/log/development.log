@@ -10467,3 +10467,87 @@ Processing by Api::V1::PostsController#show as */*
 Completed 200 OK in 67ms (Views: 25.5ms | ActiveRecord: 22.2ms | Allocations: 88237)
 
 
+Started GET "/api-docs" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:05:58 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:06:10 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:06:25 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:07:19 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:08:01 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:08:01 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:08:01 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:08:01 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:08:02 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:08:02 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:09:06 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:09:43 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:10:13 +0200
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-19 20:10:17 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (17.28ms)
+Completed 200 OK in 54ms (Views: 11.9ms | ActiveRecord: 15.3ms | Allocations: 43048)
+
+
+Started POST "/api/v1/posts" for 127.0.0.1 at 2022-12-19 20:10:44 +0200
+Processing by Api::V1::PostsController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 178)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: post):
+  
+app/controllers/api/v1/posts_controller.rb:56:in `post_params'
+app/controllers/api/v1/posts_controller.rb:28:in `create'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-19 20:11:48 +0200
+Started GET "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-19 20:12:03 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (1.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (17.18ms)
+Completed 200 OK in 22ms (Views: 13.1ms | ActiveRecord: 4.4ms | Allocations: 19262)
+
+

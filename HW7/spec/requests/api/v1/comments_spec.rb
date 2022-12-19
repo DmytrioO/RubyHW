@@ -7,6 +7,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     parameter name: 'post_id', in: :path, type: :string, description: 'post_id'
 
     get('list comments') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
 
@@ -22,6 +23,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     post('create comment') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
 
@@ -43,6 +45,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show comment') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
         let(:id) { '123' }
@@ -59,6 +62,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     patch('update comment') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
         let(:id) { '123' }
@@ -75,6 +79,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     put('update comment') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
         let(:id) { '123' }
@@ -91,6 +96,7 @@ RSpec.describe 'api/v1/comments', type: :request do
     end
 
     delete('delete comment') do
+      tags 'Comments'
       response(200, 'successful') do
         let(:post_id) { '123' }
         let(:id) { '123' }
