@@ -35,7 +35,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update!(post_params)
       render json: { message: 'Post was updated successfully', data: @post }, status: :ok
     else
       render json: { message: 'Post cannot be updated' }, status: :unprocessable_entity
@@ -53,7 +53,7 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :author_id)
+    params.require(:post).permit(:title, :body, :status, :author_id)
   end
 
   def set_post
