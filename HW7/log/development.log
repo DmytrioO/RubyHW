@@ -12130,3 +12130,848 @@ Processing by Api::V1::CommentsController#update as */*
 Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 1.7ms | Allocations: 4103)
 
 
+Started GET "/" for 127.0.0.1 at 2022-12-21 10:29:57 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.0.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.0.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 740)
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 6988)
+
+
+Started GET "/api-docs" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:30:04 +0200
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-21 10:30:23 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (23.25ms)
+Completed 200 OK in 44ms (Views: 18.4ms | ActiveRecord: 12.4ms | Allocations: 29442)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:30:53 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:31:48 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:31:48 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:31:48 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:31:48 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:31:49 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:31:49 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:32:53 +0200
+Started GET "/api/v1/posts" for 127.0.0.1 at 2022-12-21 10:33:50 +0200
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.66ms)
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 0.7ms | Allocations: 3186)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:40:33 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:41:09 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:41:09 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:41:09 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:41:10 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:41:10 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:41:10 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:44:38 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 10:59:14 +0200
+Started GET "/api/v1/posts?search=sddfdsfs" for 127.0.0.1 at 2022-12-21 10:59:24 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs"}
+  [1m[36mPost Count (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.97ms)
+Completed 200 OK in 18ms (Views: 1.6ms | ActiveRecord: 3.6ms | Allocations: 24661)
+
+
+Started GET "/api/v1/posts?search=sddfdsfs&page=3" for 127.0.0.1 at 2022-12-21 10:59:31 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs", "page"=>"3"}
+  [1m[36mPost Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%')[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.5ms | Allocations: 739)
+
+
+  
+Pagy::OverflowError (expected :page in 1..1; got 3):
+  
+app/controllers/api/v1/posts_controller.rb:18:in `index'
+Started GET "/api/v1/posts?search=sddfdsfs&sort=resw" for 127.0.0.1 at 2022-12-21 11:00:23 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs", "sort"=>"resw"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 255)
+
+
+  
+ArgumentError (Direction "resw" is invalid. Valid directions are: [:asc, :desc, :ASC, :DESC, "asc", "desc", "ASC", "DESC"]):
+  
+app/models/post.rb:15:in `block in <class:Post>'
+app/controllers/api/v1/posts_controller.rb:17:in `index'
+Started GET "/api/v1/posts?search=sddfdsfs&tags=dfghjkl" for 127.0.0.1 at 2022-12-21 11:00:33 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs", "tags"=>"dfghjkl"}
+  [1m[36mPost Count (5.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "posts"."id") FROM "posts" INNER JOIN "post_tags" ON "post_tags"."post_id" = "posts"."id" INNER JOIN "tags" ON "tags"."id" = "post_tags"."tag_id" WHERE (title || body ILIKE '%sddfdsfs%') AND (tags.name IN ('dfghjkl'))[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (2.2ms)[0m  [1m[34mSELECT DISTINCT "posts".* FROM "posts" INNER JOIN "post_tags" ON "post_tags"."post_id" = "posts"."id" INNER JOIN "tags" ON "tags"."id" = "post_tags"."tag_id" WHERE (title || body ILIKE '%sddfdsfs%') AND (tags.name IN ('dfghjkl')) LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.45ms)
+Completed 200 OK in 39ms (Views: 1.5ms | ActiveRecord: 14.2ms | Allocations: 11469)
+
+
+Started GET "/api/v1/posts?search=sddfdsfs&status=rew" for 127.0.0.1 at 2022-12-21 11:00:42 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs", "status"=>"rew"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%') AND "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%') AND "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.19ms)
+Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 0.7ms | Allocations: 2404)
+
+
+Started GET "/api/v1/posts?search=sddfdsfs&status=pidor" for 127.0.0.1 at 2022-12-21 11:00:54 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"search"=>"sddfdsfs", "status"=>"pidor"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%') AND "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (title || body ILIKE '%sddfdsfs%') AND "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.32ms)
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.7ms | Allocations: 1867)
+
+
+Started GET "/api/v1/posts?status=pidor" for 127.0.0.1 at 2022-12-21 11:01:08 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"status"=>"pidor"}
+  [1m[36mPost Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts" WHERE "posts"."status" IS NULL[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" IS NULL LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 0]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.21ms)
+Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 0.9ms | Allocations: 1849)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:01:27 +0200
+Started GET "/api/v1/posts?page=3" for 127.0.0.1 at 2022-12-21 11:01:39 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"3"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 30]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (21.3ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.6ms | Allocations: 18851)
+
+
+Started GET "/api/v1/posts?page=4" for 127.0.0.1 at 2022-12-21 11:01:47 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"4"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms | Allocations: 596)
+
+
+  
+Pagy::OverflowError (expected :page in 1..3; got 4):
+  
+app/controllers/api/v1/posts_controller.rb:18:in `index'
+Started POST "/api/v1/posts" for 127.0.0.1 at 2022-12-21 11:02:22 +0200
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"string", "body"=>"string", "status"=>"string", "author_id"=>1, "post"=>{"title"=>"string", "body"=>"string", "author_id"=>1, "status"=>"string"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 302)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/posts_controller.rb:28:in `create'
+Started POST "/api/v1/posts" for 127.0.0.1 at 2022-12-21 11:02:57 +0200
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"title"=>"string", "body"=>"string", "post"=>{"title"=>"string", "body"=>"string"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (7.69ms)
+Completed 422 Unprocessable Entity in 27ms (Views: 8.0ms | ActiveRecord: 0.0ms | Allocations: 10456)
+
+
+Started POST "/api/v1/posts" for 127.0.0.1 at 2022-12-21 11:04:08 +0200
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post"=>{"body"=>"string", "author_id"=>1, "status"=>"string"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 195)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/posts_controller.rb:28:in `create'
+Started POST "/api/v1/posts" for 127.0.0.1 at 2022-12-21 11:04:18 +0200
+Processing by Api::V1::PostsController#create as */*
+  Parameters: {"body"=>"string", "author_id"=>1, "post"=>{"body"=>"string", "author_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:30:in `create'
+  [1m[36mAuthor Load (1.7ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:30:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:30:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.35ms)
+Completed 422 Unprocessable Entity in 31ms (Views: 0.7ms | ActiveRecord: 4.5ms | Allocations: 18997)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:04:25 +0200
+Started GET "/api/v1/posts/231" for 127.0.0.1 at 2022-12-21 11:04:51 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"231"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 231], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms | Allocations: 650)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=231):
+  
+app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:05:32 +0200
+Started GET "/api/v1/posts/12345678" for 127.0.0.1 at 2022-12-21 11:05:38 +0200
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"12345678"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 12345678], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms | Allocations: 516)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=12345678):
+  
+app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Started PATCH "/api/v1/posts/1234567890" for 127.0.0.1 at 2022-12-21 11:05:59 +0200
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"string", "body"=>"string", "author_id"=>1, "id"=>"1234567890", "post"=>{"title"=>"string", "body"=>"string", "author_id"=>1}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1234567890], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms | Allocations: 516)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=1234567890):
+  
+app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:07:44 +0200
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:08:18 +0200
+Started GET "/api/v1/posts?page=3" for 127.0.0.1 at 2022-12-21 11:08:58 +0200
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"page"=>"3"}
+  [1m[36mPost Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:18:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1 OFFSET $2[0m  [["LIMIT", 15], ["OFFSET", 30]]
+[active_model_serializers]   ↳ app/controllers/api/v1/posts_controller.rb:20:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.9ms)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 2459)
+
+
+Started PATCH "/api/v1/posts/39" for 127.0.0.1 at 2022-12-21 11:09:11 +0200
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"string", "body"=>"string", "status"=>"string", "author_id"=>1, "id"=>"39", "post"=>{"title"=>"string", "body"=>"string", "author_id"=>1, "status"=>"string"}}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.6ms | Allocations: 692)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/posts_controller.rb:38:in `update'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:11:46 +0200
+Started PUT "/api/v1/posts/39" for 127.0.0.1 at 2022-12-21 11:12:10 +0200
+Processing by Api::V1::PostsController#update as */*
+  Parameters: {"title"=>"string", "body"=>"string", "status"=>"unpublished", "author_id"=>1234567, "id"=>"39", "post"=>{"title"=>"string", "body"=>"string", "author_id"=>1234567, "status"=>"unpublished"}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:38:in `update'
+  [1m[36mAuthor Load (0.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1234567], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:38:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:38:in `update'
+Completed 422 Unprocessable Entity in 10ms (ActiveRecord: 1.1ms | Allocations: 2997)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Author must exist):
+  
+app/controllers/api/v1/posts_controller.rb:38:in `update'
+Started DELETE "/api/v1/posts/39" for 127.0.0.1 at 2022-12-21 11:12:32 +0200
+Processing by Api::V1::PostsController#destroy as */*
+  Parameters: {"id"=>"39"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:46:in `destroy'
+  [1m[36mPost Destroy (4.6ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 39]]
+  ↳ app/controllers/api/v1/posts_controller.rb:46:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:46:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 5.8ms | Allocations: 2038)
+
+
+Started DELETE "/api/v1/posts/1234567890" for 127.0.0.1 at 2022-12-21 11:12:38 +0200
+Processing by Api::V1::PostsController#destroy as */*
+  Parameters: {"id"=>"1234567890"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1234567890], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms | Allocations: 517)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=1234567890):
+  
+app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:13:41 +0200
+Started DELETE "/api/v1/posts/0" for 127.0.0.1 at 2022-12-21 11:13:51 +0200
+Processing by Api::V1::PostsController#destroy as */*
+  Parameters: {"id"=>"0"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 516)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=0):
+  
+app/controllers/api/v1/posts_controller.rb:60:in `set_post'
+Started GET "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:15:48 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (1.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (15.53ms)
+Completed 200 OK in 23ms (Views: 10.6ms | ActiveRecord: 5.6ms | Allocations: 19603)
+
+
+Started GET "/api/v1/posts/1/comments?status=def" for 127.0.0.1 at 2022-12-21 11:16:10 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"status"=>"def", "post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."status" IS NULL[0m
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.85ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms | Allocations: 944)
+
+
+Started GET "/api/v1/posts/1/comments?status=published" for 127.0.0.1 at 2022-12-21 11:16:53 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"status"=>"published", "post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."status" = $1[0m  [["status", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.78ms)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1351)
+
+
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:17:46 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "string",
+  "author_id": 1,
+}
+Processing by Api::V1::CommentsController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 133)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:45:in `comment_params'
+app/controllers/api/v1/comments_controller.rb:17:in `create'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:18:00 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 217)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/comments_controller.rb:17:in `create'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:18:33 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mAuthor Load (0.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mComment Create (4.7ms)[0m  [1m[32mINSERT INTO "comments" ("body", "status", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["body", "string"], ["status", 1], ["author_id", 1], ["post_id", 1], ["created_at", "2022-12-21 09:18:33.409175"], ["updated_at", "2022-12-21 09:18:33.409175"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 201 Created in 14ms (Views: 0.3ms | ActiveRecord: 5.6ms | Allocations: 4484)
+
+
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:19:36 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "published",
+  "author_id": 1,
+}
+Processing by Api::V1::CommentsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 118)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:45:in `comment_params'
+app/controllers/api/v1/comments_controller.rb:17:in `create'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:19:45 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"published", "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "post_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (1.13ms)
+Completed 422 Unprocessable Entity in 7ms (Views: 1.6ms | ActiveRecord: 0.5ms | Allocations: 2513)
+
+
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:20:05 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mAuthor Load (10.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (1.28ms)
+Completed 422 Unprocessable Entity in 20ms (Views: 2.1ms | ActiveRecord: 10.8ms | Allocations: 2506)
+
+
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:20:48 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"status"=>"published", "author_id"=>1, "post_id"=>"1", "comment"=>{"status"=>"published", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (1.15ms)
+Completed 422 Unprocessable Entity in 10ms (Views: 1.9ms | ActiveRecord: 0.8ms | Allocations: 3259)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:20:59 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:21:00 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:21:00 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:21:00 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:21:00 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:21:00 +0200
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:21:13 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 196)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/comments_controller.rb:17:in `create'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:21:24 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mComment Create (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("body", "status", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["body", "string"], ["status", 1], ["author_id", 1], ["post_id", 1], ["created_at", "2022-12-21 09:21:24.467579"], ["updated_at", "2022-12-21 09:21:24.467579"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.42ms)
+Completed 201 Created in 11ms (Views: 1.2ms | ActiveRecord: 2.1ms | Allocations: 3634)
+
+
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:21:32 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "published",
+  "author_id": 1,
+}
+Processing by Api::V1::CommentsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 118)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:45:in `comment_params'
+app/controllers/api/v1/comments_controller.rb:17:in `create'
+Started POST "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:21:36 +0200
+Processing by Api::V1::CommentsController#create as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.58ms)
+Completed 422 Unprocessable Entity in 5ms (Views: 1.0ms | ActiveRecord: 0.5ms | Allocations: 2462)
+
+
+Started GET "/api/v1/posts/1/comments/1233423" for 127.0.0.1 at 2022-12-21 11:24:52 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"1", "id"=>"1233423"}
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1233423], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 404 Not Found in 17ms (ActiveRecord: 0.5ms | Allocations: 640)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=1233423):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started GET "/api/v1/posts/12678912/comments/1233423" for 127.0.0.1 at 2022-12-21 11:24:57 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"12678912", "id"=>"1233423"}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1233423], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms | Allocations: 516)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=1233423):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started GET "/api/v1/posts/12678912/comments/1" for 127.0.0.1 at 2022-12-21 11:25:03 +0200
+Processing by Api::V1::CommentsController#show as */*
+  Parameters: {"post_id"=>"12678912", "id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+  [1m[36mLike Count (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."likeable_id" = $1 AND "likes"."likeable_type" = $2[0m  [["likeable_id", 1], ["likeable_type", "Comment"]]
+  ↳ app/controllers/api/v1/comments_controller.rb:11:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 33ms (Views: 0.7ms | ActiveRecord: 5.4ms | Allocations: 7883)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:25:43 +0200
+Started PATCH "/api/v1/posts/1/comments/39" for 127.0.0.1 at 2022-12-21 11:26:21 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"39", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1}}
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.4ms | Allocations: 519)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=39):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started PATCH "/api/v1/posts/1/comments/6" for 127.0.0.1 at 2022-12-21 11:26:33 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"6", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1}}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms | Allocations: 516)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=6):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started GET "/api/v1/posts/1/comments" for 127.0.0.1 at 2022-12-21 11:26:41 +0200
+Processing by Api::V1::CommentsController#index as */*
+  Parameters: {"post_id"=>"1"}
+[active_model_serializers]   [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+[active_model_serializers]   ↳ app/controllers/api/v1/comments_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.34ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms | Allocations: 1678)
+
+
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:26:52 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"10", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms | Allocations: 672)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/comments_controller.rb:27:in `update'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:27:17 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "id"=>"10", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 11ms (Views: 0.8ms | ActiveRecord: 0.9ms | Allocations: 3590)
+
+
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:27:29 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "published",
+  "author_id": 1,
+}
+Processing by Api::V1::CommentsController#update as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 104)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:28:31 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"post_id"=>"1", "id"=>"10", "comment"=>{}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms | Allocations: 617)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment):
+  
+app/controllers/api/v1/comments_controller.rb:45:in `comment_params'
+app/controllers/api/v1/comments_controller.rb:27:in `update'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:28:46 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "string",
+  "author_id": 1,
+  "post_id": 'adse'
+}
+Processing by Api::V1::CommentsController#update as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 104)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:28:52 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "body": "string",
+  "status": "string",
+  "author_id": 1,
+  "post_id": '2'
+}
+Processing by Api::V1::CommentsController#update as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 104)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:28:58 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"10", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms | Allocations: 664)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/comments_controller.rb:27:in `update'
+Started PATCH "/api/v1/posts/1/comments/10" for 127.0.0.1 at 2022-12-21 11:29:08 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "id"=>"10", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mComment Update (0.6ms)[0m  [1m[33mUPDATE "comments" SET "post_id" = $1, "updated_at" = $2 WHERE "comments"."id" = $3[0m  [["post_id", 2], ["updated_at", "2022-12-21 09:29:08.322742"], ["id", 10]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 1.6ms | Allocations: 4188)
+
+
+Started PATCH "/api/v1/posts/1/comments/23" for 127.0.0.1 at 2022-12-21 11:29:18 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1", "id"=>"23", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 517)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Comment with 'id'=23):
+  
+app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Started PATCH "/api/v1/posts/5367289/comments/1" for 127.0.0.1 at 2022-12-21 11:29:27 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"5367289", "id"=>"1", "comment"=>{"body"=>"string", "status"=>"published", "author_id"=>1, "post_id"=>"5367289"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mComment Update (0.5ms)[0m  [1m[33mUPDATE "comments" SET "body" = $1, "status" = $2, "author_id" = $3, "post_id" = $4, "updated_at" = $5 WHERE "comments"."id" = $6[0m  [["body", "string"], ["status", 1], ["author_id", 1], ["post_id", 2], ["updated_at", "2022-12-21 09:29:27.328391"], ["id", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 200 OK in 11ms (Views: 0.7ms | ActiveRecord: 2.1ms | Allocations: 4155)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:31:46 +0200
+Started PATCH "/api/v1/posts/1/comments/8" for 127.0.0.1 at 2022-12-21 11:31:55 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"8", "comment"=>{"body"=>"string", "status"=>"string", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 665)
+
+
+  
+ArgumentError ('string' is not a valid status):
+  
+app/controllers/api/v1/comments_controller.rb:27:in `update'
+Started PATCH "/api/v1/posts/1/comments/8" for 127.0.0.1 at 2022-12-21 11:32:05 +0200
+Processing by Api::V1::CommentsController#update as */*
+  Parameters: {"body"=>"string", "author_id"=>1, "post_id"=>"1", "id"=>"8", "comment"=>{"body"=>"string", "author_id"=>1, "post_id"=>"1"}}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:49:in `set_comment'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mComment Update (0.5ms)[0m  [1m[33mUPDATE "comments" SET "body" = $1, "updated_at" = $2 WHERE "comments"."id" = $3[0m  [["body", "string"], ["updated_at", "2022-12-21 09:32:05.185423"], ["id", 8]]
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/comments_controller.rb:27:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.26ms)
+Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 2.4ms | Allocations: 4117)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2022-12-21 11:34:39 +0200
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2022-12-21 11:34:39 +0200
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2022-12-21 11:34:39 +0200
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2022-12-21 11:34:39 +0200
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2022-12-21 11:34:39 +0200
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2022-12-21 11:34:39 +0200

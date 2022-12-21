@@ -9,9 +9,8 @@ RSpec.describe 'api/v1/comments', type: :request do
     get('list comments') do
       parameter name: :status, in: :query, type: :string, description: 'Filter comments by status: published/unpublished'
       tags 'Comments'
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
 
+      response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -36,9 +35,41 @@ RSpec.describe 'api/v1/comments', type: :request do
         },
         required: %i[body status author_id post_id]
       }
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
 
+      response(201, 'created') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -58,10 +89,19 @@ RSpec.describe 'api/v1/comments', type: :request do
 
     get('show comment') do
       tags 'Comments'
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -86,10 +126,41 @@ RSpec.describe 'api/v1/comments', type: :request do
         },
         required: %i[body status author_id post_id]
       }
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -114,10 +185,41 @@ RSpec.describe 'api/v1/comments', type: :request do
         },
         required: %i[body status author_id post_id]
       }
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -131,10 +233,30 @@ RSpec.describe 'api/v1/comments', type: :request do
 
     delete('delete comment') do
       tags 'Comments'
-      response(200, 'successful') do
-        #let(:post_id) { '123' }
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

@@ -12,7 +12,19 @@ RSpec.describe 'api/v1/posts', type: :request do
       parameter name: :tags, in: :query, type: :string, description: 'Filter posts by tags'
       parameter name: :sort, in: :query, type: :string, description: 'Sort posts by titles: asc/desc'
       parameter name: :page, in: :query, type: :integer, description: 'Choose page'
+
       response(200, 'successful') do
+        after do |example|
+         example.metadata[:response][:content] = {
+           'application/json' => {
+             example: JSON.parse(response.body, symbolize_names: true)
+           }
+         }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -32,13 +44,46 @@ RSpec.describe 'api/v1/posts', type: :request do
         properties: {
           title: { type: :string },
           body: { type: :string },
-          status: { type: :string },
+          status: { type: :string, default: 'unpublished' },
           author_id: { type: :integer, default: 1 }
         },
         required: %i[title body status author_id]
       }
 
       response(201, 'created') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -57,9 +102,19 @@ RSpec.describe 'api/v1/posts', type: :request do
 
     get('show post') do
       tags 'Posts'
-      response(200, 'successful') do
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -73,22 +128,63 @@ RSpec.describe 'api/v1/posts', type: :request do
 
     patch('update post') do
       tags 'Posts'
-      #parameter name: :title, in: :query, type: :string, description: 'Title of the post'
-      #parameter name: :body, in: :query, type: :text, description: 'Body of the post'
-      #parameter name: :author_id, in: :query, type: :integer, description: 'ID of the post author'
       consumes "application/json"
       parameter name: :post, in: :body, schema: {
         type: :object,
         properties: {
           title: { type: :string },
           body: { type: :string },
+          status: { type: :string, default: 'unpublished' },
           author_id: { type: :integer, default: 1 }
         },
-        required: %i[title body author_id]
+        required: %i[title body status author_id]
       }
-      response(200, 'successful') do
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -107,14 +203,58 @@ RSpec.describe 'api/v1/posts', type: :request do
         properties: {
           title: { type: :string },
           body: { type: :string },
+          status: { type: :string, default: 'unpublished' },
           author_id: { type: :integer, default: 1 }
         },
-        required: %i[title body author_id]
+        required: %i[title body status author_id]
       }
       tags 'Posts'
-      response(200, 'successful') do
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(422, 'unprocessable entity') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(500, 'internal server error') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -128,9 +268,30 @@ RSpec.describe 'api/v1/posts', type: :request do
 
     delete('delete post') do
       tags 'Posts'
-      response(200, 'successful') do
-        #let(:id) { '123' }
 
+      response(200, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(400, 'bad request') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(404, 'not found') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
