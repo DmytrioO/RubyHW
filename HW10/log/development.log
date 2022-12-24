@@ -1,0 +1,1576 @@
+  [1m[35m (167.5ms)[0m  [1m[35mCREATE DATABASE "HW10_development" ENCODING = 'unicode'[0m
+  [1m[35m (66.6ms)[0m  [1m[35mCREATE DATABASE "HW10_test" ENCODING = 'unicode'[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProducts (20221223161615)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "name" character varying, "description" text, "image" character varying, "price" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221223161615"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-23 16:16:43.793308"], ["updated_at", "2022-12-23 16:16:43.793308"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCategories (20221223161823)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "title" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221223161823"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProductCategories (20221223161957)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "product_categories" ("id" bigserial primary key, "product_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_98a9a32a41"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+, CONSTRAINT "fk_rails_005b71ca83"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_product_categories_on_product_id" ON "product_categories" ("product_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_product_categories_on_category_id" ON "product_categories" ("category_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221223161957"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (2.1ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "image", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Test"], ["description", "Test"], ["image", "link"], ["price", "10.0"], ["created_at", "2022-12-23 16:24:33.942343"], ["updated_at", "2022-12-23 16:24:33.942343"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" ORDER BY "products"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (2.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "product_categories" ON "categories"."id" = "product_categories"."category_id" WHERE "product_categories"."product_id" = $1[0m  [["product_id", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (1.0ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Tests"], ["created_at", "2022-12-23 16:25:49.500102"], ["updated_at", "2022-12-23 16:25:49.500102"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProductCategory Create (3.1ms)[0m  [1m[32mINSERT INTO "product_categories" ("product_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["product_id", 1], ["category_id", 1], ["created_at", "2022-12-23 16:26:06.701185"], ["updated_at", "2022-12-23 16:26:06.701185"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:32:53 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (2.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.8ms | Allocations: 303)
+  Rendered products/index.html.erb within layouts/application (Duration: 28.3ms | Allocations: 12654)
+  Rendered layout layouts/application.html.erb (Duration: 28.4ms | Allocations: 12762)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 13.7ms | Allocations: 18914)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000a848>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:35:06 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 1.2ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 23.8ms | Allocations: 6286)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | Allocations: 6372)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.8ms | Allocations: 7173)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000ac08>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <!<p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:35:36 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 1.1ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 26.4ms | Allocations: 6285)
+  Rendered layout layouts/application.html.erb (Duration: 26.7ms | Allocations: 6371)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.5ms | Allocations: 7168)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000afc8>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <!--<p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>-->
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:36:14 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  Rendered products/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1211)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1300)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 2100)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <!--<p>-->
+      <!--<%= #link_to "Show this product", product %>-->
+    <!--</p>-->
+  <% end %>
+</div>
+
+<%= link_to "New product", new_product_path %>
+
+):
+1:    <p style="color: green"><%= notice %></p>
+2:    
+3:    <h1>Products</h1>
+4:    
+5:    <div id="products">
+6:      <% @products.each do |product| %>
+7:        <%= render product %>
+8:        <!--<p>-->
+9:          <!--<%= #link_to "Show this product", product %>-->
+10:        <!--</p>-->
+11:      <% end %>
+12:    </div>
+13:    
+14:    <%= link_to "New product", new_product_path %>
+  
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:10: syntax error, unexpected '<'
+app/views/products/index.html.erb:12: unknown regexp options - dv
+app/views/products/index.html.erb:17: unterminated string meets end of file
+app/views/products/index.html.erb:17: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:36:30 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.5ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 15.2ms | Allocations: 5857)
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | Allocations: 5943)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.4ms | Allocations: 6742)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_product_path' for #<ActionView::Base:0x0000000000b770>
+
+'.freeze;@output_buffer.append=( link_to "New product", new_product_path );
+                                                        ^^^^^^^^^^^^^^^^
+Did you mean?  new_polymorphic_path):
+     8:   <% end %>
+     9: </div>
+    10: 
+    11: <%= link_to "New product", new_product_path %>
+  
+app/views/products/index.html.erb:11
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:36:37 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.6ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1339)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 3903)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.3ms | Allocations: 4691)
+
+
+  
+ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.
+):
+     6:     <%= csrf_meta_tags %>
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    10:     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    11:   </head>
+    12: 
+  
+app/views/layouts/application.html.erb:9
+Started GET "/products" for 127.0.0.1 at 2022-12-24 20:39:47 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/products"):
+  
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:40:03 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (12.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.9ms | Allocations: 292)
+  Rendered products/index.html.erb within layouts/application (Duration: 41.2ms | Allocations: 11385)
+  Rendered layout layouts/application.html.erb (Duration: 41.4ms | Allocations: 11471)
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 16.9ms | Allocations: 15435)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000abb8>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:41:04 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 56)
+  Rendered products/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 7955)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | Allocations: 8041)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 4.0ms | Allocations: 9872)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000e650>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:41:05 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 20.1ms | Allocations: 5654)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | Allocations: 5734)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.3ms | Allocations: 5988)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000e998>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:41:37 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 21.5ms | Allocations: 1417)
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | Allocations: 1680)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 1.5ms | Allocations: 2519)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:42:29 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.5ms | Allocations: 226)
+  Rendered products/index.html.erb within layouts/application (Duration: 32.2ms | Allocations: 8380)
+  Rendered layout layouts/application.html.erb (Duration: 32.3ms | Allocations: 8465)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 17.2ms | Allocations: 10645)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x00000000012548>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started POST "/__web_console/repl_sessions/85bed65dd88cfb88d43e3649a2d4e0a4/trace" for 127.0.0.1 at 2022-12-24 20:44:55 +0200
+Started POST "/__web_console/repl_sessions/85bed65dd88cfb88d43e3649a2d4e0a4/trace" for 127.0.0.1 at 2022-12-24 20:45:00 +0200
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:45:53 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.5ms | Allocations: 303)
+  Rendered products/index.html.erb within layouts/application (Duration: 42.1ms | Allocations: 12006)
+  Rendered layout layouts/application.html.erb (Duration: 42.2ms | Allocations: 12114)
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 4.2ms | Allocations: 17034)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000a848>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:46:32 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 56)
+  Rendered products/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 7955)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 8041)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 4.6ms | Allocations: 9873)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000e308>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 20:46:40 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.8ms | Allocations: 306)
+  Rendered products/index.html.erb within layouts/application (Duration: 56.1ms | Allocations: 12011)
+  Rendered layout layouts/application.html.erb (Duration: 56.2ms | Allocations: 12119)
+Completed 500 Internal Server Error in 62ms (ActiveRecord: 5.2ms | Allocations: 17039)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000a848>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:51:41 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 1.0ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 35.6ms | Allocations: 4432)
+  Rendered layout layouts/application.html.erb (Duration: 36.6ms | Allocations: 4696)
+Completed 200 OK in 41ms (Views: 39.1ms | ActiveRecord: 8.0ms | Allocations: 5567)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:52:15 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.5ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1439)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 1699)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 2522)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:52:31 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 7.7ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 10.4ms | Allocations: 1479)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 1743)
+Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 0.4ms | Allocations: 2577)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:52:40 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.7ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 10.9ms | Allocations: 1472)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 1732)
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.6ms | Allocations: 2554)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:53:46 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  Rendered products/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1199)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 1289)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms | Allocations: 2106)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to ("Show this product", product) %>
+    </p>
+  <% end %>
+</div>
+
+):
+1:    <p style="color: green"><%= notice %></p>
+2:    
+3:    <h1>Products</h1>
+4:    
+5:    <div id="products">
+6:      <% @products.each do |product| %>
+7:        <%= render product %>
+8:        <p>
+9:          <%= link_to ("Show this product", product) %>
+10:        </p>
+11:      <% end %>
+12:    </div>
+  
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+app/views/products/index.html.erb:9: syntax error, unexpected ',', expecting ')'
+app/views/products/index.html.erb:15: syntax error, unexpected `end', expecting end-of-input
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:54:08 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.6ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 6312)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 6397)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.4ms | Allocations: 7183)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000b3b0>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:55:03 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.8ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 19.9ms | Allocations: 6321)
+  Rendered layout layouts/application.html.erb (Duration: 20.5ms | Allocations: 6407)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.5ms | Allocations: 7204)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000b748>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:55:47 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 1.0ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 20.3ms | Allocations: 6150)
+  Rendered layout layouts/application.html.erb (Duration: 20.6ms | Allocations: 6235)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.3ms | Allocations: 7021)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000bae0>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:55:48 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 17.8ms | Allocations: 5522)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 5601)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.3ms | Allocations: 5847)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000be00>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:59:00 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.9ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 21.6ms | Allocations: 6316)
+  Rendered layout layouts/application.html.erb (Duration: 21.8ms | Allocations: 6401)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.6ms | Allocations: 7165)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000c148>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:59:01 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 19.3ms | Allocations: 5654)
+  Rendered layout layouts/application.html.erb (Duration: 19.5ms | Allocations: 5733)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.3ms | Allocations: 5978)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000c468>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 21:59:40 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 6312)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 6397)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.2ms | Allocations: 7161)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000c7b0>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:00:19 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.5ms | Allocations: 226)
+  Rendered products/index.html.erb within layouts/application (Duration: 19.5ms | Allocations: 8508)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 8593)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 8.9ms | Allocations: 10831)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x00000000010298>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:00:30 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 303)
+  Rendered products/index.html.erb within layouts/application (Duration: 44.4ms | Allocations: 12011)
+  Rendered layout layouts/application.html.erb (Duration: 44.6ms | Allocations: 12119)
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 5.5ms | Allocations: 17059)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000a848>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:01:28 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 56)
+  Rendered products/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 7952)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 8038)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 4.6ms | Allocations: 9310)
+
+
+  
+ActionView::Template::Error (undefined method `product_path' for #<ActionView::Base:0x0000000000e308>
+
+              target.public_send(method, *args)
+                    ^^^^^^^^^^^^):
+     6:   <% @products.each do |product| %>
+     7:     <%= render product %>
+     8:     <p>
+     9:       <%= link_to "Show this product", product %>
+    10:     </p>
+    11:   <% end %>
+    12: </div>
+  
+app/views/products/index.html.erb:9
+app/views/products/index.html.erb:6
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:02:51 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 56)
+  Rendered products/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 3271)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 3562)
+Completed 200 OK in 12ms (Views: 3.6ms | ActiveRecord: 6.0ms | Allocations: 5540)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:02:53 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:63:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 35)
+  Rendered products/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 931)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 1021)
+Completed 200 OK in 18ms (Views: 5.0ms | ActiveRecord: 1.4ms | Allocations: 3851)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:03:00 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:63:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 626)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 714)
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.5ms | Allocations: 1485)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:03:20 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 56)
+  Rendered products/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 3259)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 3356)
+Completed 200 OK in 8ms (Views: 2.7ms | ActiveRecord: 4.4ms | Allocations: 5250)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:03:22 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.0ms | Allocations: 5925)
+
+
+  
+NoMethodError (undefined method `set_product' for #<ProductsController:0x00000000016620>
+
+              target.send(@method_name, &block)
+                    ^^^^^
+Did you mean?  set_request!):
+  
+activesupport (7.0.4) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.4) lib/active_support/callbacks.rb:180:in `block (2 levels) in halting_and_conditional'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.4) lib/active_support/callbacks.rb:181:in `block in halting_and_conditional'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.4) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.4) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+actiontext (7.0.4) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (7.0.4) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.0.4) lib/active_support/callbacks.rb:127:in `instance_exec'
+activesupport (7.0.4) lib/active_support/callbacks.rb:127:in `block in run_callbacks'
+activesupport (7.0.4) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/cookies.rb:696:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:06:27 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1241)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 1329)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1923)
+
+
+  
+ActionView::Template::Error ('nil' is not an ActiveModel-compatible object. It must implement :to_partial_path.):
+    1: <p style="color: green"><%= notice %></p>
+    2: 
+    3: <%= render @product %>
+    4: 
+    5: <div>
+    6:   <%= link_to "Edit this product", edit_product_path(@product) %> |
+  
+app/views/products/show.html.erb:3
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:07:02 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:16:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.0ms | Allocations: 56)
+  Rendered products/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 909)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | Allocations: 1007)
+Completed 200 OK in 10ms (Views: 1.1ms | ActiveRecord: 4.8ms | Allocations: 6165)
+
+
+Started GET "/products" for 127.0.0.1 at 2022-12-24 22:07:13 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1026)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 1113)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 1384)
+
+
+Started GET "/products" for 127.0.0.1 at 2022-12-24 22:07:33 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.6ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 1621)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 1880)
+Completed 200 OK in 16ms (Views: 14.3ms | ActiveRecord: 0.2ms | Allocations: 2701)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:07:35 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:16:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 487)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | Allocations: 574)
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 1445)
+
+
+Started GET "/products" for 127.0.0.1 at 2022-12-24 22:07:36 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 933)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 1020)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 1270)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20221224201144)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221224201144"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:12:29 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:16:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.6ms | Allocations: 302)
+  Rendered products/show.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1644)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 1930)
+Completed 200 OK in 16ms (Views: 4.2ms | ActiveRecord: 3.9ms | Allocations: 13801)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:12:34 +0200
+Processing by ProductsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 35)
+  Rendered products/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1397)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 1487)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.8ms | Allocations: 1913)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:12:36 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:16:in `set_product'
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 26)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.5ms | Allocations: 350)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 438)
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1234)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:13:43 +0200
+Processing by ProductsController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 1649)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:13:43 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 669)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 7.8ms | Allocations: 4002)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 4088)
+Completed 200 OK in 44ms (Views: 9.1ms | ActiveRecord: 19.4ms | Allocations: 10245)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:13:51 +0200
+Processing by ProductsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 410)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:13:51 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1232)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1308)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 2000)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:13:56 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 1.0ms | Allocations: 203)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 135)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 6.8ms | Allocations: 2154)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 2239)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.0ms | Allocations: 3526)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-12-24 22:14:12 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"odm2003@meta.ua", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "odm2003@meta.ua"], ["LIMIT", 1]]
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "odm2003@meta.ua"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["name", nil], ["created_at", "2022-12-24 20:14:13.189089"], ["updated_at", "2022-12-24 20:14:13.189089"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 915ms (ActiveRecord: 6.8ms | Allocations: 9565)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:14:13 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 55)
+  Rendered products/index.html.erb within layouts/application (Duration: 17.3ms | Allocations: 2972)
+  Rendered layout layouts/application.html.erb (Duration: 17.4ms | Allocations: 3069)
+Completed 200 OK in 21ms (Views: 2.5ms | ActiveRecord: 15.7ms | Allocations: 6343)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:14:16 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (11.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:17:in `set_product'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 153)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | Allocations: 240)
+Completed 200 OK in 21ms (Views: 2.2ms | ActiveRecord: 12.0ms | Allocations: 3060)
+
+
+Started GET "/products" for 127.0.0.1 at 2022-12-24 22:14:17 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 732)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 819)
+Completed 200 OK in 8ms (Views: 2.5ms | ActiveRecord: 0.7ms | Allocations: 2423)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:14:22 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 732)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 819)
+Completed 200 OK in 9ms (Views: 3.2ms | ActiveRecord: 0.9ms | Allocations: 2410)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:14:24 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:17:in `set_product'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered products/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 150)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 237)
+Completed 200 OK in 9ms (Views: 1.9ms | ActiveRecord: 0.8ms | Allocations: 2316)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:17:15 +0200
+Processing by ProductsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 893)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:17:15 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.1ms | Allocations: 161)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1491)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1577)
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 3.6ms | Allocations: 5285)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:17:18 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1430)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 1515)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 2627)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:17:21 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1223)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 1298)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 2000)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:10 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1219)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 1294)
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.0ms | Allocations: 1915)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:18:11 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 78)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1197)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 1272)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 1828)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:13 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 13.0ms | Allocations: 1219)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 1294)
+Completed 200 OK in 25ms (Views: 14.0ms | ActiveRecord: 0.0ms | Allocations: 1924)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:18:14 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 78)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1197)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 1272)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.0ms | Allocations: 1826)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:15 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 1219)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 1294)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms | Allocations: 1894)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:24 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 679)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 6.7ms | Allocations: 5028)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 5294)
+Completed 200 OK in 22ms (Views: 10.6ms | ActiveRecord: 3.5ms | Allocations: 15497)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:25 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 558)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1303)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1381)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 1947)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:18:26 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 1.1ms | Allocations: 203)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 137)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 12.5ms | Allocations: 2156)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 2242)
+Completed 200 OK in 17ms (Views: 15.7ms | ActiveRecord: 0.0ms | Allocations: 3515)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:27 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1223)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 1299)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 1998)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:18:29 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 78)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1197)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 1273)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms | Allocations: 1817)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:18:30 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1219)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 1294)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 1863)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3869433475499873190)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:21:32 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 679)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 5029)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 5295)
+Completed 200 OK in 21ms (Views: 9.2ms | ActiveRecord: 4.1ms | Allocations: 15481)
+
+
+Started GET "/" for 127.0.0.1 at 2022-12-24 22:21:36 +0200
+Processing by ProductsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 472)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:21:36 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1286)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | Allocations: 1364)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2026)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:21:42 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:17:in `set_product'
+Completed 401 Unauthorized in 23ms (ActiveRecord: 5.0ms | Allocations: 7400)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-12-24 22:21:43 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1286)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1364)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 2034)
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2022-12-24 22:21:46 +0200
+Processing by Devise::PasswordsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/passwords/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 1.1ms | Allocations: 204)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 186)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/passwords/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1604)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 1690)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.0ms | Allocations: 2947)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:21:49 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 99)
+  Rendered /Users/dmytroonyschcenko/.rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1855)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 1941)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 3245)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:23:28 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.4ms | Allocations: 245)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 582)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 5462)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 5740)
+Completed 200 OK in 36ms (Views: 11.5ms | ActiveRecord: 16.6ms | Allocations: 15734)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:24:11 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.0ms | Allocations: 194)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 30.3ms | Allocations: 5741)
+  Rendered layout layouts/application.html.erb (Duration: 30.7ms | Allocations: 5839)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.0ms | Allocations: 7161)
+
+
+  
+ActionView::Template::Error (undefined method `name_field' for #<ActionView::Helpers::FormBuilder:0x0000000106ab9fa8 @nested_child_index={}, @options={:allow_method_names_outside_object=>false, :skip_default_ids=>false, :as=>:user, :html=>{:class=>"new_user", :id=>"new_user"}, :local=>true}, @template=#<ActionView::Base:0x0000000000c558>, @object=#<User id: nil, email: "", name: nil, created_at: nil, updated_at: nil>, @object_name=:user, @default_options={:skip_default_ids=>false, :allow_method_names_outside_object=>false}, @default_html_options={}, @multipart=nil, @index=nil>
+
+    '.freeze;@output_buffer.append=( f.name_field :name, autofocus: true, autocomplete: "email" );@output_buffer.safe_append='
+                                      ^^^^^^^^^^^
+Did you mean?  number_field
+               range_field
+               time_field
+               date_field):
+     5: 
+     6:   <div class="field">
+     7:     <%= f.label :name %><br />
+     8:     <%= f.name_field :name, autofocus: true, autocomplete: "email" %>
+     9:   </div>
+    10: 
+    11:   <div class="field">
+  
+app/views/devise/registrations/new.html.erb:8
+app/views/devise/registrations/new.html.erb:3
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:24:19 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.6ms | Allocations: 194)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 3457)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 3543)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 4843)
+
+
+  
+ActionView::Template::Error (undefined method `field' for #<ActionView::Helpers::FormBuilder:0x0000000106ef3038 @nested_child_index={}, @options={:allow_method_names_outside_object=>false, :skip_default_ids=>false, :as=>:user, :html=>{:class=>"new_user", :id=>"new_user"}, :local=>true}, @template=#<ActionView::Base:0x0000000000c8f0>, @object=#<User id: nil, email: "", name: nil, created_at: nil, updated_at: nil>, @object_name=:user, @default_options={:skip_default_ids=>false, :allow_method_names_outside_object=>false}, @default_html_options={}, @multipart=nil, @index=nil>
+
+    '.freeze;@output_buffer.append=( f.field :name, autofocus: true, autocomplete: "email" );@output_buffer.safe_append='
+                                      ^^^^^^
+Did you mean?  fields):
+     5: 
+     6:   <div class="field">
+     7:     <%= f.label :name %><br />
+     8:     <%= f.field :name, autofocus: true, autocomplete: "email" %>
+     9:   </div>
+    10: 
+    11:   <div class="field">
+  
+app/views/devise/registrations/new.html.erb:8
+app/views/devise/registrations/new.html.erb:3
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-12-24 22:32:10 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.1ms | Allocations: 194)
+  Rendered devise/shared/_links.html.erb (Duration: 1.4ms | Allocations: 471)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 18.9ms | Allocations: 2733)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 2992)
+Completed 200 OK in 27ms (Views: 23.9ms | Allocations: 4307)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-12-24 22:32:33 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Dmytro", "email"=>"odm200311@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "odm200311@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "odm200311@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["name", "Dmytro"], ["created_at", "2022-12-24 20:32:33.390540"], ["updated_at", "2022-12-24 20:32:33.390540"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/products/1
+Completed 302 Found in 298ms (ActiveRecord: 14.1ms | Allocations: 12878)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2022-12-24 22:32:33 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/products_controller.rb:17:in `set_product'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (Duration: 0.4ms | Allocations: 283)
+  Rendered products/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 947)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1044)
+Completed 200 OK in 15ms (Views: 2.2ms | ActiveRecord: 5.7ms | Allocations: 9433)
+
+
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/products" for 127.0.0.1 at 2022-12-24 22:33:20 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:6
+  Rendered products/_product.html.erb (Duration: 1.2ms | Allocations: 212)
+  Rendered products/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1425)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 1684)
+Completed 200 OK in 30ms (Views: 9.1ms | ActiveRecord: 1.2ms | Allocations: 4011)
+
+
