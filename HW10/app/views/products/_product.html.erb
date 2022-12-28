@@ -1,4 +1,7 @@
 <div id="<%= dom_id product %>">
+
+  <img src="<%= product.image %>" align="left" style="height: 400px; width: 600px; margin-left: 20px; margin-right: 20px">
+
   <p>
     <strong>Name:</strong>
     <%= product.name %>
@@ -10,13 +13,13 @@
   </p>
 
   <p>
-    <strong>Image:</strong>
-    <%= product.image %>
+    <strong>Category:</strong>
+    <%= product.category.title.capitalize %>
   </p>
 
   <p>
     <strong>Price:</strong>
-    <%= product.price %>
+    <%= product.price %>$
   </p>
 
 </div>
