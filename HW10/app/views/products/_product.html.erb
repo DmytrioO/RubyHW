@@ -1,27 +1,27 @@
 <div id="<%= dom_id product %>">
 
-  <img src="<%= product.image %>" align="left" style="height: 600px; width: 439px; margin-left: 20px; margin-right: 20px">
+    <img src="<%= product.image %>" align="left" style="height: 600px; width: 439px; margin-left: 20px; margin-right: 20px">
 
-  <div style="margin-right: 20px">
-    <p style="padding-top: 40px">
-      <strong>Name:</strong>
-      <%= product.name %>
-    </p>
+    <div style="margin-right: 20px">
+      <p style="padding-top: 40px">
+        <strong>Name:</strong>
+        <%= product.name %>
+      </p>
 
-    <p>
-      <strong>Description:</strong>
-      <%= product.description %>
-    </p>
+      <p style="text-align: justify">
+        <strong>Description:</strong>
+        <%= product.description %>
+      </p>
 
-    <p>
-      <strong>Category:</strong>
-      <%= product.category.title.capitalize %>
-    </p>
+      <p>
+        <strong>Category:</strong>
+        <%= product.category.title.capitalize %>
+      </p>
 
-    <p>
-      <strong>Price:</strong>
-      <%= product.price %>$
-    </p>
+      <p>
+        <strong>Price:</strong>
+        <%= product.price %>$
+      </p>
+    </div>
+
   </div>
-
-</div>
