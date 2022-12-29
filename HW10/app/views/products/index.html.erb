@@ -1,23 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<div style="display: flex">
+<div class="flex-shrink-0 p-3 bg-white" style="width: 140px; margin-right: 40px">
+  <ul class="list-unstyled ps-0">
+      <div class="collapse show" id="home-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="products" class="link-dark d-inline-flex text-decoration-none rounded">All</a></li>
+          <% categories = Category.all %>
+          <% categories.each do |cat| %>
+            <li><a href="products?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded"><%= cat.title %></a></li>
+          <% end %>
+        </ul>
+      </div>
+  </ul>
+</div>
 
-<h1 style="text-align: center; margin-bottom: 20px">Products</h1>
+  <p style="color: green"><%= notice %></p>
 
-<div id="products" style="align-self: center">
+  <div id="products" style="align-self: center; margin-left: auto; margin-right: auto">
 
-  <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-left: auto; margin-right: auto; text-align: center">
-    <% @products.each do |product| %>
-      <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
-        <div class="col" style="width: auto; margin-left: auto; margin-right: auto">
-          <div class="card" style="width: 402px">
-            <img src="<%= product.image %>" style="height: 320px; width: 400px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to "#{product.name}", product %></h5>
-              <p class="card-text"><%= product.price %>$</p>
+    <h1 style="text-align: center; margin-bottom: 20px">Products</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-left: auto; margin-right: auto; text-align: center">
+      <% @products.each do |product| %>
+        <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
+          <div class="col" style="width: auto; margin-left: auto; margin-right: auto">
+            <div class="card" style="width: 236px">
+              <img src="<%= product.image %>" style="height: 320px; width: 234px" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to "#{product.name}", product %></h5>
+                <p class="card-text"><%= product.price %>$</p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
+  </div>
 </div>
