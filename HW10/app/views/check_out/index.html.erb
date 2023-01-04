@@ -1,0 +1,53 @@
+<form action="/orders?cart=<%= params[:cart] %>" method="post">
+    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
+      <h3 style="margin-bottom: 20px">Personal information:</h3>
+      <div>
+        Your firstname:
+        <input type='text' name='firstname' required placeholder="Name" style="width: 150px; margin-left: 40px">
+      </div>
+      <br>
+      <div>
+        Your lastname:
+        <input type='text' name='lastname' required  placeholder="Lastname" style="width: 150px; margin-left: 42px"><br>
+      </div>
+      <br>
+      <div>
+        Your phone number:
+        <input type='text' name='number' required  placeholder="380000000000" style="width: 150px; margin-left: 2.5px"><br>
+      </div>
+    </div>
+    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
+      <h3 style="margin-bottom: 20px">Payment information:</h3>
+      <div>
+        Payment form:<br>
+        <input type='radio' name='pay' value='unpaid' checked> By card on the website<br>
+        <input type='radio' name='pay' value='post'> When received<br>
+        <div class="alert alert-warning" role="alert" style="margin-top: 20px">
+          If you choose to pay by card - please, do it after confirm order on the order page!
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
+      <h3 style="margin-bottom: 20px">Delivery information:</h3>
+      <div>
+        City:
+        <input type='text' name='city' required placeholder="City" style="width: 150px; margin-left: 141px">
+      </div>
+      <br>
+      <div>
+        Street:
+        <input type='text' name='street' required placeholder="Street" style="width: 150px; margin-left: 126px">
+      </div>
+      <br>
+      <div>
+        House:
+        <input type='text' name='house' required placeholder="House" style="width: 150px; margin-left: 125px">
+      </div>
+      <br>
+      <div>
+        Apartaments(optionaly):
+        <input type='text' name='apartaments' placeholder="Apartaments" style="width: 150px;">
+      </div>
+    </div>
+    <input class="btn btn-primary" type='submit' value='Підтвердити' style="margin-left: 140px; margin-bottom: 20px">
+</form>

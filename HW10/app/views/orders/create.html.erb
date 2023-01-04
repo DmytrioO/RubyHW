@@ -1,0 +1,10 @@
+<div class="alert alert-success" role="alert" style="margin-top: 20px; margin-left: 100px; margin-right: 100px; padding: 0px">
+  <h1 style="text-align: center; margin-top: 20px; margin-bottom: 20px">Order №<%= @order.id %> was succesfully created!</h1>
+  <hr style="margin: 20px">
+  <h3 style="text-align: center; margin-bottom: 20px">Soon our manager will contact you to clarify the details of the order!</h3>
+</div>
+<div align="center">
+  <%= link_to 'Go to products', '/', class: "btn btn-primary", style: "margin-right: 20px; padding: 20px" %>
+  <%= link_to 'View this order', "/orders/#{@order.id}", class: "btn btn-primary", style: "margin-left: 20px; margin-right: 20px; padding: 20px" %>
+  <%= link_to 'Go to my orders', '/orders', class: "btn btn-primary", style: "margin-left: 20px; padding: 20px" %>
+</div>

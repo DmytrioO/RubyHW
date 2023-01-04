@@ -127,8 +127,7 @@ Ultra (2.85 GHz + 2.0 GHz) / triple main camera: 108 MP + 8 MP + 2 MP, front 20 
  3G / LTE / 5G / GPS / dual SIM support (Nano-SIM) / Android 12 / 5000 mAh',
                category_id: 3, image: 'https://content.rozetka.com.ua/goods/images/big/290072924.jpg', price: 575)
 
-Product.create(name: 'Xiaomi 12T Pro 8/256GB', description: 'Экран (6.67", AMOLED, 2712x1220) / Qualcomm Snapdragon 8+
-Gen Gen 1 (1 х 3.2 ГГц + 3 х 2.75 ГГц + 4 х 2.0 ГГц) / тройная основная камера: 200 Мп + 8 Мп + 2 Мп, фронтальная 20 Мп
-/ RAM 8 ГБ / 256 ГБ встроенной памяти / 3G / LTE / 5G / GPS / поддержка 2х СИМ-карт (Nano-SIM) / Android 12 /
-5000 мА*ч',
+Product.create(name: 'Xiaomi 12T Pro 8/256GB', description: 'Screen (6.67", AMOLED, 2712x1220) / Qualcomm Snapdragon 8+
+Gen Gen 1 (1 x 3.2 GHz + 3 x 2.75 GHz + 4 x 2.0 GHz) / three main cameras: 200 MP + 8 MP + 2 MP, front 20 MP/ 8 GB RAM
+/ 256 GB internal memory / 3G / LTE / 5G / GPS / 2x SIM support (Nano-SIM) / Android 12 / 5000 mAh',
                category_id: 3, image: 'https://content1.rozetka.com.ua/goods/images/big/290155508.jpg', price: 700)

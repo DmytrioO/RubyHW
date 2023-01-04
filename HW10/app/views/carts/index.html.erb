@@ -1,0 +1,63 @@
+<style>
+  td {
+      padding: 10px;
+  }
+
+  tbody, tr, td, th {
+      border-color: black;
+      border-width: 1px;
+      text-align: center;
+  }
+
+  table {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      margin-bottom: 20px
+  }
+
+  .main_td {
+      font-weight: bold;
+  }
+</style>
+
+<table>
+  <tbody>
+    <tr>
+      <td class="main_td">Name</td>
+      <td class="main_td">Image</td>
+      <td class="main_td">Price</td>
+      <td class="main_td">Quantity</td>
+      <td class="main_td">Sum</td>
+      <td class="main_td">Option</td>
+    </tr>
+    <% products_sum = 0 %>
+    <% @cart.cart_products.sort.each do |product| %>
+      <% products_sum += product.price * product.quantity %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><img src="<%= product.image %>" style="width: 73px; height: 100px"></td>
+        <td><%= product.price %>$</td>
+        <td>
+          <%= button_to "+", "cart_products?plus=#{product.id}", class: "btn-success" %>
+          <%= product.quantity %>
+          <%= button_to "-", "cart_products?minus=#{product.id}", class: "btn-success" %>
+        </td>
+        <td><%= product.price * product.quantity %>$</td>
+        <td class="table_button"><%= button_to "Remove", "cart_products?remove_product=#{product.id}", class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th colspan="4">Totally</th>
+      <th colspan="2"><%= products_sum %>$</th>
+    </tr>
+  </tbody>
+</table>
+
+<% if user_signed_in? %>
+  <% if @cart.cart_products.count > 0 %>
+    <div align="center">
+    <%= link_to "Check Out", "check_out?cart=#{@cart.id}", class: "btn btn-primary", style: "padding: 20px" %>
+    </div>
+    <% end %>
+<% end %>

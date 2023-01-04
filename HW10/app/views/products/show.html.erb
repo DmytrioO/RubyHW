@@ -21,7 +21,16 @@
     <%= render @product %>
 
     <div>
-      <%= link_to "Back to products", products_path %>
+      <table>
+        <tbody>
+          <tr>
+            <% if user_signed_in? %>
+              <td style="padding-right: 20px"><%= button_to "Add to cart", "../cart_products?product=#{@product.id}", class: "btn btn-primary" %></td>
+            <% end %>
+            <td><%= link_to "Back to products", '/', class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

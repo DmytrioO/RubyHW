@@ -15,8 +15,31 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: black">
       <div class="container-fluid">
         <a class="navbar-brand">My Shop</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 40px">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/carts">
+              <% if cookies[:cart_id].nil? %>
+                <% @cart = Cart.create() %>
+                <% cookies[:cart_id] = @cart.id %>
+              <% else %>
+                <% @cart = Cart.find(cookies[:cart_id]) %>
+              <% end %>
+              Cart(<%= @cart.cart_products.count %>)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/orders">Orders</a>
+          </li>
+        </ul>
         <form class="d-flex" role="log_out">
-           <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          <% if user_signed_in? %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Log in', new_user_session_path %>
+          <% end %>
         </form>
         </div>
       </div>
