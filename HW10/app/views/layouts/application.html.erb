@@ -9,18 +9,19 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
+    <script type="module">import 'bootstrap'</script>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: black">
       <div class="container-fluid">
-        <a class="navbar-brand">My Shop</a>
+        <a class="navbar-brand" style="color: white">My Shop</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 40px">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Products</a>
+            <a class="nav-link active" aria-current="page" href="/" style="color: white; margin-right: 30px">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/carts">
+            <a class="nav-link active" aria-current="page" href="/carts" style="color: white; margin-right: 30px">
               <% if cookies[:cart_id].nil? %>
                 <% @cart = Cart.create() %>
                 <% cookies[:cart_id] = @cart.id %>
@@ -31,14 +32,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/orders">Orders</a>
+            <a class="nav-link active" aria-current="page" href="/orders" style="color: white; margin-right: 30px">Orders</a>
           </li>
         </ul>
         <form class="d-flex" role="log_out">
           <% if user_signed_in? %>
-            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete, style: "color: white; text-decoration: none" %>
           <% else %>
-            <%= link_to 'Log in', new_user_session_path %>
+            <%= link_to 'Log in', new_user_session_path, style: "color: white; text-decoration: none" %>
           <% end %>
         </form>
         </div>

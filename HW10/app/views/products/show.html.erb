@@ -4,10 +4,10 @@
     <ul class="list-unstyled ps-0">
       <div class="collapse show" id="home-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="../" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white">All</a></li>
+          <li><a href="../" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px">All</a></li>
           <% categories = Category.all %>
           <% categories.each do |cat| %>
-            <li><a href="../?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white"><%= cat.title %></a></li>
+            <li><a href="../?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px"><%= cat.title %></a></li>
           <% end %>
         </ul>
       </div>

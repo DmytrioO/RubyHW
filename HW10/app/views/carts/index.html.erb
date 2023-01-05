@@ -54,10 +54,14 @@
   </tbody>
 </table>
 
-<% if user_signed_in? %>
-  <% if @cart.cart_products.count > 0 %>
-    <div align="center">
-    <%= link_to "Check Out", "check_out?cart=#{@cart.id}", class: "btn btn-primary", style: "padding: 20px" %>
+<% if @cart.cart_products.count > 0 %>
+  <% if user_signed_in? %>
+      <div align="center">
+      <%= link_to "Check Out", "check_out?cart=#{@cart.id}", class: "btn btn-primary", style: "padding: 20px" %>
+      </div>
+  <% else %>
+    <div align="center" class="alert alert-danger" role="alert" style="width: 300px; margin-left: auto; margin-right: auto">
+      Please, <a href="/users/sign_in">Log In</a> to make an order!
     </div>
-    <% end %>
+  <% end %>
 <% end %>

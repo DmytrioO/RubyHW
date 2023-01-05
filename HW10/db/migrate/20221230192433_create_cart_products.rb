@@ -6,7 +6,7 @@ class CreateCartProducts < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :image
       t.string :string
-      t.decimal :price
+      t.decimal :price, :precision => 8, :scale => 2
       t.integer :quantity
 
       t.timestamps

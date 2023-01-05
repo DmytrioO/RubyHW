@@ -5,10 +5,10 @@
     <ul class="list-unstyled ps-0">
         <div class="collapse show" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="products" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white">All</a></li>
+            <li><a href="products" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px">All</a></li>
             <% categories = Category.all %>
             <% categories.each do |cat| %>
-              <li><a href="products?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white"><%= cat.title %></a></li>
+              <li><a href="products?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px"><%= cat.title %></a></li>
             <% end %>
           </ul>
         </div>
@@ -27,15 +27,17 @@
         <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
           <div class="col" style="width: auto; margin-left: auto; margin-right: auto">
             <div class="card" style="width: 236px">
-              <img src="<%= product.image %>" style="height: 320px; width: 234px" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title"><%= link_to "#{product.name}", product %></h5>
-                <p class="card-text"><%= product.price %>$</p>
-                <% if user_signed_in? %>
-                  <%= button_to "Add to cart", "cart_products?product=#{product.id}", class: "btn btn-primary" %>
-                <% end %>
-              </div>
-            </div>
+              <a href="/products/<%= product.id %>" style="text-decoration: none">
+                <img src="<%= product.image %>" style="height: 320px; width: 234px" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: black"><%= product.name %></h5>
+                  <h5 class="card-title" style="color: black"><strong><%= product.price %></strong>$</h5>
+                  <% if user_signed_in? %>
+                    <%= button_to "Add to cart", "cart_products?product=#{product.id}", class: "btn btn-primary" %>
+                  <% end %>
+                </div>
+              </a>
+          </div>
           </div>
         <% end %>
       <% end %>

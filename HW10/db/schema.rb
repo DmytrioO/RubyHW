@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_200233) do
     t.string "name"
     t.string "image"
     t.string "string"
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_200233) do
     t.string "name"
     t.text "description"
     t.string "image"
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
