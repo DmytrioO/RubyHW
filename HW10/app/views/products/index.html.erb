@@ -18,7 +18,7 @@
 
   <p style="color: green"><%= notice %></p>
 
-  <div id="products" style="align-self: center; margin-left: auto; margin-right: auto">
+  <div id="products" style="align-self: center; margin-left: auto; margin-right: auto; margin-bottom: 20px">
 
     <h1 style="text-align: center; margin-bottom: 20px; margin-top: 20px">Products</h1>
 
@@ -26,15 +26,19 @@
       <% @products.each do |product| %>
         <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
           <div class="col" style="width: auto; margin-left: auto; margin-right: auto">
-            <div class="card" style="width: 236px">
+            <div class="card" style="width: 236px; height: 480px">
               <a href="/products/<%= product.id %>" style="text-decoration: none">
-                <img src="<%= product.image %>" style="height: 320px; width: 234px" class="card-img-top">
+                <div style="height: 320px; width: 234px; display: flex; align-items: center">
+                  <img src="<%= product.image %>" style="max-height: 320px; max-width: 234px; width: auto; margin-left: auto; margin-right: auto" class="card-img-top">
+                </div>
                 <div class="card-body">
                   <h5 class="card-title" style="color: black"><%= product.name %></h5>
-                  <h5 class="card-title" style="color: black"><strong><%= product.price %></strong>$</h5>
-                  <% if user_signed_in? %>
-                    <%= button_to "Add to cart", "cart_products?product=#{product.id}", class: "btn btn-primary" %>
-                  <% end %>
+                  <div align="center" style="position: absolute; bottom: 0px; right: 0px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 236px">
+                    <h5 class="card-title" style="color: black"><strong><%= product.price %></strong>$</h5>
+                    <% if user_signed_in? %>
+                      <%= button_to "Add to cart", "cart_products?product=#{product.id}", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
                 </div>
               </a>
           </div>
