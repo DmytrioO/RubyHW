@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr {
+    margin: 20px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.alert {
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.to-products {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.to-order {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.to-orders {
+    margin-left: 20px;
+    padding: 20px;
+}

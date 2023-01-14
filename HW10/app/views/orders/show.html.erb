@@ -1,56 +1,75 @@
-<% unless @order.nil? %>
-  <div align="center" style="margin: 20px">
-    <h1 style="margin-bottom: 20px">Order №<%= @order.id %></h1>
-    <h3>Created at: <%= @order.created_at %></h3>
-    <h3>Status: <%= @order.order_status.capitalize %></h3>
-    <h3 style="margin-bottom: 20px">
-      Payment status:
-      <% if @order.payment_status == 'post' %>
-        When received
-      <% else %>
-        <%= @order.payment_status.capitalize %>
-      <% end %>
-    </h3>
-    <h3>Ordered products:</h3>
-    <% counter = 0 %>
-    <% total = 0 %>
-    <% @order.cart.cart_products.each do |product| %>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading<%= counter %>">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= counter %>" aria-expanded="true" aria-controls="collapse<%= counter %>">
-            <%= product.name %>
-          </button>
-        </h2>
-        <div id="collapse<%= counter %>" class="accordion-collapse collapse" aria-labelledby="heading<%= counter %>" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <table>
-              <tbody>
-                <tr>
-                  <td rowspan="4" style="padding-right: 20px"><img src="<%= product.image %>" style="width: 146px; height: 200px"></td>
-                  <td><p><strong>Price:</strong> <%= product.price %>$</p></td>
-                </tr>
-                <tr>
-                  <td><p><strong>Quantity:</strong> <%= product.quantity %></p></td>
-                </tr>
-                <tr>
-                  <td><p><strong>Sum:</strong> <%= product.quantity * product.price %>$</p></td>
-                </tr>
-                <tr>
-                  <td><%= link_to 'View this product', "/products/#{product.product_id}", class: "btn btn-primary" %></td>
-                </tr>
-              </tbody>
-            </table>
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Cart</title>
+    <%= stylesheet_link_tag 'orders_show_style.css' %>
+  </head>
+
+  <body>
+    <% if @order.user_id == current_user.id %>
+      <div class="main-div">
+        <h1>Order №<%= @order.id %></h1>
+        <h3>Created at: <%= @order.created_at %></h3>
+        <h3>Status: <%= @order.order_status.capitalize %></h3>
+        <h3 class="payment">
+          Payment status:
+          <% if @order.payment_status == 'post' %>
+            When received
+          <% else %>
+            <%= @order.payment_status.capitalize %>
+          <% end %>
+        </h3>
+        <h3>Ordered products:</h3>
+        <% counter = 0 %>
+        <% @order.cart.cart_products.each do |product| %>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading<%= counter %>">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapse<%= counter %>" aria-expanded="true"
+                      aria-controls="collapse<%= counter %>">
+                <%= product.name %>
+              </button>
+            </h2>
+            <div id="collapse<%= counter %>" class="accordion-collapse collapse" aria-labelledby="heading<%= counter %>"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="product-img" rowspan="4"><img src="<%= product.image %>"></td>
+                      <td><p><strong>Price:</strong> <%= product.price %>$</p></td>
+                    </tr>
+                    <tr>
+                      <td><p><strong>Quantity:</strong> <%= product.quantity %></p></td>
+                    </tr>
+                    <tr>
+                      <td><p><strong>Sum:</strong> <%= product.quantity * product.price %>$</p></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <%= button_to 'View this product', Product.find(product.product_id), method: :get,
+                                      data: { 'turbo-method': :show }, class: 'btn btn-primary' %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
+          <% counter += 1 %>
+        <% end %>
+        <h3 class="total">Total sum: <%= @order.order_information.total %>$</h3>
+        <% if @order.unpaid? %>
+          <td>
+            <%= button_to 'Pay now', @order, method: :put, data: { 'turbo-method': :update },
+                          class: 'btn btn-success' %>
+          </td>
+        <% end %>
       </div>
-      <% counter += 1 %>
-      <% total += product.quantity * product.price %>
+    <% else %>
+      <h2 class="error">You can't see this order!</h2>
     <% end %>
-    <h3 style="margin-top: 20px">Total sum: <%= total %>$</h3>
-    <% if @order.unpaid? %>
-      <td><%= link_to 'Pay now', "/orders/#{@order.id}?payment=true", class: "btn btn-success" %></td>
-    <% end %>
-  </div>
-<% else %>
-  <h2 style="text-align: center; margin-top: 20px">You can't see this order!</h2>
-<% end %>
+  </body>
+</html>

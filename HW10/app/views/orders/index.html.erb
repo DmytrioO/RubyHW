@@ -1,49 +1,64 @@
-<div style="margin: 20px">
-  <% unless @orders.nil? %>
-    <% unless @orders.empty? %>
-      <div class="accordion" id="accordionExample">
-        <% counter = 0 %>
-        <% @orders.sort.each do |order| %>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="heading<%= counter %>">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= counter %>" aria-expanded="true" aria-controls="collapse<%= counter %>">
-                  Order №<%= order.id %>
-                </button>
-              </h2>
-              <div id="collapse<%= counter %>" class="accordion-collapse collapse" aria-labelledby="heading<%= counter %>" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p><strong>Date:</strong> <%= order.created_at %></p>
-                  <p><strong>Status:</strong> <%= order.order_status.capitalize %></p>
-                  <p>
-                    <strong>Payment:</strong>
-                    <% if order.payment_status == 'post' %>
-                      When received
-                    <% else %>
-                      <%= order.payment_status.capitalize %>
-                    <% end %>
-                  </p>
-                  <% total = 0 %>
-                  <% order.cart.cart_products.each do |product| %>
-                    <% total += product.price * product.quantity %>
-                  <% end %>
-                  <p><strong>Total sum:</strong> <%= total %>$</p>
-                  <%= link_to 'View this order', "/orders/#{order.id}", class: "btn btn-primary" %>
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Cart</title>
+    <%= stylesheet_link_tag 'orders_index_style.css' %>
+  </head>
+
+  <body>
+    <div class="main-div">
+      <% if user_signed_in? %>
+        <% unless @orders.empty? %>
+          <div class="accordion" id="accordionExample">
+            <% counter = 0 %>
+            <% @orders.sort.each do |order| %>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<%= counter %>">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%= counter %>" aria-expanded="true"
+                            aria-controls="collapse<%= counter %>">
+                      Order №<%= order.id %>
+                    </button>
+                  </h2>
+                  <div id="collapse<%= counter %>" class="accordion-collapse collapse"
+                       aria-labelledby="heading<%= counter %>" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p><strong>Date:</strong> <%= order.created_at %></p>
+                      <p><strong>Status:</strong> <%= order.order_status.capitalize %></p>
+                      <p>
+                        <strong>Payment:</strong>
+                        <% if order.payment_status == 'post' %>
+                          When received
+                        <% else %>
+                          <%= order.payment_status.capitalize %>
+                        <% end %>
+                      </p>
+                      <p><strong>Total sum:</strong> <%= order.order_information.total %>$</p>
+                      <%= link_to 'View this order', order, class: "btn btn-primary" %>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          <% counter += 1 %>
+              <% counter += 1 %>
+            <% end %>
+          </div>
+        <% else %>
+          <h3>Here is no orders, but you can change it ;)</h3>
+          <div class="div-buttons">
+            <table>
+              <td><%= link_to 'Go to products', root_path, class: 'btn btn-primary active-buttons' %></td>
+            </table>
+          </div>
         <% end %>
-      </div>
-    <% else %>
-      <h3 style="text-align: center">Here is no orders, but you can change it ;)</h3>
-      <div align="center" style="margin-top: 30px">
-        <%= link_to 'Go to products', '/', class: "btn btn-primary", style: "padding: 15px" %>
-      </div>
-    <% end %>
-  <% else %>
-    <h3 style="text-align: center">Please, Log In to view your orders!</h3>
-    <div align="center" style="margin-top: 30px">
-      <%= link_to 'Log In', '/users/sign_in', class: "btn btn-success", style: "padding: 15px" %>
+      <% else %>
+        <h3>Please, Log In to view your orders!</h3>
+        <div class="div-buttons">
+          <table>
+            <td><%= link_to 'Log In', new_user_session_path, class: 'btn btn-success active-buttons' %></td>
+          </table>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </body>
+</html>

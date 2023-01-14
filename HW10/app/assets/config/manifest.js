@@ -1,5 +1,12 @@
 //= link_tree ../images
 //= link_tree ../builds
 //= link application.css
+//= link carts_index_style.css
+//= link check_out_index_style.css
+//= link orders_create_style.css
+//= link orders_index_style.css
+//= link orders_show_style.css
+//= link products_index_style.css
+//= link products_show_style.css
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js

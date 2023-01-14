@@ -22,13 +22,8 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/carts" style="color: white; margin-right: 30px">
-              <% if cookies[:cart_id].nil? %>
-                <% @cart = Cart.create() %>
-                <% cookies[:cart_id] = @cart.id %>
-              <% else %>
-                <% @cart = Cart.find(cookies[:cart_id]) %>
-              <% end %>
-              Cart(<%= @cart.cart_products.count %>)
+              <% cart_check %>
+              Cart(<%= Cart.find(cookies[:cart_id]).cart_products.count %>)
             </a>
           </li>
           <li class="nav-item">

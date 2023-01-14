@@ -8,6 +8,7 @@ class CreateOrderInformations < ActiveRecord::Migration[7.0]
       t.string :street
       t.string :house
       t.string :apartaments
+      t.decimal :total, :precision => 8, :scale => 2
 
       t.timestamps
     end

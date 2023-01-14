@@ -7,6 +7,7 @@ ActiveAdmin.register Order do
   #
   # permit_params :cart_id, :user_id, :order_status, :payment_status
   permit_params :order_status, :payment_status
+  actions :all, except: :new
   # or
   #
   # permit_params do
@@ -19,8 +20,25 @@ ActiveAdmin.register Order do
   #     h3 product.name
   #   end
   # end
+
+  filter :order_status, as: :select, collection: proc { Order.order_statuses }
+  filter :payment_status, as: :select, collection: proc { Order.payment_statuses }
+  filter :created_at
+  filter :updated_at
+
+  index do
+    column :id
+    column :user
+    column :order_status
+    column :payment_status
+    column :created_at
+    column :updated_at
+    actions
+  end
+
   show do
     attributes_table do
+      order_info = order.order_information
       row :Order_Status do
         order.order_status.capitalize
       end
@@ -30,7 +48,6 @@ ActiveAdmin.register Order do
       row :Order do
         '->'
       end
-      total = 0
       order.cart.cart_products.each do |product|
         if product.id != order.cart.cart_products.first.id
           row :divider do
@@ -49,18 +66,16 @@ ActiveAdmin.register Order do
         row :sum do
           "#{product.quantity * product.price}$"
         end
-        total += product.quantity * product.price
       end
       row :Order do
         '<-'
       end
       row :Total do
-        "#{total}$"
+        "#{order_info.total}$"
       end
       row :Info do
         '->'
       end
-      order_info = OrderInformation.where(:order_id == order.id).last
       row :Client_Fullname do
         order_info.full_name
       end
@@ -87,6 +102,11 @@ ActiveAdmin.register Order do
       end
     end
     active_admin_comments
+  end
+
+  form title: 'Order' do |f|
+    inputs :order_status, :payment_status
+    actions
   end
   
 end

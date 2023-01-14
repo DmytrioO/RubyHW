@@ -1,52 +1,62 @@
-<div style="display: flex">
+<!DOCTYPE html>
 
-  <div class="flex-shrink-0 p-3 bg-black" style="width: 140px">
+<html>
 
-    <ul class="list-unstyled ps-0">
+  <head>
+    <title>Cart</title>
+    <%= stylesheet_link_tag 'products_index_style.css' %>
+  </head>
+
+  <body>
+    <div class="main-div">
+
+      <div class="flex-shrink-0 p-3 bg-black sidebar">
         <div class="collapse show" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="products" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px">All</a></li>
-            <% categories = Category.all %>
-            <% categories.each do |cat| %>
-              <li><a href="products?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px"><%= cat.title %></a></li>
+            <li>
+              <%= button_to 'All', root_path, method: :get,
+                            class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+            </li>
+            <% Category.all.each do |cat| %>
+              <li>
+                <%= button_to "#{cat.title}", root_path, method: :get, params: { category: cat.title.downcase },
+                              class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+              </li>
             <% end %>
           </ul>
         </div>
-    </ul>
+      </div>
 
-  </div>
-
-  <p style="color: green"><%= notice %></p>
-
-  <div id="products" style="align-self: center; margin-left: auto; margin-right: auto; margin-bottom: 20px">
-
-    <h1 style="text-align: center; margin-bottom: 20px; margin-top: 20px">Products</h1>
-
-    <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-left: auto; margin-right: auto; text-align: center">
-      <% @products.each do |product| %>
-        <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
-          <div class="col" style="width: auto; margin-left: auto; margin-right: auto">
-            <div class="card" style="width: 236px; height: 480px">
-              <a href="/products/<%= product.id %>" style="text-decoration: none">
-                <div style="height: 320px; width: 234px; display: flex; align-items: center">
-                  <img src="<%= product.image %>" style="max-height: 320px; max-width: 234px; width: auto; margin-left: auto; margin-right: auto" class="card-img-top">
+      <div id="products">
+        <h1>Products</h1>
+        <div class="row row-cols-1 row-cols-md-2 g-4 card-options">
+          <% @products.each do |product| %>
+            <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
+              <div class="col">
+                <div class="card">
+                  <a class="product-link" href="/products/<%= product.id %>">
+                    <div class="img-div">
+                      <img src="<%= product.image %>" class="card-img-top">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= product.name %></h5>
+                      <div class="price-cart">
+                        <h5 class="card-title"><strong><%= product.price %></strong>$</h5>
+                        <% if user_signed_in? %>
+                          <%= button_to 'Add to cart', cart_products_path, method: :post,
+                                        data: { 'turbo-method': :create }, params: { product: product.id },
+                                        class: 'btn btn-primary' %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title" style="color: black"><%= product.name %></h5>
-                  <div align="center" style="position: absolute; bottom: 0px; right: 0px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 236px">
-                    <h5 class="card-title" style="color: black"><strong><%= product.price %></strong>$</h5>
-                    <% if user_signed_in? %>
-                      <%= button_to "Add to cart", "cart_products?product=#{product.id}", class: "btn btn-primary" %>
-                    <% end %>
-                  </div>
-                </div>
-              </a>
-          </div>
-          </div>
-        <% end %>
-      <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
-
-  </div>
-
-</div>
+  </body>
+</html>

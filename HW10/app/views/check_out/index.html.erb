@@ -1,53 +1,67 @@
-<form action="/orders?cart=<%= params[:cart] %>" method="post">
-    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
-      <h3 style="margin-bottom: 20px">Personal information:</h3>
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Cart</title>
+    <%= stylesheet_link_tag 'check_out_index_style.css' %>
+  </head>
+
+  <body>
+  <%= form_with url: orders_path, method: :post, data: { 'turbo-method': :create } do |form| %>
+    <div class="card info-card">
+      <h3>Personal information:</h3>
       <div>
-        Your firstname:
-        <input type='text' name='firstname' required placeholder="Name" style="width: 150px; margin-left: 40px">
+        <%= form.label 'Your first name:' %>
+        <%= form.text_field :firstname, class: 'info-input firstname', placeholder: 'First name', required: true %>
       </div>
       <br>
       <div>
-        Your lastname:
-        <input type='text' name='lastname' required  placeholder="Lastname" style="width: 150px; margin-left: 42px"><br>
+        <%= form.label 'Your last name:' %>
+        <%= form.text_field :lastname, class: 'info-input lastname', placeholder: 'Last name', required: true %>
       </div>
       <br>
       <div>
-        Your phone number:
-        <input type='text' name='number' required  placeholder="380000000000" style="width: 150px; margin-left: 2.5px"><br>
+        <%= form.label 'Your phone number:' %>
+        <%= form.text_field :number, class: 'info-input phone', placeholder: '+380000000000', required: true %>
       </div>
     </div>
-    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
-      <h3 style="margin-bottom: 20px">Payment information:</h3>
+    <div class="card info-card">
+      <h3>Payment information:</h3>
       <div>
-        Payment form:<br>
-        <input type='radio' name='pay' value='unpaid' checked> By card on the website<br>
-        <input type='radio' name='pay' value='post'> When received<br>
-        <div class="alert alert-warning" role="alert" style="margin-top: 20px">
+        <%= form.label 'Payment form:' %>
+        <br>
+        <%= form.radio_button :pay, 'unpaid', checked: true %> By card on the website<br>
+        <%= form.radio_button :pay, 'post' %> When received<br>
+        <div class="alert alert-warning" role="alert">
           If you choose to pay by card - please, do it after confirm order on the order page!
         </div>
       </div>
     </div>
-    <div class="card" style="margin: 20px; width: 400px; padding: 10px">
-      <h3 style="margin-bottom: 20px">Delivery information:</h3>
+    <div class="card info-card">
+      <h3>Delivery information:</h3>
       <div>
-        City:
-        <input type='text' name='city' required placeholder="City" style="width: 150px; margin-left: 141px">
+        <%= form.label 'City:' %>
+        <%= form.text_field :city, class: 'info-input city', placeholder: 'City', required: true %>
       </div>
       <br>
       <div>
-        Street:
-        <input type='text' name='street' required placeholder="Street" style="width: 150px; margin-left: 126px">
+        <%= form.label 'Street:' %>
+        <%= form.text_field :street, class: 'info-input street', placeholder: 'Street', required: true %>
       </div>
       <br>
       <div>
-        House:
-        <input type='text' name='house' required placeholder="House" style="width: 150px; margin-left: 125px">
+        <%= form.label 'House:' %>
+        <%= form.text_field :house, class: 'info-input house', placeholder: 'House', required: true %>
       </div>
       <br>
       <div>
-        Apartaments(optionaly):
-        <input type='text' name='apartaments' placeholder="Apartaments" style="width: 150px;">
+        <%= form.label 'Apartments(optionally):' %>
+        <%= form.text_field :apartments, class: 'info-input apartments', placeholder: 'Apartments', required: true %>
       </div>
     </div>
-    <input class="btn btn-primary" type='submit' value='Підтвердити' style="margin-left: 140px; margin-bottom: 20px">
-</form>
+    <%= form.submit 'Submit', class: 'btn btn-primary submit' %>
+  <% end %>
+  <% cookies[:total] = params[:total] %>
+  </body>
+</html>

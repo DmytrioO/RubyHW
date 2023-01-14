@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_200233) do
     t.string "street"
     t.string "house"
     t.string "apartaments"
+    t.decimal "total", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_informations_on_order_id"

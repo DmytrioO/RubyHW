@@ -1,36 +1,78 @@
-<div style="display: flex">
-  <div class="flex-shrink-0 p-3 bg-black" style="width: 140px; margin-right: 40px; position: absolute; bottom: 0; top: 49px">
+<!DOCTYPE html>
 
-    <ul class="list-unstyled ps-0">
+<html>
+
+  <head>
+    <title><%= @product.name %></title>
+    <%= stylesheet_link_tag 'products_show_style.css' %>
+  </head>
+
+  <body>
+    <div class="flex-shrink-0 p-3 bg-black sidebar">
       <div class="collapse show" id="home-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="../" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px">All</a></li>
-          <% categories = Category.all %>
-          <% categories.each do |cat| %>
-            <li><a href="../?category=<%= cat.title.downcase %>" class="link-dark d-inline-flex text-decoration-none rounded" style="color: white; margin-bottom: 15px"><%= cat.title %></a></li>
+          <li>
+            <%= button_to 'All', root_path, method: :get,
+                        class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+          </li>
+          <% Category.all.each do |cat| %>
+            <li>
+              <%= button_to "#{cat.title}", root_path, method: :get, params: { category: cat.title.downcase },
+                            class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+            </li>
           <% end %>
         </ul>
       </div>
-    </ul>
+    </div>
 
-  </div>
+    <div id="<%= dom_id @product %>" class="main-div">
 
-  <div style="margin-left: 140px">
-    <p style="color: green"><%= notice %></p>
-
-    <%= render @product %>
-
-    <div>
       <table>
         <tbody>
           <tr>
-            <% if user_signed_in? %>
-              <td style="padding-right: 20px"><%= button_to "Add to cart", "../cart_products?product=#{@product.id}", class: "btn btn-primary" %></td>
-            <% end %>
-            <td><%= link_to "Back to products", '/', class: "btn btn-primary" %></td>
+            <td><img src="<%= @product.image %>"></td>
+
+            <td class="text-td">
+              <p class="name">
+                <strong>Name:</strong>
+                <%= @product.name %>
+              </p>
+
+              <p class="description">
+                <strong>Description:</strong>
+                <%= @product.description %>
+              </p>
+
+              <p>
+                <strong>Category:</strong>
+                <%= @product.category.title.capitalize %>
+              </p>
+
+              <p>
+                <strong>Price:</strong>
+                <%= @product.price %>$
+              </p>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <% if user_signed_in? %>
+                      <td class="cart">
+                        <%= button_to 'Add to cart', cart_products_path, method: :post,
+                                      data: { 'turbo-method': :create }, params: { product: @product.id },
+                                      class: 'btn btn-primary' %>
+                      </td>
+                    <% end %>
+                    <td><%= link_to 'Back to products', root_path, class: 'btn btn-primary' %></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
           </tr>
         </tbody>
       </table>
+
     </div>
-  </div>
-</div>
+  </body>
+</html>

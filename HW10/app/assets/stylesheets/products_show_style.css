@@ -1,0 +1,49 @@
+.sidebar {
+    width: 140px;
+    margin-right: 40px;
+    position: absolute;
+    bottom: 0;
+    top: 49px;
+}
+
+.sidebar-filter {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.main-div {
+    margin-top: 10px;
+    margin-left: 130px;
+}
+
+img {
+    height: 600px;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.name {
+    padding-top: 40px;
+}
+
+.description {
+    text-align: justify;
+}
+
+.text-td {
+    vertical-align: top;
+    padding-right: 20px;
+}
+
+.cart {
+    padding-right: 20px;
+}
+
+.button-category,
+.button-category:active,
+.button-category:focus  {
+    border:none;
+    padding: 0;
+    background-color: black;
+}
