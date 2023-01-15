@@ -31,7 +31,8 @@
         <h1>Products</h1>
         <div class="row row-cols-1 row-cols-md-2 g-4 card-options">
           <% @products.each do |product| %>
-            <% if !params[:category] || params[:category] && product.category.title.downcase == params[:category].downcase %>
+            <% if !params[:category] || params[:category] &&
+              unless product.category == nil then product.category.title.downcase == params[:category].downcase end %>
               <div class="col">
                 <div class="card">
                   <a class="product-link" href="/products/<%= product.id %>">

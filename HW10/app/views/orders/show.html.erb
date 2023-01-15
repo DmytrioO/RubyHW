@@ -10,18 +10,18 @@
   <body>
     <% if @order.user_id == current_user.id %>
       <div class="main-div">
-        <h1>Order №<%= @order.id %></h1>
-        <h3>Created at: <%= @order.created_at %></h3>
-        <h3>Status: <%= @order.order_status.capitalize %></h3>
-        <h3 class="payment">
+        <h3>Order №<%= @order.id %></h3>
+        <h5>Created at: <%= @order.created_at %></h5>
+        <h5>Status: <%= @order.order_status.capitalize %></h5>
+        <h5 class="payment">
           Payment status:
           <% if @order.payment_status == 'post' %>
             When received
           <% else %>
             <%= @order.payment_status.capitalize %>
           <% end %>
-        </h3>
-        <h3>Ordered products:</h3>
+        </h5>
+        <h5>Ordered products:</h5>
         <% counter = 0 %>
         <% @order.cart.cart_products.each do |product| %>
           <div class="accordion-item">

@@ -25,10 +25,10 @@
             <td class="order-table-borders"><%= product.price %>$</td>
             <td class="order-table-borders">
               <%= button_to '+', product, method: :put, data: { 'turbo-method': :update },
-                            params: { plus: product.id }, class: 'btn-success' %>
+                            params: { operation: 'plus' }, class: 'btn-success' %>
               <%= product.quantity %>
               <%= button_to '-', product, method: :put, data: { 'turbo-method': :update },
-                            params: { minus: product.id }, class: 'btn-success' %>
+                            params: { operation: 'minus' }, class: 'btn-success' %>
             </td>
             <td class="order-table-borders"><%= product.price * product.quantity %>$</td>
             <td class="table_button order-table-borders">
@@ -56,7 +56,7 @@
           </div>
       <% else %>
         <div class="alert alert-danger login-alert" role="alert">
-          Please, <a href="/users/sign_in">Log In</a> to make an order!
+          Please, <%= link_to 'Log In', new_user_session_path %> to make an order!
         </div>
       <% end %>
     <% end %>

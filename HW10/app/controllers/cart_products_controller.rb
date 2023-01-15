@@ -1,4 +1,5 @@
 class CartProductsController < ApplicationController
+  before_action :set_product, only: %i[ update destroy ]
 
   def create
     if params[:product]
@@ -11,24 +12,27 @@ class CartProductsController < ApplicationController
         cart_prod.update(quantity: CartProduct.find(cart_prod.ids).first.quantity + 1)
       end
     end
-    redirect_back_or_to "/"
+    redirect_back_or_to root_path
   end
 
   def update
-    if params[:plus]
-      cart_prod = CartProduct.find(params[:plus])
-      cart_prod.update(quantity: cart_prod.quantity + 1)
+    product_quantity = params[:operation] == 'plus' ? @product.quantity + 1 : @product.quantity - 1
+    if product_quantity > 0
+      @product.update(quantity: product_quantity)
     else
-      cart_prod = CartProduct.find(params[:minus])
-      if cart_prod.quantity > 1
-        cart_prod.update(quantity: cart_prod.quantity - 1)
-      else cart_prod.destroy end
+      @product.destroy if product_quantity < 1
     end
     redirect_to carts_path
   end
 
   def destroy
-    CartProduct.find(params[:id]).destroy
+    @product.destroy
     redirect_to carts_path
+  end
+
+  private
+
+  def set_product
+    @product = CartProduct.find(params[:id])
   end
 end

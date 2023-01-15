@@ -49,7 +49,7 @@ ActiveAdmin.register Order do
         '->'
       end
       order.cart.cart_products.each do |product|
-        if product.id != order.cart.cart_products.first.id
+        unless product.id == order.cart.cart_products.first.id
           row :divider do
             '___'
           end
