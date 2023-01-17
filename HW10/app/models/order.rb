@@ -15,6 +15,6 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_one :order_information, dependent: :destroy
 
-  enum :order_status, %i[processing confirmed delivering completed canceled]
+  enum :order_status, %i[processing confirmed delivering completed canceled], default: 0
   enum :payment_status, %i[unpaid paid post]
 end

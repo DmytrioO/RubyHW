@@ -28,7 +28,9 @@ ActiveAdmin.register Order do
 
   index do
     column :id
-    column :user
+    column :user do |order|
+      order.user_id == nil ? 'DeletedUser' : order.user
+    end
     column :order_status
     column :payment_status
     column :created_at
@@ -77,7 +79,7 @@ ActiveAdmin.register Order do
         '->'
       end
       row :Client_Fullname do
-        order_info.full_name
+        "#{order_info.first_name} #{order_info.last_name}"
       end
       row :Phone_Number do
         order_info.phone
@@ -94,8 +96,8 @@ ActiveAdmin.register Order do
       row :Delivering_House do
         order_info.house
       end
-      row :Delivering_Apartaments do
-        order_info.apartaments
+      row :Delivering_Apartments do
+        order_info.apartments
       end
       row :Info do
         '<-'

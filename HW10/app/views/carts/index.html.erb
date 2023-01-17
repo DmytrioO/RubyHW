@@ -3,7 +3,6 @@
 <html>
 
   <head>
-    <title>Cart</title>
     <%= stylesheet_link_tag 'carts_index_style.css' %>
   </head>
 
@@ -45,20 +44,14 @@
     </table>
 
     <% if @cart.cart_products.count > 0 %>
-      <% if user_signed_in? %>
-          <div>
-            <table class="check-out-button">
-              <td>
-                <%= button_to "Check Out", check_out_index_path, method: :get, data: { 'turbo-method': :index },
-                                params: { total: find_cart_total(@cart.id) }, class: "btn btn-primary check-out" %>
-              </td>
-            </table>
-          </div>
-      <% else %>
-        <div class="alert alert-danger login-alert" role="alert">
-          Please, <%= link_to 'Log In', new_user_session_path %> to make an order!
-        </div>
-      <% end %>
+      <div>
+        <table class="check-out-button">
+          <td>
+            <%= button_to "Check Out", check_out_index_path, method: :get, data: { 'turbo-method': :index },
+                          params: { total: find_cart_total(@cart.id) }, class: "btn btn-primary check-out" %>
+          </td>
+        </table>
+      </div>
     <% end %>
   </body>
 </html>

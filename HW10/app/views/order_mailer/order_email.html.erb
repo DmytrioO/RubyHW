@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+  <h1>Dear, <%= @user.name %>, thank you for your order!</h1>
+  <p>Our manager will connect you as soon as possible!</p>
+  <p>Here is some details:</p>
+  <p>Order №<%= @order.id %></p>
+  <p>Created_at: <%= @order.created_at %></p>
+  <p>Total sum: <%= @order.order_information.total %>$</p>
+<!--  <p>You can see this order on our <%#= link_to 'website', @order %></p>-->
+  <br>
+  <h4>Have a good day!</h4>
+</body>
+
+</html>

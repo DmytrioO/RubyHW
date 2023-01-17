@@ -20,15 +20,17 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/" style="color: white; margin-right: 30px">Products</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/carts" style="color: white; margin-right: 30px">
-              <% cart_check %>
-              Cart(<%= Cart.find(cookies[:cart_id]).cart_products.count %>)
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/orders" style="color: white; margin-right: 30px">Orders</a>
-          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/carts" style="color: white; margin-right: 30px">
+                <% cart_check %>
+                Cart(<%= Cart.find(cookies[:cart_id]).cart_products.count %>)
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/orders" style="color: white; margin-right: 30px">Orders</a>
+            </li>
+          <% end %>
         </ul>
         <form class="d-flex" role="log_out">
           <% if user_signed_in? %>

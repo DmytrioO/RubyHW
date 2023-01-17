@@ -17,11 +17,7 @@ class CartProductsController < ApplicationController
 
   def update
     product_quantity = params[:operation] == 'plus' ? @product.quantity + 1 : @product.quantity - 1
-    if product_quantity > 0
-      @product.update(quantity: product_quantity)
-    else
-      @product.destroy if product_quantity < 1
-    end
+    product_quantity > 0 ? @product.update(quantity: product_quantity) : @product.destroy
     redirect_to carts_path
   end
 

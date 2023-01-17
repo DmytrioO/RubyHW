@@ -1,32 +1,36 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: %i[ show create ]
-  before_action :set_order, only: %i[ show update ]
+  before_action :authenticate_user!, only: %i[ index show create ]
 
   def index
     @orders = current_user.orders if user_signed_in?
   end
 
-  def show; end
+  def show
+    begin
+    @order = current_user.orders.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @order = 'Not Found'
+    end
+  end
 
   def create
-    @order = Order.create(cart_id: cookies[:cart_id], user_id: current_user.id, order_status: 0,
-                          payment_status: params[:pay])
-    @order_info = OrderInformation.create(order_id: @order.id, full_name: "#{params[:firstname]} #{params[:lastname]}",
-                                          phone: params[:number], city: params[:city], street: params[:street],
-                                          house: params[:house], apartaments: "#{params[:apartments]}",
-                                          total: cookies[:total])
+    @order = Order.create(cart_id: cookies[:cart_id], user_id: current_user.id, payment_status: params[:pay])
+    @order_info = OrderInformation.create(order_params)
+    @order_info.update(order_id: @order.id, total: cookies[:total])
+    # OrderMailer.with(user: User.find(@order.user_id), order: @order).order_email.deliver_now
     cookies.delete :cart_id
     cookies.delete :total
   end
 
   def update
+    @order = Order.find(params[:id])
     @order.paid!
     redirect_to @order
   end
 
   private
 
-  def set_order
-    @order = Order.find(params[:id])
+  def order_params
+    params.permit(:first_name, :last_name, :phone, :city, :street, :house, :apartments)
   end
 end
