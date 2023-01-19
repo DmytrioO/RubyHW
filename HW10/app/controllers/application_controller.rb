@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :find_cart_total
 
   def cart_check
-    if cookies[:cart_id].nil?
+    begin
+      @cart = Cart.find(cookies[:cart_id])
+    rescue ActiveRecord::RecordNotFound
       @cart = Cart.create
       cookies[:cart_id] = @cart.id
-    else
-      @cart = Cart.find(cookies[:cart_id])
     end
   end
 
