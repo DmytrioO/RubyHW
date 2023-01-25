@@ -23,5 +23,16 @@ ActiveAdmin.register Product do
     column :updated_at
     actions
   end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :description
+      f.input :image, as: :file
+      f.input :price
+      f.input :category
+    end
+    actions
+  end
   
 end

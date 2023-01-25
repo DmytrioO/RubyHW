@@ -6,7 +6,7 @@ class CartProductsController < ApplicationController
       product = Product.find(params[:product])
       cart_prod = Cart.find(cookies[:cart_id]).cart_products.where(product_id: params[:product])
       if cart_prod.empty?
-        CartProduct.create(cart_id: cookies[:cart_id], product_id: product.id, name: product.name, image: product.image,
+        CartProduct.create(cart_id: cookies[:cart_id], product_id: product.id, name: product.name,
                            price: product.price, quantity: 1)
       else
         cart_prod.update(quantity: CartProduct.find(cart_prod.ids).first.quantity + 1)

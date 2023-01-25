@@ -30,8 +30,7 @@
       <table>
         <tbody>
           <tr>
-            <td><img src="<%= @product.image %>"></td>
-
+            <td><%= image_tag @product.image.variant(:full).blob %></td>
             <td class="text-td">
               <p class="name">
                 <strong>Name:</strong>

@@ -20,7 +20,8 @@
         <% @cart.cart_products.sort.each do |product| %>
           <tr class="order-table-borders">
             <td class="order-table-borders"><%= product.name %></td>
-            <td class="order-table-borders"><img src="<%= product.image %>" class="product-photo"></td>
+<!--            <td class="order-table-borders"><img src="<%#= product.image %>" class="product-photo"></td>-->
+            <td class="order-table-borders"><%= image_tag product.product.image, class: "product-photo" %></td>
             <td class="order-table-borders"><%= product.price %>$</td>
             <td class="order-table-borders">
               <%= button_to '+', product, method: :put, data: { 'turbo-method': :update },

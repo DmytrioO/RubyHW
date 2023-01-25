@@ -37,7 +37,8 @@
                 <div class="card">
                   <a class="product-link" href="/products/<%= product.id %>">
                     <div class="img-div">
-                      <img src="<%= product.image %>" class="card-img-top">
+<!--                      <img src="<%#= product.image %>" class="card-img-top">-->
+                      <%= image_tag product.image.variant(:thumb).blob, class: "card-img-top" %>
                     </div>
                     <div class="card-body">
                       <h5 class="card-title"><%= product.name %></h5>
