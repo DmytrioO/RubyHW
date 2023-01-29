@@ -1,63 +1,51 @@
-<!DOCTYPE html>
+<div class="products-index-main-div">
 
-<html>
+  <div class="flex-shrink-0 p-3 bg-black sidebar products-index-sidebar">
+    <div class="collapse show" id="home-collapse">
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li>
+          <%= link_to 'All', root_path,
+                        class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+        </li>
+        <% Category.order(:title).each do |cat| %>
+          <li>
+            <%= link_to "#{cat.title}", root_path(category: cat.title),
+                          class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-  <head>
-    <title>Cart</title>
-    <%= stylesheet_link_tag 'products_index_style.css' %>
-  </head>
-
-  <body>
-    <div class="main-div">
-
-      <div class="flex-shrink-0 p-3 bg-black sidebar">
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li>
-              <%= button_to 'All', root_path, method: :get,
-                            class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
-            </li>
-            <% Category.all.each do |cat| %>
-              <li>
-                <%= button_to "#{cat.title}", root_path, method: :get, params: { category: cat.title.downcase },
-                              class: 'd-inline-flex text-decoration-none rounded sidebar-filter button-category' %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-
-      <div id="products">
-        <h1>Products</h1>
-        <div class="row row-cols-1 row-cols-md-2 g-4 card-options">
-          <% @products.each do |product| %>
-            <% if !params[:category] || params[:category] &&
-              unless product.category == nil then product.category.title.downcase == params[:category].downcase end %>
-              <div class="col">
-                <div class="card">
-                  <a class="product-link" href="/products/<%= product.id %>">
-                    <div class="img-div">
-                      <%= image_tag product.image.variant(:thumb).blob, class: "card-img-top" %>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title"><%= product.name %></h5>
-                      <div class="price-cart">
-                        <h5 class="card-title"><strong><%= product.price %></strong>$</h5>
-                        <% if user_signed_in? %>
-                          <%= button_to 'Add to cart', cart_products_path, method: :post,
-                                        data: { 'turbo-method': :create }, params: { product: product.id },
-                                        class: 'btn btn-primary' %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </a>
+  <div id="products">
+    <h1 class="products-index-h1">Products</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4 card-options">
+      <% @products.each do |product| %>
+        <div class="col">
+          <div class="card product-card">
+            <a class="product-link" href="/products/<%= product.id %>">
+              <div class="img-div">
+                <%= image_tag product.image.variant(:thumb).blob, class: "card-img-top" %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <div class="price-cart">
+                  <h5 class="card-title">
+                    <strong>
+                      <%= number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ') %>
+                    </strong>
+                  </h5>
+                  <% if user_signed_in? %>
+                    <%= button_to 'Add to cart', cart_products_path(product: product.id),
+                                  class: 'btn btn-primary' %>
+                  <% end %>
                 </div>
               </div>
-            <% end %>
-          <% end %>
+            </a>
+          </div>
         </div>
-      </div>
-
+      <% end %>
     </div>
-  </body>
-</html>
+  </div>
+
+</div>

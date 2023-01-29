@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-
-<html>
-
-  <head>
-    <%= stylesheet_link_tag 'orders_create_style.css' %>
-  </head>
-
-  <body>
-    <div class="alert alert-success" role="alert">
-      <h1>Order №<%= @order.id %> was successfully created!</h1>
-      <hr>
-      <h3>Soon our manager will contact you to clarify the details of the order!</h3>
-    </div>
-    <div>
-      <table>
-        <td><%= link_to 'Go to products', root_path, class: 'btn btn-primary to-products' %></td>
-        <td><%= button_to 'View this order', @order, method: :get, class: 'btn btn-primary to-order' %></td>
-        <td><%= link_to 'Go to my orders', orders_path, class: 'btn btn-primary to-orders' %></td>
-      </table>
-    </div>
-  </body>
-</html>
+<div class="alert alert-success order-create-alert" role="alert">
+  <h1 class="main-message">Order №<%= @order.id %> was successfully created!</h1>
+  <hr class="order-create-hr">
+  <h3 class="info-message">Soon our manager will contact you to clarify the details of the order!</h3>
+</div>
+<div>
+  <table class="order-create-buttons">
+    <tr>
+      <td><%= link_to 'Go to products', root_path, class: 'btn btn-primary to-products' %></td>
+      <td><%= link_to 'View this order', @order, class: 'btn btn-primary to-order' %></td>
+      <td><%= link_to 'Go to my orders', orders_path, class: 'btn btn-primary to-orders' %></td>
+    </tr>
+  </table>
+</div>

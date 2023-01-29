@@ -17,4 +17,35 @@ class Order < ApplicationRecord
 
   enum :order_status, %i[processing confirmed delivering completed canceled], default: 0
   enum :payment_status, %i[unpaid paid post]
+
+  def status_payment
+    if payment_status == 'post'
+      'When received'
+    else
+      payment_status.capitalize
+    end
+  end
+
+  def design_status(parameter)
+    if parameter == 'order'
+      case order_status
+      when 'processing'
+        'warning'
+      when 'confirmed'
+        'info'
+      when 'delivering'
+        'primary'
+      when 'completed'
+        'success'
+      else
+        'danger'
+      end
+    else
+      if payment_status == 'unpaid'
+        'danger'
+      else
+        'success'
+      end
+    end
+  end
 end

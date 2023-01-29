@@ -9,4 +9,12 @@
 class Cart < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   has_many :products, through: :cart_products
+
+  def find_total
+    total = 0
+    self.cart_products.each do |cart_product|
+      total += cart_product.price * cart_product.quantity
+    end
+    total
+  end
 end

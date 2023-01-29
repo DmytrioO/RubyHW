@@ -1,27 +1,28 @@
 ActiveAdmin.register Product do
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  permit_params :name, :description, :image, :price, :category_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :description, :image, :price, :category]
-  #   #permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-
   index do
     column :id
     column :name
-    column :price
+    column :price do |product|
+      number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ')
+    end
     column :category
     column :created_at
     column :updated_at
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :description
+      row :price do
+        number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ')
+      end
+      row :category
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
   end
 
   form do |f|
@@ -34,5 +35,6 @@ ActiveAdmin.register Product do
     end
     actions
   end
-  
+
+  permit_params :name, :description, :image, :price, :category_id
 end

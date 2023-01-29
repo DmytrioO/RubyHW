@@ -16,4 +16,8 @@
 class CartProduct < ApplicationRecord
   belongs_to :cart
   belongs_to :product
+
+  def find_sum
+    price * quantity
+  end
 end

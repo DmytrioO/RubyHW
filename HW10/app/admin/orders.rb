@@ -1,25 +1,5 @@
 ActiveAdmin.register Order do
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :cart_id, :user_id, :order_status, :payment_status
-  permit_params :order_status, :payment_status
   actions :all, except: :new
-  # or
-  #
-  # permit_params do
-  #   permitted = [:cart_id, :user_id, :order_status, :payment_status]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  # show do
-  #   order.cart.cart_products.each do |product|
-  #     h3 product.name
-  #   end
-  # end
 
   filter :order_status, as: :select, collection: proc { Order.order_statuses }
   filter :payment_status, as: :select, collection: proc { Order.payment_statuses }
@@ -29,7 +9,7 @@ ActiveAdmin.register Order do
   index do
     column :id
     column :user do |order|
-      order.user_id == nil ? 'DeletedUser' : order.user
+      order.user.presence || 'DeletedUser'
     end
     column :order_status
     column :payment_status
@@ -41,74 +21,72 @@ ActiveAdmin.register Order do
   show do
     attributes_table do
       order_info = order.order_information
-      row :Order_Status do
+
+      row :order_status do
         order.order_status.capitalize
       end
-      row :Payment_Status do
+
+      row :payment_status do
         order.payment_status.capitalize
       end
-      row :Order do
-        '->'
-      end
+
       order.cart.cart_products.each do |product|
-        unless product.id == order.cart.cart_products.first.id
-          row :divider do
-            '___'
-          end
-        end
         row :name do
           product.name
         end
+
         row :price do
-          "#{product.price}$"
+          number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ')
         end
+
         row :quantity do
           product.quantity
         end
+
         row :sum do
-          "#{product.quantity * product.price}$"
+          number_to_currency(product.find_sum, unit: '$', separator: ',', delimiter: ' ')
         end
       end
-      row :Order do
-        '<-'
+
+      row :total do
+        number_to_currency(order_info.total, unit: '$', separator: ',', delimiter: ' ')
       end
-      row :Total do
-        "#{order_info.total}$"
-      end
-      row :Info do
-        '->'
-      end
-      row :Client_Fullname do
+
+      row :client_fullname do
         "#{order_info.first_name} #{order_info.last_name}"
       end
-      row :Phone_Number do
+
+      row :phone_number do
         order_info.phone
       end
-      row :Email do
-        order.user.email
+
+      row :email do
+        order.user.nil? ? 'Deleted' : order.user.email
       end
-      row :Delivering_City do
+
+      row :delivering_city do
         order_info.city
       end
-      row :Delivering_Street do
+
+      row :delivering_street do
         order_info.street
       end
-      row :Delivering_House do
+
+      row :delivering_house do
         order_info.house
       end
-      row :Delivering_Apartments do
+
+      row :delivering_apartments do
         order_info.apartments
-      end
-      row :Info do
-        '<-'
       end
     end
     active_admin_comments
   end
 
-  form title: 'Order' do |f|
+  form title: 'Order' do |_|
     inputs :order_status, :payment_status
     actions
   end
-  
+
+  permit_params :order_status, :payment_status
 end

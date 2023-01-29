@@ -1,3 +1,268 @@
 //@import 'bootstrap/scss/bootstrap';
 //@import 'bootstrap-icons/font/bootstrap-icons';
 @import "bootstrap";
+
+//for application.html.erb
+.navbar {
+  background-color: black;
+}
+
+.navbar-nav {
+  padding-left: 40px;
+}
+
+.nav-link {
+  margin-right: 30px;
+}
+
+//for carts/index.html.erb
+.main-td {
+  font-weight: bold;
+}
+
+.order-table-borders {
+  border-color: black;
+  border-width: 1px;
+}
+
+.product-photo {
+  height: 100px;
+}
+
+// for check_out/index.html.erb
+.info-card {
+  width: 400px;
+}
+
+.form-title {
+  margin-bottom: 20px;
+}
+
+.info-input {
+  width: 150px;
+}
+
+.firstname {
+  margin-left: 36px;
+}
+
+.lastname {
+  margin-left: 38px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.phone {
+  margin-left: 2.5px;
+}
+
+.city {
+  margin-left: 141px;
+}
+
+.street {
+  margin-left: 126px;
+}
+
+.house {
+  margin-left: 125px;
+}
+
+.apartments {
+  margin-left: 5px;
+}
+
+.submit {
+  margin-left: 160px;
+  margin-bottom: 20px;
+}
+
+//for orders/create.html.erb
+.info-message {
+  margin-bottom: 20px;
+}
+
+.order-create-alert {
+  margin-top: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 0px;
+}
+
+.to-products {
+  margin-right: 20px;
+}
+
+.to-order {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.to-orders {
+  margin-left: 20px;
+}
+
+//for orders/index.html.erb
+.div-buttons {
+  margin-top: 30px;
+  width: 143px;
+}
+
+.active-buttons {
+  padding: 15px;
+}
+
+//for orders/show.html.erb
+.payment {
+  margin-bottom: 20px;
+}
+
+.product-img {
+  padding-right: 20px;
+}
+
+.product-image {
+  height: 200px;
+}
+
+.total {
+  margin-top: 20px;
+}
+
+.error {
+  margin-top: 20px;
+}
+
+.orders-show-h3 {
+  margin-bottom: 20px;
+}
+
+.order-show-alert {
+  padding: 0px 7px;
+}
+
+//for products/index.html.erb
+.products-index-main-div {
+  display: flex;
+}
+
+.products-index-sidebar {
+  width: 140px;
+}
+
+.sidebar-filter {
+  margin-bottom: 15px;
+}
+
+.product-card {
+  width: 236px;
+  height: 480px;
+}
+
+.img-div {
+  height: 320px;
+  width: 234px;
+  display: flex;
+  align-items: center;
+}
+
+.card-img-top {
+  max-height: 320px;
+  max-width: 234px;
+}
+
+.card-title {
+  color: black;
+}
+
+.price-cart {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin-bottom: 20px;
+  width: 236px;
+}
+
+#products {
+  margin-bottom: 20px;
+}
+
+//for products/show.html.erb
+.products-show-sidebar {
+  width: 140px;
+  margin-right: 40px;
+  position: absolute;
+  bottom: 0;
+  top: 49px;
+}
+
+.products-show-main-div {
+  margin-top: 10px;
+  margin-left: 130px;
+}
+
+.products-show-image {
+  height: 600px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.name {
+  padding-top: 40px;
+}
+
+.description {
+  text-align: justify;
+}
+
+.text-td {
+  vertical-align: top;
+  padding-right: 20px;
+}
+
+.cart {
+  padding-right: 20px;
+}
+
+// for multiple parameters
+.navbar-brand, .nav-link, .sign-in, .sidebar-filter {
+  color: white;
+}
+
+.product-link, .sign-in, .order-index-button, .order-show-button {
+  text-decoration: none;
+}
+
+.order-table-borders, .main-message, .info-message, .empty-message, .orders-show-main-div, .error, .products-index-h1,
+.card-options {
+  text-align: center;
+}
+
+.order-table-td, .info-card {
+  padding: 10px;
+}
+
+.order-table, .check-out-button, .order-create-buttons, .div-buttons, .product-info-table, .col, .card-img-top,
+.price-cart, .card-options {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.order-table, .main-message, .products-index-h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.product-photo, .product-image, .col, .card-img-top, .products-show-image {
+  width: auto;
+}
+
+.check-out, .to-products, .to-order, .to-orders {
+  padding: 20px;
+}
+
+.info-card, .orders-index-main-div, .order-create-hr, .orders-show-main-div {
+  margin: 20px;
+}

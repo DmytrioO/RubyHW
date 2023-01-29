@@ -3,24 +3,13 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
   helper_method :cart_check
-  helper_method :find_cart_total
 
   def cart_check
-    begin
-      @cart = Cart.find(cookies[:cart_id])
-    rescue ActiveRecord::RecordNotFound
-      @cart = Cart.create
-      cookies[:cart_id] = @cart.id
-    end
-  end
-
-  def find_cart_total(cart_id)
-    cart_prod = Cart.find(cart_id).cart_products
-    total = 0
-    cart_prod.each do |prod|
-      total += prod.price * prod.quantity
-    end
-    total
+    @cart = Cart.find(cookies[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    @cart = Cart.create
+    cookies[:cart_id] = @cart.id
+    @cart
   end
 
   protected
