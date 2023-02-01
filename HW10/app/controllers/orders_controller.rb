@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.create(cart_id: cookies[:cart_id], user_id: current_user.id, payment_status: params[:pay])
     OrderInformation.create(order_id: @order.id).update(order_params)
-    # OrderMailer.order_email(@order.id).deliver_now
+    OrderMailer.order_email(@order.id).deliver_later
     cookies.delete :cart_id
   end
 

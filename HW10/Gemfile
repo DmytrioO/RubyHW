@@ -84,3 +84,11 @@ end
 
 
 gem "importmap-rails", "~> 1.1"
+
+gem 'sidekiq'
+
+gem 'redis-rails'
+
+gem 'redis'
+
+gem "sidekiq-scheduler", "~> 5.0"
