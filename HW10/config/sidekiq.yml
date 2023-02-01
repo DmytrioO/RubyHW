@@ -1,5 +1,5 @@
 :scheduler:
   :schedule:
     lottery_worker:
-      every: 1 second
+      every: 1 month
       class: LotteryWorker
