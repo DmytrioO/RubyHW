@@ -1,6 +1,6 @@
 //@import 'bootstrap/scss/bootstrap';
 //@import 'bootstrap-icons/font/bootstrap-icons';
-@import "bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 //for application.html.erb
 .navbar {
@@ -13,6 +13,7 @@
 
 .nav-link {
   margin-right: 30px;
+  color: white;
 }
 
 //for carts/index.html.erb
@@ -231,7 +232,11 @@
   color: white;
 }
 
-.product-link, .sign-in, .order-index-button, .order-show-button {
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+color: white;
+}
+
+a.product-link {
   text-decoration: none;
 }
 

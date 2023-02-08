@@ -23,7 +23,7 @@
       <% @products.each do |product| %>
         <div class="col">
           <div class="card product-card">
-            <a class="product-link" href="/products/<%= product.id %>">
+<!--            <a class="product-link" href="/products/<%#= product.id %>">-->
               <div class="img-div">
                 <%= image_tag product.image.variant(:thumb).blob, class: "card-img-top" %>
               </div>
@@ -36,12 +36,12 @@
                     </strong>
                   </h5>
                   <% if user_signed_in? %>
-                    <%= button_to 'Add to cart', cart_products_path(product: product.id),
-                                  class: 'btn btn-primary' %>
+                      <%= button_to 'Add to cart', cart_products_path(product: product.id),
+                                    class: 'btn btn-primary' %>
                   <% end %>
                 </div>
               </div>
-            </a>
+<!--            </a>-->
           </div>
         </div>
       <% end %>

@@ -15,50 +15,52 @@
       </span>
     </h5>
     <h5>Ordered products:</h5>
-    <% @order.cart.cart_products.each do |product| %>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading-<%= product.id %>">
-          <%= link_to product.name, product, class: 'accordion-button order-show-button', type: 'button',
-                      'data-bs-toggle': 'collapse', 'data-bs-target': "#collapse#{ product.id }",
-                      'aria-expanded': 'true', 'aria-controls': "#collapse#{ product.id }" %>
-          </button>
-        </h2>
-        <div id="collapse<%= product.id %>" class="accordion-collapse collapse"
-             aria-labelledby="heading<%= product.id %>" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <table class="product-info-table">
-              <tbody>
-                <tr>
-                  <td class="product-img" rowspan="4">
-                    <%= image_tag product.product.image.variant(:thumb).blob, class: 'product-image' %>
-                  </td>
-                  <td>
-                    <p>
-                      <strong>Price:</strong>
-                      <%= number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ') %>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><p><strong>Quantity:</strong> <%= product.quantity %></p></td>
-                </tr>
-                <tr>
-                  <td>
-                    <p>
-                      <strong>Sum:</strong>
-                      <%= number_to_currency(product.find_sum, unit: '$', separator: ',', delimiter: ' ') %>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><%= link_to 'View this product', product.product, class: 'btn btn-primary' %></td>
-                </tr>
-              </tbody>
-            </table>
+    <div class="accordion" id="accordionExample">
+      <% @order.cart.cart_products.each do |product| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading-<%= product.id %>">
+            <%= link_to product.name, product, class: 'accordion-button order-show-button', type: 'button',
+                        'data-bs-toggle': 'collapse', 'data-bs-target': "#collapse#{ product.id }",
+                        'aria-expanded': 'true', 'aria-controls': "#collapse#{ product.id }" %>
+            </button>
+          </h2>
+          <div id="collapse<%= product.id %>" class="accordion-collapse collapse"
+               aria-labelledby="heading<%= product.id %>" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <table class="product-info-table">
+                <tbody>
+                  <tr>
+                    <td class="product-img" rowspan="4">
+                      <%= image_tag product.product.image.variant(:thumb).blob, class: 'product-image' %>
+                    </td>
+                    <td>
+                      <p>
+                        <strong>Price:</strong>
+                        <%= number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ') %>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p><strong>Quantity:</strong> <%= product.quantity %></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>Sum:</strong>
+                        <%= number_to_currency(product.find_sum, unit: '$', separator: ',', delimiter: ' ') %>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><%= link_to 'View this product', product.product, class: 'btn btn-primary' %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <h3 class="total orders-show-h3">
       Total sum:
       <%= number_to_currency(@order.order_information.total, unit: '$', separator: ',', delimiter: ' ') %>

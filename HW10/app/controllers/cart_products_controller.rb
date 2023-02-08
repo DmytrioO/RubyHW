@@ -12,7 +12,7 @@ class CartProductsController < ApplicationController
       cart_prod.update(quantity: cart_prod.first.quantity + 1)
     end
 
-    redirect_back_or_to root_path
+    # redirect_back_or_to root_path
   end
 
   def update
