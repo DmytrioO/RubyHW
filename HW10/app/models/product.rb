@@ -26,4 +26,8 @@ class Product < ApplicationRecord
     file = URI.open(url)
     self.image.attach(io: file, filename: filename)
   end
+
+  after_create_commit -> { broadcast_prepend_to 'products', partial: 'products/products' }
+  after_update_commit -> { broadcast_replace_to "products", partial: "products/products" }
+  after_destroy_commit -> { broadcast_remove_to 'products' }
 end

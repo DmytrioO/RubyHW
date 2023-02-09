@@ -20,8 +20,10 @@
           <%= link_to 'Products', root_path, class: 'nav-link active', 'aria-current': 'page' %>
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Cart(#{cart_check.cart_products.count})", carts_path, class: 'nav-link active',
-                          'aria-current': 'page' %>
+              <%= turbo_frame_tag "quantity_frame" do %>
+                <%= link_to "Cart(#{ find_total_products(cart_check.id) })", carts_path, class: 'nav-link active',
+                            'aria-current': 'page' %>
+                <% end %>
             </li>
             <li class="nav-item">
               <%= link_to 'Orders', orders_path, class: 'nav-link active', 'aria-current': 'page' %>

@@ -1,0 +1,25 @@
+<div class="col">
+  <div class="card product-card">
+<!--                <a class="product-link" href="/products/<%#= product.id %>">-->
+    <div class="img-div">
+      <%= image_tag product.image.variant(:thumb).blob, class: "card-img-top" %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <div class="price-cart">
+        <h5 class="card-title">
+          <strong>
+            <%= number_to_currency(product.price, unit: '$', separator: ',', delimiter: ' ') %>
+          </strong>
+        </h5>
+        <%# if user_signed_in? %>
+          <%= turbo_frame_tag "cart#{product.id}" do %>
+            <%= button_to 'Add to cart', cart_products_path(product: product.id), data: { turbo_frame: "cart#{product.id}" },
+                          class: 'btn btn-primary' %>
+          <% end %>
+        <%# end %>
+      </div>
+    </div>
+<!--                </a>-->
+  </div>
+</div>

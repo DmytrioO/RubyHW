@@ -2,12 +2,12 @@ class CartProductsController < ApplicationController
   before_action :set_product, only: %i[ update destroy ]
 
   def create
-    product = Product.find(params[:product])
+    @product = Product.find(params[:product])
     cart_prod = Cart.find(cookies[:cart_id]).cart_products.where(product_id: params[:product])
 
     if cart_prod.empty?
-      CartProduct.create(cart_id: cookies[:cart_id], product_id: product.id, name: product.name,
-                         price: product.price, quantity: 1)
+      CartProduct.create(cart_id: cookies[:cart_id], product_id: @product.id, name: @product.name,
+                         price: @product.price, quantity: 1)
     else
       cart_prod.update(quantity: cart_prod.first.quantity + 1)
     end

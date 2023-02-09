@@ -80,7 +80,7 @@
   margin-bottom: 20px;
 }
 
-//for orders/create.html.erb
+//for orders/create.turbo_stream.erb
 .info-message {
   margin-bottom: 20px;
 }
@@ -270,4 +270,9 @@ a.product-link {
 
 .info-card, .orders-index-main-div, .order-create-hr, .orders-show-main-div {
   margin: 20px;
+}
+
+.alert-for-cart {
+  width: 20px;
+  height: 10px;
 }

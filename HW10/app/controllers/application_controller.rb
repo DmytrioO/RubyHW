@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
   helper_method :cart_check
+  helper_method :find_total_products
 
   def cart_check
     @cart = Cart.find(cookies[:cart_id])
@@ -10,6 +11,14 @@ class ApplicationController < ActionController::Base
     @cart = Cart.create
     cookies[:cart_id] = @cart.id
     @cart
+  end
+
+  def find_total_products(cart_id)
+    sum = 0
+    Cart.find(cart_id).cart_products.each do |cart_product|
+      sum += cart_product.quantity
+    end
+    sum
   end
 
   protected
