@@ -31,7 +31,12 @@
                 <tbody>
                   <tr>
                     <td class="product-img" rowspan="4">
-                      <%= image_tag product.product.image.variant(:thumb).blob, class: 'product-image' %>
+                      <% if product.product.image.attached? %>
+                        <%= image_tag product.product.image.variant(:thumb).blob, class: 'product-image' %>
+                      <% else %>
+                        <%= image_tag 'https://i0.wp.com/tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg?resize=768%2C510&ssl=1',
+                                      class: 'card-img-top' %>
+                      <% end %>
                     </td>
                     <td>
                       <p>

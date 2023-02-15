@@ -239,7 +239,7 @@ sup {
 
 a {
   color: var(--bs-link-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: var(--bs-link-hover-color);
@@ -11033,4 +11033,8 @@ a.product-link {
 .alert-for-cart {
   width: 20px;
   height: 10px;
+}
+
+.added-message {
+  color: green;
 }
