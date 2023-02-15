@@ -1,14 +1,16 @@
-<div class="alert alert-success order-create-alert" role="alert">
-  <h1 class="main-message">Order №<%= @order.id %> was successfully created!</h1>
-  <hr class="order-create-hr">
-  <h3 class="info-message">Soon our manager will contact you to clarify the details of the order!</h3>
-</div>
-<div>
-  <table class="order-create-buttons">
-    <tr>
-      <td><%= link_to 'Go to products', root_path, class: 'btn btn-primary to-products' %></td>
-      <td><%= link_to 'View this order', @order, class: 'btn btn-primary to-order' %></td>
-      <td><%= link_to 'Go to my orders', orders_path, class: 'btn btn-primary to-orders' %></td>
-    </tr>
-  </table>
-</div>
+<%= turbo_frame_tag "order_create" do %>
+  <div class="alert alert-success order-create-alert" role="alert">
+    <h1 class="main-message">Order №<%= @order.id %> was successfully created!</h1>
+    <hr class="order-create-hr">
+    <h3 class="info-message">Soon our manager will contact you to clarify the details of the order!</h3>
+  </div>
+  <div>
+    <table class="order-create-buttons">
+      <tr>
+        <td><%= link_to 'Go to products', root_path, class: 'btn btn-primary to-products' %></td>
+        <td><%= link_to 'View this order', @order, class: 'btn btn-primary to-order' %></td>
+        <td><%= link_to 'Go to my orders', orders_path, class: 'btn btn-primary to-orders' %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>

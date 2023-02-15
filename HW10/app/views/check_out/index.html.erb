@@ -1,54 +1,57 @@
-<%= form_with url: orders_path(total: params[:total]), method: :post, data: { 'turbo-method': :create } do |form| %>
-  <div class="card info-card">
-    <h3 class="form-title">Personal information:</h3>
-    <div>
-      <%= form.label 'Your first name:' %>
-      <%= form.text_field :first_name, class: 'info-input firstname', placeholder: 'First name', required: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label 'Your last name:' %>
-      <%= form.text_field :last_name, class: 'info-input lastname', placeholder: 'Last name', required: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label 'Your phone number:' %>
-      <%= form.text_field :phone, class: 'info-input phone', placeholder: '+380000000000', required: true %>
-    </div>
-  </div>
-  <div class="card info-card">
-    <h3 class="form-title">Payment information:</h3>
-    <div>
-      <%= form.label 'Payment form:' %>
+<%= turbo_frame_tag "order_create" do %>
+  <%= form_with url: orders_path(total: params[:total]), method: :post,
+                data: { 'turbo-method': :create, turbo_frame: "order_create" } do |form| %>
+    <div class="card info-card">
+      <h3 class="form-title">Personal information:</h3>
+      <div>
+        <%= form.label 'Your first name:' %>
+        <%= form.text_field :first_name, class: 'info-input firstname', placeholder: 'First name', required: true %>
+      </div>
       <br>
-      <%= form.radio_button :pay, 'unpaid', checked: true %> By card on the website<br>
-      <%= form.radio_button :pay, 'post' %> When received<br>
-      <div class="alert alert-warning" role="alert">
-        If you choose to pay by card - please, do it after confirm order on the order page!
+      <div>
+        <%= form.label 'Your last name:' %>
+        <%= form.text_field :last_name, class: 'info-input lastname', placeholder: 'Last name', required: true %>
+      </div>
+      <br>
+      <div>
+        <%= form.label 'Your phone number:' %>
+        <%= form.text_field :phone, class: 'info-input phone', placeholder: '+380000000000', required: true %>
       </div>
     </div>
-  </div>
-  <div class="card info-card">
-    <h3 class="form-title">Delivery information:</h3>
-    <div>
-      <%= form.label 'City:' %>
-      <%= form.text_field :city, class: 'info-input city', placeholder: 'City', required: true %>
+    <div class="card info-card">
+      <h3 class="form-title">Payment information:</h3>
+      <div>
+        <%= form.label 'Payment form:' %>
+        <br>
+        <%= form.radio_button :pay, 'unpaid', checked: true %> By card on the website<br>
+        <%= form.radio_button :pay, 'post' %> When received<br>
+        <div class="alert alert-warning" role="alert">
+          If you choose to pay by card - please, do it after confirm order on the order page!
+        </div>
+      </div>
     </div>
-    <br>
-    <div>
-      <%= form.label 'Street:' %>
-      <%= form.text_field :street, class: 'info-input street', placeholder: 'Street', required: true %>
+    <div class="card info-card">
+      <h3 class="form-title">Delivery information:</h3>
+      <div>
+        <%= form.label 'City:' %>
+        <%= form.text_field :city, class: 'info-input city', placeholder: 'City', required: true %>
+      </div>
+      <br>
+      <div>
+        <%= form.label 'Street:' %>
+        <%= form.text_field :street, class: 'info-input street', placeholder: 'Street', required: true %>
+      </div>
+      <br>
+      <div>
+        <%= form.label 'House:' %>
+        <%= form.text_field :house, class: 'info-input house', placeholder: 'House', required: true %>
+      </div>
+      <br>
+      <div>
+        <%= form.label 'Apartments(optionally):' %>
+        <%= form.text_field :apartments, class: 'info-input apartments', placeholder: 'Apartments' %>
+      </div>
     </div>
-    <br>
-    <div>
-      <%= form.label 'House:' %>
-      <%= form.text_field :house, class: 'info-input house', placeholder: 'House', required: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label 'Apartments(optionally):' %>
-      <%= form.text_field :apartments, class: 'info-input apartments', placeholder: 'Apartments' %>
-    </div>
-  </div>
-  <%= form.submit 'Submit', class: 'btn btn-primary submit' %>
+    <%= form.submit 'Submit', class: 'btn btn-primary submit' %>
+  <% end %>
 <% end %>
