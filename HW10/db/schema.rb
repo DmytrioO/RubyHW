@@ -73,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_195337) do
     t.bigint "product_id", null: false
     t.string "name"
     t.string "image"
-    t.string "string"
     t.decimal "price", precision: 8, scale: 2
     t.integer "quantity"
     t.datetime "created_at", null: false

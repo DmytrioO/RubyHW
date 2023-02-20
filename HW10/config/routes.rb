@@ -1,12 +1,14 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :quotes
+  root "products#index"
+
+  ActiveAdmin.routes(self)
+
+
   authenticate :admin_user do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-  ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
@@ -15,12 +17,11 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  root "products#index"
-
   resources :cart_products, only: %i[create update destroy]
   resources :carts, only: :index
   resources :check_out, only: :index
-  resources :products, only: %i[index show]
   resources :orders, only: %i[index show create update]
+  resources :products, only: %i[index show]
+  resources :quotes
 
 end

@@ -19,11 +19,7 @@ class Order < ApplicationRecord
   enum :payment_status, %i[unpaid paid post]
 
   def status_payment
-    if payment_status == 'post'
-      'When received'
-    else
-      payment_status.capitalize
-    end
+    post? ? 'When received' : payment_status.capitalize
   end
 
   def design_status(parameter)
@@ -41,11 +37,7 @@ class Order < ApplicationRecord
         'danger'
       end
     else
-      if payment_status == 'unpaid'
-        'danger'
-      else
-        'success'
-      end
+      unpaid? ? 'danger' : 'success'
     end
   end
 end

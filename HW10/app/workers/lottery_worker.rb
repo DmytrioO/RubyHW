@@ -4,6 +4,6 @@ class LotteryWorker
   include Sidekiq::Worker
 
   def perform
-    LotteryService.new
+    LotteryService.new.call
   end
 end

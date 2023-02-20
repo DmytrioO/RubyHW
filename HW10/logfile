@@ -9,3 +9,10 @@
 2023-02-06 22:34:10.472 EET [13721] LOG:  background worker "logical replication launcher" (PID 13728) exited with exit code 1
 2023-02-06 22:34:10.472 EET [13723] LOG:  shutting down
 2023-02-06 22:34:10.490 EET [13721] LOG:  database system is shut down
+2023-02-20 21:58:55.681 EET [5673] LOG:  starting PostgreSQL 14.7 (Homebrew) on aarch64-apple-darwin22.1.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2023-02-20 21:58:55.683 EET [5673] LOG:  listening on IPv6 address "::1", port 5432
+2023-02-20 21:58:55.683 EET [5673] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-02-20 21:58:55.683 EET [5673] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-02-20 21:58:55.686 EET [5674] LOG:  database system was shut down at 2023-02-20 21:58:38 EET
+2023-02-20 21:58:55.688 EET [5673] LOG:  database system is ready to accept connections
+2023-02-20 21:59:02.214 EET [5693] FATAL:  database "HW10_development" does not exist

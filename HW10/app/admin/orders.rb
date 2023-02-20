@@ -44,7 +44,7 @@ ActiveAdmin.register Order do
         end
 
         row :sum do
-          number_to_currency(product.find_sum, unit: '$', separator: ',', delimiter: ' ')
+          number_to_currency(product.sum, unit: '$', separator: ',', delimiter: ' ')
         end
       end
 

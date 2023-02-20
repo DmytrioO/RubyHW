@@ -3,7 +3,7 @@ class CartProductsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @product = Product.find(params[:product])
+    @product = Product.find(params[:product_id])
     cart_prod = Cart.find(cookies[:cart_id]).cart_products.where(product_id: params[:product])
 
     if cart_prod.empty?

@@ -5,7 +5,6 @@ class CreateCartProducts < ActiveRecord::Migration[7.0]
       t.belongs_to :product, null: false, foreign_key: true
       t.string :name
       t.string :image
-      t.string :string
       t.decimal :price, :precision => 8, :scale => 2
       t.integer :quantity
 

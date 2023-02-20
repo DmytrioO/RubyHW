@@ -3691,7 +3691,7 @@ textarea.form-control-lg {
   --bs-navbar-brand-margin-end: 1rem;
   --bs-navbar-brand-font-size: 1.25rem;
   --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);
-  --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);
+  --bs-navbar-brand-hover-color: #0dcaf0;
   --bs-navbar-nav-link-padding-x: 0.5rem;
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
@@ -10768,15 +10768,29 @@ textarea.form-control-lg {
 
 .main-td {
   font-weight: bold;
+  text-align: center;
+}
+
+.product-counter {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.btn-product-counter {
+  height: 30px;
+  width: 30px;
+  color: black;
+  background-color: #8cc8bba3;
 }
 
 .order-table-borders {
-  border-color: black;
-  border-width: 1px;
+  /*border-color: black;*/
+  /*border-width: 1px;*/
 }
 
 .product-photo {
-  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .info-card {

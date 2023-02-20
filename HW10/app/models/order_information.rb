@@ -17,4 +17,6 @@
 #
 class OrderInformation < ApplicationRecord
   belongs_to :order
+
+  validates :phone, presence: true, format: { with: /\A\+380\d{9}\z/ }
 end

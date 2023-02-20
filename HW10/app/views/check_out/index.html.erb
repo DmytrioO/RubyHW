@@ -15,7 +15,8 @@
       <br>
       <div>
         <%= form.label 'Your phone number:' %>
-        <%= form.text_field :phone, class: 'info-input phone', placeholder: '+380000000000', required: true %>
+        <%= form.text_field :phone, class: 'info-input phone', placeholder: '+380000000000', required: true,
+                            pattern: '\+380\d{9}', value: '+380' %>
       </div>
     </div>
     <div class="card info-card">

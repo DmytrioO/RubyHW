@@ -1,12 +1,18 @@
 class LotteryService
-  last_month_orders_ids = Order.completed.where(["created_at >= ? AND created_at <= ?",
-                                             Date.today.beginning_of_day - 1.month, Date.today.end_of_day]).ids.shuffle
-  if last_month_orders_ids.any?
-    random_id = rand(last_month_orders_ids.count)
-    rand_order_first = Order.find(last_month_orders_ids[random_id])
-    random_id = rand(last_month_orders_ids.count)
-    rand_order_second = Order.find(last_month_orders_ids[random_id])
-    LotteryMailer.win_email(rand_order_first.user).deliver_now
-    LotteryMailer.win_email(rand_order_second.user).deliver_now
+  def call
+    lottery
+  end
+
+  private
+
+  def lottery
+    users = User.joins(:orders).where(orders: {order_status: :completed,
+                                               created_at: Date.today.beginning_of_day - 1.month..Date.today.end_of_day})
+    if users.any?
+      2.times do
+        random_user = users.shuffle.first
+        LotteryMailer.win_email(random_user).deliver_later
+      end
+    end
   end
 end

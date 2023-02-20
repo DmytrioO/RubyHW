@@ -1,50 +1,53 @@
-<table class="order-table">
-  <tbody class="order-table-borders">
-    <tr>
-      <% %w[Name Image Price Quantity Sum Option].each do |name| %>
-        <td class="main-td order-table-borders order-table-td"><%= name %></td>
-      <% end %>
-    </tr>
-    <% @cart.cart_products.sort.each do |cart_product| %>
-      <tr class="order-table-borders">
-        <td class="order-table-borders order-table-td"><%= cart_product.name %></td>
-        <td class="order-table-borders order-table-td">
-          <% if cart_product.product.image.attached? %>
-            <%= image_tag cart_product.product.image.variant(:thumb).blob, class: "product-photo" %>
-          <% else %>
-            <%= image_tag 'https://i0.wp.com/tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg?resize=768%2C510&ssl=1',
-                          class: 'card-img-top' %>
-          <% end %>
-        </td>
-        <td class="order-table-borders order-table-td">
-          <%= number_to_currency(cart_product.price, unit: '$', separator: ',', delimiter: ' ') %>
-        </td>
-        <td class="order-table-borders order-table-td">
-          <%= button_to '+', cart_product, method: :put, data: { 'turbo-method': :update },
-                        params: { operation: 'plus' }, class: 'btn-success' %>
-          <%= cart_product.quantity %>
-          <%= button_to '-', cart_product, method: :put, data: { 'turbo-method': :update },
-                        params: { operation: 'minus' }, class: 'btn-success' %>
-        </td>
-        <td class="order-table-borders order-table-td">
-          <%= number_to_currency(cart_product.find_sum, unit: '$', separator: ',', delimiter: ' ') %>
-        </td>
-        <td class="table_button order-table-borders order-table-td">
-          <%= button_to 'Remove', cart_product, method: :delete, data: { 'turbo-method': :destroy },
-                        class: 'btn btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-    <tr class="order-table-borders">
-      <th colspan="4" class="order-table-borders">Totally</th>
-      <th colspan="2" class="order-table-borders">
-        <%= number_to_currency(@cart.find_total, unit: '$', separator: ',', delimiter: ' ') %>
-      </th>
-    </tr>
-  </tbody>
-</table>
-
 <% if @cart.cart_products.any? %>
+  <table class="order-table">
+    <tbody>
+      <tr>
+        <% %w[Name Image Price Quantity Sum Option].each do |name| %>
+          <td class="main-td order-table-td"><%= name %></td>
+        <% end %>
+      </tr>
+      <% @cart.cart_products.sort.each do |cart_product| %>
+        <tr class="order-table-borders">
+          <td class="order-table-td"><%= cart_product.name %></td>
+          <td class="order-table-td">
+            <%= image_tag cart_product.product.insert_image, class: "product-photo" %>
+          </td>
+          <td class="order-table-td">
+            <%= number_to_currency(cart_product.price, unit: '$', separator: ',', delimiter: ' ') %>
+          </td>
+          <td class="order-table-td">
+            <table>
+              <tr>
+                <td>
+                  <%= button_to '-', cart_product, method: :put, data: { 'turbo-method': :update },
+                                params: { operation: 'minus' }, class: 'btn-success btn-product-counter' %>
+                </td>
+                <td class="product-counter"><b><%= cart_product.quantity %></b></td>
+                <td>
+                  <%= button_to '+', cart_product, method: :put, data: { 'turbo-method': :update },
+                                params: { operation: 'plus' }, class: 'btn-success btn-product-counter' %>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td class="order-table-td">
+            <%= number_to_currency(cart_product.sum, unit: '$', separator: ',', delimiter: ' ') %>
+          </td>
+          <td class="table_button order-table-td">
+            <%= button_to 'Remove', cart_product, method: :delete, data: { 'turbo-method': :destroy },
+                          class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+      <tr class="order-table-borders">
+        <th colspan="4">Totally</th>
+        <th colspan="2">
+          <%= number_to_currency(@cart.find_total, unit: '$', separator: ',', delimiter: ' ') %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
   <div>
     <table class="check-out-button">
       <td>
