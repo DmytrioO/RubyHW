@@ -47,7 +47,8 @@
               <tr>
                 <% if user_signed_in? %>
                   <td class="cart">
-                    <%= button_to 'Add to cart', cart_products_path(product: @product.id),
+                    <%= button_to 'Add to cart', cart_products_path(product_id: @product.id),
+                                  data: { turbo_frame: "cart#{@product.id}" },
                                   class: 'btn btn-primary' %>
                   </td>
                 <% end %>

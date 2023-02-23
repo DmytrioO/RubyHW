@@ -4,8 +4,11 @@
       <div class="img-div">
         <%= image_tag product.insert_image, class: "card-img-top" %>
       </div>
+    <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= product.name %></h5>
+        <%= link_to product, class: "product-link" do %>
+          <h5 class="card-title"><%= product.name %></h5>
+        <% end %>
         <div class="price-cart">
           <h5 class="card-title">
             <strong>
@@ -21,7 +24,6 @@
           <% end %>
         </div>
       </div>
-    <% end %>
   </div>
 </div>
 
